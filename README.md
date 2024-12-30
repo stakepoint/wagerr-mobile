@@ -39,7 +39,7 @@ flutter run
 
 
 ## Contribute to StarkWager
-We welcome contributions to StarkWager! Check out our [Contributor's Guide](https://https://github.com/stakepoint/stark-wager-mobile/blob/main/CONTRIBUTING.md) to get started.
+We welcome contributions to StarkWager! Check out our [Contributor's Guide](https://github.com/stakepoint/stark-wager-mobile/blob/dev/CONTRIBUTING.md) to get started.
 
 ### ⭐ Don't forget to Star this repo!!
 
