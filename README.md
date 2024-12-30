@@ -18,12 +18,6 @@ StarkWager is a decentralized online wager platform built on StarkNet that allow
 - **Frontend**: Flutter
 - **Wallet Integration**: Support for ArgentX and Braavos wallets
 
-## 📋 Prerequisites
-
-- Cairo 1.0 or higher
-- StarkNet CLI
-- Node.js (for frontend development)
-- A StarkNet wallet (ArgentX or Braavos)
 
 ## 🚀 Getting Started
 
@@ -32,9 +26,17 @@ StarkWager is a decentralized online wager platform built on StarkNet that allow
 1. Clone the repository
 ```bash
 git clone https://github.com/stakepoint/stark-wager-mobile.git
+```
+2. Clean the project clean 
+```bash
+flutter clean 
+```
+3. Run 
+```bash
+flutter run
+```
+---
 
-2. flutter clean 
-3. run flutter run
 
 ## Contribute to StarkWager
 We welcome contributions to StarkWager! Check out our [Contributor's Guide](https://https://github.com/stakepoint/stark-wager-mobile/blob/main/CONTRIBUTING.md) to get started.
