@@ -1,4 +1,4 @@
-# StarkWager - mobile contribution guide🎲
+# StarkWager - mobile contribution guide 🎲
 
 First off, thank you for considering contributing to StarkWager! It's people like you that make StarkWager such a great platform.
 
@@ -103,7 +103,7 @@ Use the following types for your commit messages:
 
 ---
 
-Thank you for contributing to StarShop! Let us know if you need any help.
+Thank you for contributing to StarkWager! Let us know if you need any help.
 
 
 
