@@ -1,1 +1,43 @@
-# wagerr-mobile
+# StarkWager - mobile 🎲
+
+StarkWager is a decentralized online wager platform built on StarkNet that allows users to wager on binary outcomes of real-world events. Currently supporting two-outcome events, with plans to expand to multiple outcomes in the future.
+
+## 🌟 Features
+
+- **Create wallet**: Get a wallet that can be funded and used to place a wager 🚧
+- **Connect existing wallet**: Easily fund wagers from already existing wallet (E.g Argent)  🚧
+- **Create/Join Wagers**: All operations are handled through smart contracts  🚧
+- **Invite Others**: Invite other users to join a wager  🚧
+- **Fair Distribution**: Rewards are distributed proportionally based on stake  🚧
+
+
+## 🛠 Technology Stack
+
+- **Smart Contracts**: Cairo (StarkNet's native smart contract language)
+- **Blockchain**: StarkNet
+- **Frontend**: Flutter
+- **Wallet Integration**: Support for ArgentX and Braavos wallets
+
+## 📋 Prerequisites
+
+- Cairo 1.0 or higher
+- StarkNet CLI
+- Node.js (for frontend development)
+- A StarkNet wallet (ArgentX or Braavos)
+
+## 🚀 Getting Started
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/stakepoint/stark-wager-mobile.git
+
+2. flutter clean 
+3. run flutter run
+
+## Contribute to StarkWager
+We welcome contributions to StarkWager! Check out our [Contributor's Guide](https://https://github.com/stakepoint/stark-wager-mobile/blob/main/CONTRIBUTING.md) to get started.
+
+### ⭐ Don't forget to Star this repo!!
+
