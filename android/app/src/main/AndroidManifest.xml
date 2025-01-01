@@ -33,5 +33,7 @@
     <queries>
         <package android:name="app.braavos.wallet"/>
         <package android:name="im.argent.contractwalletclient"/>
+        <!-- TODO: find meta mask actual package name -->
+        <package android:name="app.metamask.wallet"/>
     </queries>
 </manifest>
