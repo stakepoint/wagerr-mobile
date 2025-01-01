@@ -30,4 +30,8 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <queries>
+        <package android:name="app.braavos.wallet"/>
+        <package android:name="im.argent.contractwalletclient"/>
+    </queries>
 </manifest>
