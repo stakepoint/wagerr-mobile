@@ -81,7 +81,7 @@ Where XXX is the issue number from our issue tracking system. For example:
     - Push your changes to your branch.
 
 Wait for reviews, make updates if needed, and get your PR merged!  
-For faster review, contact the maintainer via Telegram.
+For faster review, contact the maintainer via [Telegram](https://t.me/+EBI23VHliJgxNzFk).
 
 --- 
 
