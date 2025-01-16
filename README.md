@@ -1,3 +1,9 @@
+
+<p align="center">
+  
+  ![Container](https://github.com/user-attachments/assets/9bff87ad-48d6-4237-8139-81d9ff94ede8)
+</p>
+
 # StarkWager - mobile 🎲
 
 StarkWager is a decentralized online wager platform built on StarkNet that allows users to wager on binary outcomes of real-world events. Currently supporting two-outcome events, with plans to expand to multiple outcomes in the future.
@@ -25,7 +31,7 @@ StarkWager is a decentralized online wager platform built on StarkNet that allow
 
 1. Clone the repository
 ```bash
-git clone https://github.com/stakepoint/stark-wager-mobile.git
+git clone https://github.com/stakepoint/starkwager-mobile.git
 ```
 2. Clean the project clean 
 ```bash
