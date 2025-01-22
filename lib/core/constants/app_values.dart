@@ -22,6 +22,7 @@ class AppValues {
   static const width1 = 1.0;
   static const width24 = 24.0;
   static const width600 = 600.0;
+  static const width1440 = 1440.0;
 
 
 
