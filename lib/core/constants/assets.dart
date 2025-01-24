@@ -8,4 +8,7 @@ class AppIcons {
   static const copyIcon = 'assets/icons/copy.svg';
   static const copyIcon2 = 'assets/icons/copy2.svg';
   static const notificationIcon = 'assets/icons/notification.svg';
+
+  // IMAGES
+  static const userImage = 'assets/images/user.png';
 }

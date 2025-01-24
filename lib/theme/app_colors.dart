@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-
   static const blue950 = Color(0xFF102A56);
 
   static const blueberry100 = Color(0xFF0093FF);
 
+  static const yellow = Color(0xFFE0FE10);
+
   static const grayCool25 = Color(0xFFFCFCFD);
   static const grayCool100 = Color(0xFF7D89B0);
+  static const grayCool100_2 = Color(0xFFEFF1F5);
   static const grayCool200 = Color(0xFFDCDFEA);
+  static const grayCool300 = Color(0xFFB9C0D4);
+  static const grayCool600 = Color(0xFF4A5578);
 
   static const rambutan100 = Color(0xFFE60F41);
 

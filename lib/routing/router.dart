@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:starkwager/features/account_created/account_created_screen.dart';
 import 'package:starkwager/features/connect_wallet/connect_wallet_screen.dart';
 
 import '../routing/routes.dart';
@@ -28,13 +29,20 @@ class SlideRouteTransition extends CustomTransitionPage<void> {
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: Routes.splash,
+  initialLocation: Routes.account_created,
   routes: [
     GoRoute(
       path: Routes.splash,
       pageBuilder: (context, state) => SlideRouteTransition(
         child: ConnectWalletScreen(),
         routeName: Routes.splash,
+      ),
+    ),
+    GoRoute(
+      path: Routes.account_created,
+      pageBuilder: (context, state) => SlideRouteTransition(
+        child: AccountCreatedScreen(),
+        routeName: Routes.account_created,
       ),
     ),
   ],

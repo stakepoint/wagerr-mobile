@@ -11,6 +11,32 @@ class AppTheme {
     fontWeight: FontWeight.w600,
   );
 
+  static final textSmallMedium = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+  static final textMediumMedium = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+  static final textMediumNormal = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+  );
+  static final headingMobileH1 = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 40,
+    fontWeight: FontWeight.w600,
+  );
+  static final textRegularMedium = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+
   static final titleExtraLarge24 = TextStyle(
     fontFamily: fontFamily,
     fontSize: 24,
