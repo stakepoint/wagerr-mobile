@@ -42,7 +42,7 @@ class CustomBottomNavigation extends StatelessWidget {
     );
   }
 
-//----------------------------------------------- HORIZONTALLAYOUT ----------------------------------------------- //
+//----------------------------------------------- HORIZONTAL LAYOUT ----------------------------------------------- //
 
   Widget _buildHorizontalLayout() {
     return Row(
@@ -54,7 +54,7 @@ class CustomBottomNavigation extends StatelessWidget {
     );
   }
 
-//----------------------------------------------- VERTICALLAYOUT ----------------------------------------------- //
+//----------------------------------------------- VERTICAL LAYOUT ----------------------------------------------- //
 
   Widget _buildVerticalLayout() {
     return Column(
@@ -66,7 +66,7 @@ class CustomBottomNavigation extends StatelessWidget {
     );
   }
 
-//----------------------------------------------- NAVIGATIONITEM ----------------------------------------------- //
+//----------------------------------------------- NAVIGATION ITEM ----------------------------------------------- //
 
   Widget _buildNavigationItem(int index) {
     final isSelected = currentIndex == index;
@@ -149,7 +149,7 @@ class CustomBottomNavigation extends StatelessWidget {
   }
 }
 
-//----------------------------------------------- NAVIGATIONITEM ----------------------------------------------- //
+//----------------------------------------------- NAVIGATION ITEM ----------------------------------------------- //
 
 class NavigationItem {
   final String label;

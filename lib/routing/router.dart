@@ -45,11 +45,15 @@ final GoRouter router = GoRouter(
 //----------------------------------------------- Tablet Shell Route ----------------------------------------------- //
 
     ShellRoute(
-      builder: (context, state, child) => ScreenLayout.isTablet(context)
-          ? HomeScreenTabletMenuBar(
-              child: child,
-            )
-          : const SizedBox.shrink(),
+      builder: (context, state, child) {
+        final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+
+        return ScreenLayout.isTablet(context)
+            ? isLandscape
+            ? HomeScreenTabletMenuBar(child: child) // Landscape: Navigation on the left
+            : ScaffoldWithNavBar(child: child) // Portrait: Navigation at the bottom
+            : const SizedBox.shrink();
+      },
       routes: [
         GoRoute(
           path: Routes.home_tablet,
@@ -59,10 +63,10 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          path: Routes.search_tablet,
+          path: Routes.wagger_tablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: HomeScreen(),
-            routeName: Routes.search_tablet,
+            routeName: Routes.wagger_tablet,
           ),
         ),
         GoRoute(
@@ -73,50 +77,10 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          path: Routes.settings_tablet,
+          path: Routes.wallet_tablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: HomeScreen(),
-            routeName: Routes.settings_tablet,
-          ),
-        ),
-      ],
-    ),
-
-    //----------------------------------------------- Portrait Tablet Shell Route ----------------------------------------------- //
-
-    ShellRoute(
-      builder: (context, state, child) => ScreenLayout.isTablet(context)
-          ? ScaffoldWithNavBar(
-              child: child,
-            )
-          : const SizedBox.shrink(),
-      routes: [
-        GoRoute(
-          path: Routes.home_tablet_potriate,
-          pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
-            routeName: Routes.home_tablet_potriate,
-          ),
-        ),
-        GoRoute(
-          path: Routes.search_tablet_potriate,
-          pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
-            routeName: Routes.search_tablet_potriate,
-          ),
-        ),
-        GoRoute(
-          path: Routes.profile_tablet_potriate,
-          pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
-            routeName: Routes.profile_tablet_potriate,
-          ),
-        ),
-        GoRoute(
-          path: Routes.settings_tablet_potriate,
-          pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
-            routeName: Routes.settings_tablet_potriate,
+            routeName: Routes.wallet_tablet,
           ),
         ),
       ],
@@ -137,10 +101,10 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          path: Routes.search,
+          path: Routes.wagger,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: HomeScreen(),
-            routeName: Routes.search,
+            routeName: Routes.wagger,
           ),
         ),
         GoRoute(
@@ -151,10 +115,10 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          path: Routes.settings,
+          path: Routes.wallet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: HomeScreen(),
-            routeName: Routes.settings,
+            routeName: Routes.wallet,
           ),
         ),
       ],

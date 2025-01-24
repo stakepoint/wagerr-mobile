@@ -15,6 +15,8 @@ class HomeScreenTabletMode extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -43,7 +45,7 @@ class HomeScreenTabletMode extends ConsumerWidget {
         ),
         verticalSpace(120),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 184),
+          padding: EdgeInsets.symmetric(horizontal: isLandscape ? 184 : 90),
           child: HomeScreenBody(),
         ),
       ],
