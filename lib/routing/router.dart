@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/features/connect_wallet/connect_wallet_screen.dart';
 import 'package:starkwager/features/home_screen/home_screen.dart';
 import 'package:starkwager/features/home_screen/naviagtion.dart';
+import 'package:starkwager/features/home_screen/widget/home_screen_tablet_menu_bar.dart';
 
 import '../routing/routes.dart';
 
@@ -39,15 +41,93 @@ final GoRouter router = GoRouter(
         routeName: Routes.splash,
       ),
     ),
-    GoRoute(
-      path: Routes.home_tablet,
-      pageBuilder: (context, state) => SlideRouteTransition(
-        child: HomeScreen(),
-        routeName: Routes.home_tablet,
-      ),
-    ),
+
+//----------------------------------------------- Tablet Shell Route ----------------------------------------------- //
+
     ShellRoute(
-      builder: (context, state, child) => ScaffoldWithNavBar(child: child),
+      builder: (context, state, child) => ScreenLayout.isTablet(context)
+          ? HomeScreenTabletMenuBar(
+              child: child,
+            )
+          : const SizedBox.shrink(),
+      routes: [
+        GoRoute(
+          path: Routes.home_tablet,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: HomeScreen(),
+            routeName: Routes.home_tablet,
+          ),
+        ),
+        GoRoute(
+          path: Routes.search_tablet,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: HomeScreen(),
+            routeName: Routes.search_tablet,
+          ),
+        ),
+        GoRoute(
+          path: Routes.profile_tablet,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: HomeScreen(),
+            routeName: Routes.profile_tablet,
+          ),
+        ),
+        GoRoute(
+          path: Routes.settings_tablet,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: HomeScreen(),
+            routeName: Routes.settings_tablet,
+          ),
+        ),
+      ],
+    ),
+
+    //----------------------------------------------- Portrait Tablet Shell Route ----------------------------------------------- //
+
+    ShellRoute(
+      builder: (context, state, child) => ScreenLayout.isTablet(context)
+          ? ScaffoldWithNavBar(
+              child: child,
+            )
+          : const SizedBox.shrink(),
+      routes: [
+        GoRoute(
+          path: Routes.home_tablet_potriate,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: HomeScreen(),
+            routeName: Routes.home_tablet_potriate,
+          ),
+        ),
+        GoRoute(
+          path: Routes.search_tablet_potriate,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: HomeScreen(),
+            routeName: Routes.search_tablet_potriate,
+          ),
+        ),
+        GoRoute(
+          path: Routes.profile_tablet_potriate,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: HomeScreen(),
+            routeName: Routes.profile_tablet_potriate,
+          ),
+        ),
+        GoRoute(
+          path: Routes.settings_tablet_potriate,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: HomeScreen(),
+            routeName: Routes.settings_tablet_potriate,
+          ),
+        ),
+      ],
+    ),
+
+    //----------------------------------------------- Mobile Shell Route ----------------------------------------------- //
+
+    ShellRoute(
+      builder: (context, state, child) => ScreenLayout.isMobile(context)
+          ? ScaffoldWithNavBar(child: child)
+          : const SizedBox.shrink(),
       routes: [
         GoRoute(
           path: Routes.home,

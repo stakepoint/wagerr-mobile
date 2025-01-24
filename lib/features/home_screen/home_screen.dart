@@ -9,7 +9,6 @@ import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/features/home_screen/widget/home_screen_app_bar.dart';
 import 'package:starkwager/features/home_screen/widget/home_screen_body.dart';
-import 'package:starkwager/features/home_screen/widget/home_screen_tablet_menu_bar.dart';
 import 'package:starkwager/features/home_screen/widget/home_screen_tablet_mode.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
@@ -49,16 +48,10 @@ class HomeScreen extends ConsumerWidget {
                   )
                 : ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxWidthTablet),
-                    child: Row(
-                      children: [
-                        HomeScreenTabletMenuBar(),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 32, right: 80),
-                            child: HomeScreenTabletMode(),
-                          ),
-                        ),
-                      ],
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 32, right: 80),
+                      child: HomeScreenTabletMode(),
                     ),
                   );
           },
