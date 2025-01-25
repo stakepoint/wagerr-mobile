@@ -5,6 +5,9 @@ import 'package:starkwager/features/connect_wallet/connect_wallet_screen.dart';
 import 'package:starkwager/features/home_screen/home_screen.dart';
 import 'package:starkwager/features/home_screen/naviagtion.dart';
 import 'package:starkwager/features/home_screen/widget/home_screen_tablet_menu_bar.dart';
+import 'package:starkwager/features/profile_screen.dart/profile_screen.dart';
+import 'package:starkwager/features/waggers_screen.dart/waggers_screen.dart';
+import 'package:starkwager/features/wallet_screen.dart/wallet_screen.dart';
 
 import '../routing/routes.dart';
 
@@ -66,22 +69,22 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: Routes.wagger_tablet,
           pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
+            child: WaggersScreen(),
             routeName: Routes.wagger_tablet,
-          ),
-        ),
-        GoRoute(
-          path: Routes.profile_tablet,
-          pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
-            routeName: Routes.profile_tablet,
           ),
         ),
         GoRoute(
           path: Routes.wallet_tablet,
           pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
+            child: WalletScreen(),
             routeName: Routes.wallet_tablet,
+          ),
+        ),
+        GoRoute(
+          path: Routes.profile_tablet,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: ProfileScreen(),
+            routeName: Routes.profile_tablet,
           ),
         ),
       ],
@@ -104,22 +107,22 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: Routes.wagger,
           pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
+            child: WaggersScreen(),
             routeName: Routes.wagger,
-          ),
-        ),
-        GoRoute(
-          path: Routes.profile,
-          pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
-            routeName: Routes.profile,
           ),
         ),
         GoRoute(
           path: Routes.wallet,
           pageBuilder: (context, state) => SlideRouteTransition(
-            child: HomeScreen(),
+            child: WalletScreen(),
             routeName: Routes.wallet,
+          ),
+        ),
+        GoRoute(
+          path: Routes.profile,
+          pageBuilder: (context, state) => SlideRouteTransition(
+            child: ProfileScreen(),
+            routeName: Routes.profile,
           ),
         ),
       ],

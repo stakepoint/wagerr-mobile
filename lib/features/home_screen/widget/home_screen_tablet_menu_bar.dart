@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -95,7 +96,7 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
           SvgPicture.asset(AppIcons.handshakeIcon),
           const SizedBox(width: 12),
           Text(
-            'New Wager',
+            'newWager'.tr(),
             style: AppTheme.textMediumMedium.copyWith(
               color: AppColors.blue950,
             ),
@@ -109,25 +110,25 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
     final items = [
       {
         'index': 0,
-        'label': 'Home',
+        'label': 'home'.tr(),
         'icon': AppIcons.homeNoneIcon,
         'route': Routes.home_tablet
       },
       {
         'index': 1,
-        'label': 'Wagers',
+        'label': 'wagers'.tr(),
         'icon': AppIcons.homeShakeIcon,
         'route': Routes.wagger_tablet
       },
       {
         'index': 2,
-        'label': 'Wallet',
+        'label': 'wallet'.tr(),
         'icon': AppIcons.walletIcon,
-        'route': Routes.profile_tablet
+        'route': Routes.wallet_tablet
       },
       {
         'index': 3,
-        'label': 'Profile',
+        'label': 'profile'.tr(),
         'icon': AppIcons.profileIcon,
         'route': Routes.profile_tablet
       },

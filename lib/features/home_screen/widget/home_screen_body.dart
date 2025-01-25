@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -49,7 +50,7 @@ class HomeScreenBody extends ConsumerWidget {
           horizontalSpace(16),
           SvgPicture.asset(AppIcons.noWaggerIcon),
           Text(
-            'No wagers created yet',
+            'nowagerscreatedyet'.tr(),
             style: AppTheme.titleSmall16.copyWith(
               color: AppColors.grayCool400,
             ),
@@ -75,7 +76,7 @@ class HomeScreenBody extends ConsumerWidget {
         children: [
           SvgPicture.asset(AppIcons.noWaggerIcon, width: 88, height: 88),
           Text(
-            'No wagers created yet',
+            'nowagerscreatedyet'.tr(),
             style: AppTheme.textMediumNormal.copyWith(
               color: AppColors.grayCool400,
             ),
@@ -149,12 +150,12 @@ class HomeScreenBody extends ConsumerWidget {
             spacing: 16,
             children: [
               HomeActionButton(
-                text: 'Add Money',
+                text: 'addMoney'.tr(),
                 iconPath: AppIcons.addIcon,
                 onTap: () {},
               ),
               HomeActionButton(
-                text: 'Withdraw',
+                text: 'withdraw'.tr(),
                 iconPath: AppIcons.withdrawIcon,
                 onTap: () {},
               ),
@@ -172,7 +173,7 @@ class HomeScreenBody extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Wallet Balance',
+          'walletBalance'.tr(),
           style: AppTheme.bodyMedium14.copyWith(
             color: AppColors.grayCool400,
           ),
@@ -208,7 +209,7 @@ class HomeScreenBody extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Wallet Balance',
+          'walletBalance'.tr(),
           style: AppTheme.titleSmall16.copyWith(
             color: AppColors.grayCool400,
           ),

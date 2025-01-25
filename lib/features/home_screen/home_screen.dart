@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,10 +21,13 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = ScreenLayout.isMobile(context);
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
       appBar: isMobile ? HomeScreenAppBar() : null,
       backgroundColor: context.secondaryTextColor,
-      floatingActionButton: isMobile ? _floatingActionButton() : SizedBox(),
+      floatingActionButton:
+          isMobile || isPortrait ? _floatingActionButton() : SizedBox(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: LayoutBuilder(
@@ -49,8 +53,7 @@ class HomeScreen extends ConsumerWidget {
                 : ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxWidthTablet),
                     child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 32, right: 80),
+                      padding: const EdgeInsets.only(left: 32, right: 80),
                       child: HomeScreenTabletMode(),
                     ),
                   );
@@ -83,7 +86,7 @@ class HomeScreen extends ConsumerWidget {
         children: [
           SvgPicture.asset(AppIcons.handshakeIcon),
           Text(
-            'New Wager',
+            'newWager'.tr(),
             style: AppTheme.textMediumMedium.copyWith(
               color: AppColors.blue950,
             ),

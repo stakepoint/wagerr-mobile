@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/assets.dart';
@@ -34,12 +35,12 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
         case Routes.wagger_tablet:
           _currentIndex = 1;
           break;
-        case Routes.profile:
-        case Routes.profile_tablet:
-          _currentIndex = 2;
-          break;
         case Routes.wallet:
         case Routes.wallet_tablet:
+          _currentIndex = 2;
+          break;
+        case Routes.profile:
+        case Routes.profile_tablet:
           _currentIndex = 3;
           break;
       }
@@ -49,7 +50,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
 
   late final List<NavigationItem> _navigationItems = [
     NavigationItem(
-      label: 'Home',
+      label: 'home'.tr(),
       icon: AppIcons.homeNoneIcon,
       onTap: () {
         _onNavigate(
@@ -57,7 +58,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
       },
     ),
     NavigationItem(
-      label: 'Wagers',
+      label: 'wagers'.tr(),
       icon: AppIcons.homeShakeIcon,
       onTap: () {
         _onNavigate(ScreenLayout.isTablet(context)
@@ -66,7 +67,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
       },
     ),
     NavigationItem(
-      label: 'Wallet',
+      label: 'wallet'.tr(),
       icon: AppIcons.walletIcon,
       onTap: () {
         _onNavigate(ScreenLayout.isTablet(context)
@@ -75,7 +76,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
       },
     ),
     NavigationItem(
-      label: 'Profile',
+      label: 'profile'.tr(),
       icon: AppIcons.profileIcon,
       onTap: () {
         _onNavigate(ScreenLayout.isTablet(context)

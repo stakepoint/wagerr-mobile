@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/core/constants/assets.dart';
@@ -14,12 +15,12 @@ class HomeAddAndWithdraw extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         HomeActionButton(
-          text: 'Add Money',
+          text: 'addMoney'.tr(),
           iconPath: AppIcons.addIcon,
           onTap: () {},
         ),
         HomeActionButton(
-          text: 'Withdraw',
+          text: 'withdraw'.tr(),
           iconPath: AppIcons.withdrawIcon,
           onTap: () {},
         ),
