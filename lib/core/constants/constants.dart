@@ -10,7 +10,7 @@ class Constants {
 
   static const String baseIconPath = 'assets/icons';
   static const String userPath = '$baseIconPath/user.png';
-  static const String copyPath = '$baseIconPath/copy.png';
-  static const String notificationPath = '$baseIconPath/notification.png';
+  static const String copyPath = '$baseIconPath/copy.svg';
+  static const String notificationPath = '$baseIconPath/notification.svg';
   static const String snSymbol = '$baseIconPath/sn_symbol.png';
 }

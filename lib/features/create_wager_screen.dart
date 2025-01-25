@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:starkwager/core/constants/app_values.dart';
 import 'package:starkwager/core/constants/constants.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
@@ -13,6 +14,7 @@ class CreateWagerScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 120,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -25,7 +27,7 @@ class CreateWagerScreen extends StatelessWidget {
         actions: [
           if (!context.isMobile)
             Container(
-              padding: EdgeInsets.all(6),
+              padding: EdgeInsets.only(right: 80),
               child: Row(
                 children: [
                   Image.asset(Constants.userPath),
@@ -40,17 +42,14 @@ class CreateWagerScreen extends StatelessWidget {
                         Text(
                           '@noyi24_7',
                         ),
-                        Image.asset(
-                          Constants.copyPath,
-                          color: Colors.black,
-                        ),
+                        SvgPicture.asset(Constants.copyPath),
                       ],
                     ),
                   ),
                   SizedBox(
                     width: AppValues.height20,
                   ),
-                  Image.asset(Constants.notificationPath)
+                  SvgPicture.asset(Constants.notificationPath),
                 ],
               ),
             )
@@ -77,15 +76,16 @@ class CreateWagerScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: DropdownButtonFormField<String>(
+                        alignment: Alignment.center,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: AppColors.grayCool300,
-                          hintText: "selectCategory".tr(),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
                           ),
                         ),
+                        hint: Text('selectCategory'.tr()),
                         items: ["Category 1", "Category 2"]
                             .map((category) => DropdownMenuItem(
                                   value: category,
@@ -101,12 +101,12 @@ class CreateWagerScreen extends StatelessWidget {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: AppColors.grayCool300,
-                          hintText: "addHashtags".tr(),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
                           ),
                         ),
+                        hint: Text('addHashtags'.tr()),
                         items: ["#Hashtag1", "#Hashtag2"]
                             .map((hashtag) => DropdownMenuItem(
                                   value: hashtag,
@@ -128,16 +128,16 @@ class CreateWagerScreen extends StatelessWidget {
                 buildStakeTextField(),
                 verticalSpace(size.height * 0.06),
                 SizedBox(
-                  width: size.width * 0.9,
-                  child: ElevatedButton(
+                  width: size.width * 0.3,
+                  child: TextButton(
                     onPressed: () {},
-                    style: ElevatedButton.styleFrom(
+                    style: TextButton.styleFrom(
                       foregroundColor: Colors.black,
                       backgroundColor: AppColors.buttonColor,
                       padding:
                           EdgeInsets.symmetric(vertical: AppValues.padding16),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
                     child: Text(
@@ -161,7 +161,7 @@ class CreateWagerScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
-          maxLines: 2,
+          textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             suffixText: "\$0",
             prefixIcon: Image.asset(Constants.snSymbol),
@@ -174,9 +174,7 @@ class CreateWagerScreen extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          height: 5,
-        ),
+        verticalSpace(5),
         Row(
           children: [
             Spacer(),
@@ -210,7 +208,8 @@ class CreateWagerScreen extends StatelessWidget {
         SizedBox(
           height: 5,
         ),
-        TextField(
+        TextFormField(
+          textAlignVertical: TextAlignVertical.center,
           buildCounter: (BuildContext context,
               {int? currentLength, int? maxLength, bool? isFocused}) {
             return Text(
@@ -221,7 +220,6 @@ class CreateWagerScreen extends StatelessWidget {
             );
           },
           maxLength: maxLines,
-          maxLines: 2,
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.grayCool300,
