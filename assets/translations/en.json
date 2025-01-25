@@ -3,5 +3,14 @@
   "welcomeToStarkWager": "WELCOME TO \n STARKWAGER APP",
   "connectYourWalletToUse": "Connect your wallet to use",
   "installed": "Installed",
-  "install": "Install"
+  "install": "Install",
+  "newWager": "New Wager",
+  "home": "Home",
+  "wagers": "Wagers",
+  "wallet": "Wallet",
+  "profile": "Profile",
+  "addMoney": "Add Money",
+  "withdraw": "Withdraw",
+  "walletBalance": "Wallet Balance",
+  "nowagerscreatedyet": "No wagers created yet"
 }
