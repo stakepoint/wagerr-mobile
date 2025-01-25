@@ -14,11 +14,11 @@ class CreateWagerScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 120,
+        toolbarHeight: context.isMobile ? null : AppValues.height100,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {},
         ),
         title: Text(
           !context.isMobile ? 'createWager'.tr() : '',
@@ -128,7 +128,8 @@ class CreateWagerScreen extends StatelessWidget {
                 buildStakeTextField(),
                 verticalSpace(size.height * 0.06),
                 SizedBox(
-                  width: size.width * 0.3,
+                  height: AppValues.height56,
+                  width: AppValues.width400,
                   child: TextButton(
                     onPressed: () {},
                     style: TextButton.styleFrom(

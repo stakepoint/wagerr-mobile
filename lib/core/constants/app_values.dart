@@ -17,6 +17,8 @@ class AppValues {
   static const height50 = 50.0;
   static const height56 = 56.0;
   static const height60 = 60.0;
+  static const height120 = 120.0;
+  static const height100 = 100.0;
 
   //width
   static const width1 = 1.0;
@@ -26,6 +28,7 @@ class AppValues {
 
   static const width600 = 600.0;
   static const width500 = 500.0;
+  static const width400 = 400.0;
   static const width1440 = 1440.0;
 
   //padding

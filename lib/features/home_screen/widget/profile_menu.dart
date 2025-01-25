@@ -37,7 +37,7 @@ class ProfileMenu extends ConsumerWidget {
       ),
       child: _isMobile
           ? Row(
-              spacing: 6,
+              // spacing: 6,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -49,7 +49,7 @@ class ProfileMenu extends ConsumerWidget {
               ],
             )
           : Row(
-              spacing: 4,
+              // spacing: 4,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
