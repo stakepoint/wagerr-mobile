@@ -46,12 +46,13 @@ final GoRouter router = GoRouter(
 
     ShellRoute(
       builder: (context, state, child) {
-        final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+        final isLandscape =
+            MediaQuery.of(context).orientation == Orientation.landscape;
 
         return ScreenLayout.isTablet(context)
             ? isLandscape
-            ? HomeScreenTabletMenuBar(child: child) // Landscape: Navigation on the left
-            : ScaffoldWithNavBar(child: child) // Portrait: Navigation at the bottom
+                ? HomeScreenTabletMenuBar(child: child)
+                : ScaffoldWithNavBar(child: child)
             : const SizedBox.shrink();
       },
       routes: [

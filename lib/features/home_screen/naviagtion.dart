@@ -24,7 +24,6 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
   int _currentIndex = 0;
 
   void _onNavigate(String route) {
-    debugPrint("Navigating to: $route");
     setState(() {
       switch (route) {
         case Routes.home:
