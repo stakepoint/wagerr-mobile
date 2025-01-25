@@ -13,27 +13,32 @@ class CreateWagerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        scrolledUnderElevation: 0.0,
         backgroundColor: AppColors.mono0,
         toolbarHeight: context.isMobile ? null : AppValues.height100,
         elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 120),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              IconButton(
+        title: context.isMobile
+            ? IconButton(
                 icon: Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () {},
+              )
+            : Padding(
+                padding: const EdgeInsets.only(left: 120),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back, color: Colors.black),
+                      onPressed: () {},
+                    ),
+                    Text(
+                      !context.isMobile ? 'createWager'.tr() : '',
+                      style: AppTheme.headLineLarge32,
+                    ),
+                  ],
+                ),
               ),
-              Text(
-                !context.isMobile ? 'createWager'.tr() : '',
-                style: AppTheme.headLineLarge32,
-              ),
-            ],
-          ),
-        ),
         actions: [
           if (!context.isMobile)
             Container(
@@ -64,7 +69,7 @@ class CreateWagerScreen extends StatelessWidget {
               ),
             )
         ],
-        centerTitle: true,
+        centerTitle: context.isMobile ? false : true,
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -72,7 +77,9 @@ class CreateWagerScreen extends StatelessWidget {
             width: AppValues.width500,
             margin: EdgeInsets.all(20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: context.isMobile
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.center,
               children: [
                 if (context.isMobile)
                   Text(

@@ -44,7 +44,7 @@ class HomeScreenBody extends ConsumerWidget {
         color: AppColors.baseWhite,
       ),
       child: Row(
-        // spacing: 16,
+        spacing: 16,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           horizontalSpace(16),
@@ -71,7 +71,7 @@ class HomeScreenBody extends ConsumerWidget {
         color: AppColors.baseWhite,
       ),
       child: Column(
-        // spacing: 24,
+        spacing: 24,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(AppIcons.noWaggerIcon, width: 88, height: 88),
@@ -122,7 +122,7 @@ class HomeScreenBody extends ConsumerWidget {
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          // spacing: 8,
+          spacing: 8,
           children: [
             Text(
               '\$0.00',
@@ -147,7 +147,7 @@ class HomeScreenBody extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(top: 30),
           child: Row(
-            // spacing: 16,
+            spacing: 16,
             children: [
               HomeActionButton(
                 text: 'addMoney'.tr(),
@@ -186,7 +186,7 @@ class HomeScreenBody extends ConsumerWidget {
             color: AppColors.baseWhite,
           ),
           child: Row(
-            // spacing: 7,
+            spacing: 7,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
