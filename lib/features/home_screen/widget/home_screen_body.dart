@@ -222,7 +222,7 @@ class HomeScreenBody extends ConsumerWidget {
             color: AppColors.baseWhite,
           ),
           child: Row(
-            // spacing: 7,
+            spacing: 7,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(

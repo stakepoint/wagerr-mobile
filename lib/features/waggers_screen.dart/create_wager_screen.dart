@@ -13,16 +13,26 @@ class CreateWagerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: AppColors.mono0,
         toolbarHeight: context.isMobile ? null : AppValues.height100,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
-        title: Text(
-          !context.isMobile ? 'createWager'.tr() : '',
-          style: AppTheme.headLineLarge32,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 120),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () {},
+              ),
+              Text(
+                !context.isMobile ? 'createWager'.tr() : '',
+                style: AppTheme.headLineLarge32,
+              ),
+            ],
+          ),
         ),
         actions: [
           if (!context.isMobile)
@@ -54,7 +64,7 @@ class CreateWagerScreen extends StatelessWidget {
               ),
             )
         ],
-        centerTitle: false,
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -62,7 +72,7 @@ class CreateWagerScreen extends StatelessWidget {
             width: AppValues.width500,
             margin: EdgeInsets.all(20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (context.isMobile)
                   Text(
@@ -123,9 +133,10 @@ class CreateWagerScreen extends StatelessWidget {
                     'titleOfYourWager'.tr(), 'wager.strk/'.tr(), 50),
                 verticalSpace(AppValues.height30),
                 buildCreateWagerTextField(
-                    'termsOrWagerDescription'.tr(), 'wager.strk/'.tr(), 1000),
+                    'termsOrWagerDescription'.tr(), 'wager.strk/'.tr(), 1000,
+                    maxLine: 3),
                 verticalSpace(AppValues.height30),
-                buildStakeTextField(),
+                buildStakeTextField('stake'.tr()),
                 verticalSpace(size.height * 0.06),
                 SizedBox(
                   height: AppValues.height56,
@@ -157,11 +168,25 @@ class CreateWagerScreen extends StatelessWidget {
     );
   }
 
-  Column buildStakeTextField() {
+  Column buildStakeTextField(String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+            color: Color(
+              0xff102A56,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
         TextField(
+          keyboardType: TextInputType.number,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             suffixText: "\$0",
@@ -191,8 +216,8 @@ class CreateWagerScreen extends StatelessWidget {
     );
   }
 
-  Column buildCreateWagerTextField(
-      String title, String hintText, int maxLines) {
+  Column buildCreateWagerTextField(String title, String hintText, int maxLength,
+      {int maxLine = 1}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -220,7 +245,8 @@ class CreateWagerScreen extends StatelessWidget {
               ),
             );
           },
-          maxLength: maxLines,
+          maxLines: maxLine,
+          maxLength: maxLength,
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.grayCool300,

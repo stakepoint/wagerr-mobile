@@ -76,32 +76,37 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
   }
 
   Widget _buildNewWagerButton() {
-    return Container(
-      height: 56,
-      width: 160,
-      decoration: BoxDecoration(
-        color: AppColors.green100,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset(AppIcons.handshakeIcon),
-          const SizedBox(width: 12),
-          Text(
-            'newWager'.tr(),
-            style: AppTheme.textMediumMedium.copyWith(
-              color: AppColors.blue950,
+    return GestureDetector(
+      onTap: () {
+        GoRouter.of(context).go(Routes.create_wager);
+      },
+      child: Container(
+        height: 56,
+        width: 160,
+        decoration: BoxDecoration(
+          color: AppColors.green100,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
             ),
-          ),
-        ],
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(AppIcons.handshakeIcon),
+            const SizedBox(width: 12),
+            Text(
+              'newWager'.tr(),
+              style: AppTheme.textMediumMedium.copyWith(
+                color: AppColors.blue950,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
