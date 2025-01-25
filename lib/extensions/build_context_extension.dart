@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../theme/app_colors.dart';
 
 extension ThemeModeExtension on BuildContext {
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
+  bool get isMobile => MediaQuery.of(this).size.width < 600;
 
   Color get primaryBackgroundColor =>
       isDarkMode ? AppColors.mono100 : AppColors.mono0;
@@ -19,7 +21,8 @@ extension ThemeModeExtension on BuildContext {
   Color get secondaryTextColor =>
       isDarkMode ? AppColors.mono40 : AppColors.grayCool100;
 
-  Color get dividerColor => isDarkMode ? AppColors.mono80 : AppColors.dividerColour;
+  Color get dividerColor =>
+      isDarkMode ? AppColors.mono80 : AppColors.dividerColour;
 
   ThemeData get lightTheme => ThemeData.light().copyWith(
         scaffoldBackgroundColor: AppColors.mono0,
@@ -44,5 +47,4 @@ extension ThemeModeExtension on BuildContext {
               bodyColor: AppColors.mono20,
             ),
       );
-
 }

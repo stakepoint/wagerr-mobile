@@ -10,6 +10,7 @@ class AppValues {
   static const height15 = 15.0;
   static const height20 = 20.0;
   static const height24 = 24.0;
+  static const height25 = 25.0;
   static const height30 = 30.0;
   static const height32 = 32.0;
   static const height40 = 40.0;
@@ -17,14 +18,15 @@ class AppValues {
   static const height56 = 56.0;
   static const height60 = 60.0;
 
-
   //width
   static const width1 = 1.0;
+  static const width16 = 16.0;
+  static const width20 = 20.0;
   static const width24 = 24.0;
+
   static const width600 = 600.0;
+  static const width500 = 500.0;
   static const width1440 = 1440.0;
-
-
 
   //padding
   static const padding0 = 0.0;
@@ -40,5 +42,4 @@ class AppValues {
   //radius
   static const radius4 = 4.0;
   static const radius16 = 16.0;
-
 }
