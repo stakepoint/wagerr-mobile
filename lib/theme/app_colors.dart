@@ -16,7 +16,11 @@ class AppColors {
   static const grayCool800 = Color(0xFF30374F);
   static const grayneutral500 = Color(0xFF6C737F);
 
+  static const grayCool300 = Color(0xffEFF1F5);
 
+  static const buttonColor = Color(0xffE0FE10);
+  static const buttonInActiveColor = Color(0xffE0FE10);
+  static const maxLineColor = Color(0xff7D89B0);
   static const rambutan100 = Color(0xFFE60F41);
 
   static const dividerColour = Color(0xFFE2E5EB);
