@@ -244,9 +244,7 @@ class CreateWagerScreen extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.w500,
             fontSize: 14,
-            color: Color(
-              0xff102A56,
-            ),
+            color: AppColors.blue950,
           ),
         ),
         SizedBox(
