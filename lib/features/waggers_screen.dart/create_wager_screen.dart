@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/app_values.dart';
-import 'package:starkwager/core/constants/constants.dart';
+import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
@@ -25,7 +25,7 @@ class CreateWagerScreen extends StatelessWidget {
         title: context.isMobile
             ? IconButton(
                 onPressed: () => GoRouter.of(context).pop(),
-                icon: SvgPicture.asset(Constants.arrowBack),
+                icon: SvgPicture.asset(AppIcons.arrowBack),
               )
             : Padding(
                 padding: const EdgeInsets.only(left: 120),
@@ -34,7 +34,7 @@ class CreateWagerScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: SvgPicture.asset(
-                        Constants.arrowBack,
+                        AppIcons.arrowBack,
                       ),
                       onPressed: () => GoRouter.of(context).pop(),
                     ),
@@ -51,7 +51,7 @@ class CreateWagerScreen extends StatelessWidget {
               padding: EdgeInsets.only(right: 80),
               child: Row(
                 children: [
-                  Image.asset(Constants.userPath),
+                  Image.asset(AppIcons.userPath),
                   horizontalSpace(8),
                   Container(
                     padding: EdgeInsets.all(2),
@@ -63,14 +63,14 @@ class CreateWagerScreen extends StatelessWidget {
                         Text(
                           '@noyi24_7',
                         ),
-                        SvgPicture.asset(Constants.copyPath),
+                        SvgPicture.asset(AppIcons.copyPath),
                       ],
                     ),
                   ),
                   SizedBox(
                     width: AppValues.height20,
                   ),
-                  SvgPicture.asset(Constants.notificationPath),
+                  SvgPicture.asset(AppIcons.notificationPath),
                 ],
               ),
             )
@@ -196,12 +196,9 @@ class CreateWagerScreen extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
-            color: Color(
-              0xff102A56,
-            ),
-          ),
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+              color: AppColors.blue950),
         ),
         SizedBox(
           height: 5,
@@ -211,7 +208,7 @@ class CreateWagerScreen extends StatelessWidget {
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             suffixText: "\$0",
-            prefixIcon: Image.asset(Constants.snSymbol),
+            prefixIcon: Image.asset(AppIcons.snSymbol),
             filled: true,
             fillColor: AppColors.grayCool300,
             hintStyle: TextStyle(color: Colors.grey),

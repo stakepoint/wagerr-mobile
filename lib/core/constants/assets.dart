@@ -21,4 +21,11 @@ class AppIcons {
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const userImage = 'assets/images/user.png';
   static const starknetImage = 'assets/images/starknet.png';
+
+  static const String baseIconPath = 'assets/icons';
+  static const String userPath = '$baseIconPath/user.png';
+  static const String copyPath = '$baseIconPath/copy.svg';
+  static const String notificationPath = '$baseIconPath/notification.svg';
+  static const String snSymbol = '$baseIconPath/sn_symbol.png';
+  static const String arrowBack = '$baseIconPath/arrow_back.svg';
 }
