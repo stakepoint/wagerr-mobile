@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/app_values.dart';
 import 'package:starkwager/core/constants/constants.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
@@ -14,14 +17,15 @@ class CreateWagerScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         scrolledUnderElevation: 0.0,
         backgroundColor: AppColors.mono0,
         toolbarHeight: context.isMobile ? null : AppValues.height100,
         elevation: 0,
         title: context.isMobile
             ? IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.black),
-                onPressed: () {},
+                onPressed: () => GoRouter.of(context).pop(),
+                icon: SvgPicture.asset(Constants.arrowBack),
               )
             : Padding(
                 padding: const EdgeInsets.only(left: 120),
@@ -29,8 +33,10 @@ class CreateWagerScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.black),
-                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        Constants.arrowBack,
+                      ),
+                      onPressed: () => GoRouter.of(context).pop(),
                     ),
                     Text(
                       !context.isMobile ? 'createWager'.tr() : '',
@@ -82,9 +88,12 @@ class CreateWagerScreen extends StatelessWidget {
                   : CrossAxisAlignment.center,
               children: [
                 if (context.isMobile)
-                  Text(
-                    'createWager'.tr(),
-                    style: AppTheme.headLineLarge32,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(
+                      'createWager'.tr(),
+                      style: AppTheme.headLineLarge32,
+                    ),
                   ),
                 verticalSpace(size.height * 0.02),
                 if (context.isMobile) Divider(),
@@ -93,6 +102,7 @@ class CreateWagerScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: DropdownButtonFormField<String>(
+                        isExpanded: true,
                         alignment: Alignment.center,
                         decoration: InputDecoration(
                           filled: true,
@@ -115,6 +125,7 @@ class CreateWagerScreen extends StatelessWidget {
                     horizontalSpace(AppValues.width16),
                     Expanded(
                       child: DropdownButtonFormField<String>(
+                        isExpanded: true,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: AppColors.grayCool300,
@@ -145,7 +156,10 @@ class CreateWagerScreen extends StatelessWidget {
                 verticalSpace(AppValues.height30),
                 buildStakeTextField('stake'.tr()),
                 verticalSpace(size.height * 0.06),
-                SizedBox(
+                Container(
+                  margin: EdgeInsets.only(
+                    bottom: Platform.isIOS ? 30 : 0,
+                  ),
                   height: AppValues.height56,
                   width: AppValues.width400,
                   child: TextButton(

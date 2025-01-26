@@ -70,7 +70,7 @@ class HomeScreen extends ConsumerWidget {
   Widget _floatingActionButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).go(Routes.create_wager);
+        GoRouter.of(context).push(Routes.create_wager);
       },
       child: Container(
         height: 56,
@@ -87,7 +87,7 @@ class HomeScreen extends ConsumerWidget {
           ],
         ),
         child: Row(
-          // spacing: 12,
+          spacing: 12,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(AppIcons.handshakeIcon),

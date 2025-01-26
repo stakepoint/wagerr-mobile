@@ -78,7 +78,7 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
   Widget _buildNewWagerButton() {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).go(Routes.create_wager);
+        GoRouter.of(context).push(Routes.create_wager);
       },
       child: Container(
         height: 56,

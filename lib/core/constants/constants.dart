@@ -13,4 +13,5 @@ class Constants {
   static const String copyPath = '$baseIconPath/copy.svg';
   static const String notificationPath = '$baseIconPath/notification.svg';
   static const String snSymbol = '$baseIconPath/sn_symbol.png';
+  static const String arrowBack = '$baseIconPath/arrow_back.svg';
 }
