@@ -31,6 +31,13 @@
             android:value="2" />
     </application>
     <queries>
+        <package android:name="io.metamask"/>
+        <package android:name="com.wallet.crypto.trustapp"/>
+        <package android:name="io.gnosis.safe"/>
+        <package android:name="me.rainbow"/>
+        <!-- Add other wallet schemes names here -->
+    </queries>
+    <queries>
         <package android:name="app.braavos.wallet"/>
         <package android:name="im.argent.contractwalletclient"/>
         <!-- TODO: find meta mask actual package name -->
