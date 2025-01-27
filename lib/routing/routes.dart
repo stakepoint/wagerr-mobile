@@ -13,6 +13,7 @@ class Routes {
   static const wallet_tablet = '/wallet_tablet';
   static const profile_tablet = '/profile_tablet';
   static const create_wager = '/create_wager';
+  static const create_wager_summary = '/create_wager_summary';
 
   //wrager created
   static const warger_created = '/warger_created';

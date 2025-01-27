@@ -17,10 +17,13 @@ class AppIcons {
   static const profileIcon = 'assets/icons/profile.svg';
   static const walletIcon = 'assets/icons/wallet.svg';
   static const logoIcon = 'assets/icons/logo.svg';
+  static const infoIcon = 'assets/icons/infoIcon.svg';
+  static const hashTagIcon = 'assets/icons/hashTagIcon.svg';
 
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const userImage = 'assets/images/user.png';
   static const starknetImage = 'assets/images/starknet.png';
+  static const String awaitingUserPath = 'assets/images/awaitingUser.png';
 
   static const String baseIconPath = 'assets/icons';
   static const String userPath = '$baseIconPath/user.png';
