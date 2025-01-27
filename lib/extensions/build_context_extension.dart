@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:starkwager/core/constants/screen_layout.dart';
+
 import '../theme/app_colors.dart';
 
 extension ThemeModeExtension on BuildContext {
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
+  bool get isMobile => ScreenLayout.isMobile(this);
 
   Color get primaryBackgroundColor =>
       isDarkMode ? AppColors.mono100 : AppColors.mono0;
