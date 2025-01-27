@@ -19,7 +19,8 @@ extension ThemeModeExtension on BuildContext {
   Color get secondaryTextColor =>
       isDarkMode ? AppColors.mono40 : AppColors.grayCool100;
 
-  Color get dividerColor => isDarkMode ? AppColors.mono80 : AppColors.dividerColour;
+  Color get dividerColor =>
+      isDarkMode ? AppColors.mono80 : AppColors.dividerColour;
 
   ThemeData get lightTheme => ThemeData.light().copyWith(
         scaffoldBackgroundColor: AppColors.mono0,
@@ -44,5 +45,4 @@ extension ThemeModeExtension on BuildContext {
               bodyColor: AppColors.mono20,
             ),
       );
-
 }

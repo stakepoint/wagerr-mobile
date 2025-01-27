@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/features/connect_wallet/connect_wallet_screen.dart';
+import 'package:starkwager/features/create_wager/wager_summary.dart';
 
 import '../routing/routes.dart';
 
@@ -33,7 +34,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: Routes.splash,
       pageBuilder: (context, state) => SlideRouteTransition(
-        child: ConnectWalletScreen(),
+        child: WagerSummary(),
         routeName: Routes.splash,
       ),
     ),

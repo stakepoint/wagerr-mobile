@@ -10,6 +10,7 @@ class AppColors {
 
   static const grayCool25 = Color(0xFFFCFCFD);
   static const grayCool100 = Color(0xFF7D89B0);
+
   static const grayCool200 = Color(0xFFDCDFEA);
 
   static const rambutan100 = Color(0xFFE60F41);
