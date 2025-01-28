@@ -181,8 +181,8 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                     ),
                   ),
                 ),
-              const Spacer(),
-              // Continue Button with adjusted position
+           
+             SizedBox(height: 100),
               Padding(
                 padding: const EdgeInsets.only(bottom: AppValues.height40),
                 child: ElevatedButton(
