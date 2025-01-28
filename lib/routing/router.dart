@@ -10,6 +10,7 @@ import 'package:starkwager/features/waggers_screen.dart/create_wager_screen.dart
 import 'package:starkwager/features/waggers_screen.dart/wager_summary.dart';
 import 'package:starkwager/features/waggers_screen.dart/waggers_screen.dart';
 import 'package:starkwager/features/wallet_screen.dart/wallet_screen.dart';
+import 'package:starkwager/features/warger_created/warger_created_screen.dart';
 
 import '../routing/routes.dart';
 
@@ -37,7 +38,7 @@ class SlideRouteTransition extends CustomTransitionPage<void> {
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: Routes.splash,
+  initialLocation: Routes.warger_created,
   routes: [
     GoRoute(
       path: Routes.splash,
@@ -54,12 +55,20 @@ final GoRouter router = GoRouter(
         routeName: Routes.create_wager,
       ),
     ),
-
+// WargerCreatedScreen
     GoRoute(
       path: Routes.create_wager_summary,
       pageBuilder: (context, state) => SlideRouteTransition(
         child: WagerSummaryScreen(),
         routeName: Routes.create_wager_summary,
+      ),
+    ),
+
+    GoRoute(
+      path: Routes.warger_created,
+      pageBuilder: (context, state) => SlideRouteTransition(
+        child: WargerCreatedScreen(),
+        routeName: Routes.warger_created,
       ),
     ),
 
