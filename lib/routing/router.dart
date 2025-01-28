@@ -72,6 +72,14 @@ final GoRouter router = GoRouter(
       ),
     ),
 
+    GoRoute(
+      path: Routes.create_wager_summary,
+      pageBuilder: (context, state) => SlideRouteTransition(
+        child: WagerSummaryScreen(),
+        routeName: Routes.create_wager_summary,
+      ),
+    ),
+
 //----------------------------------------------- Tablet Shell Route ----------------------------------------------- //
 
     ShellRoute(
