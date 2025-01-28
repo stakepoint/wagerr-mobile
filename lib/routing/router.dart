@@ -6,11 +6,11 @@ import 'package:starkwager/features/home_screen/home_screen.dart';
 import 'package:starkwager/features/home_screen/naviagtion.dart';
 import 'package:starkwager/features/home_screen/widget/home_screen_tablet_menu_bar.dart';
 import 'package:starkwager/features/profile_screen.dart/profile_screen.dart';
-import 'package:starkwager/features/waggers_screen.dart/create_wager_screen.dart';
-import 'package:starkwager/features/waggers_screen.dart/wager_summary.dart';
-import 'package:starkwager/features/waggers_screen.dart/waggers_screen.dart';
+import 'package:starkwager/features/wager_screen.dart/create_wager_screen.dart';
+import 'package:starkwager/features/wager_screen.dart/wager_summary.dart';
+import 'package:starkwager/features/wager_screen.dart/waggers_screen.dart';
 import 'package:starkwager/features/wallet_screen.dart/wallet_screen.dart';
-import 'package:starkwager/features/warger_created/warger_created_screen.dart';
+import 'package:starkwager/features/wager_created/wager_created_screen.dart';
 
 import '../routing/routes.dart';
 
@@ -38,7 +38,7 @@ class SlideRouteTransition extends CustomTransitionPage<void> {
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: Routes.warger_created,
+  initialLocation: Routes.wager_created,
   routes: [
     GoRoute(
       path: Routes.splash,
@@ -55,22 +55,7 @@ final GoRouter router = GoRouter(
         routeName: Routes.create_wager,
       ),
     ),
-// WargerCreatedScreen
-    GoRoute(
-      path: Routes.create_wager_summary,
-      pageBuilder: (context, state) => SlideRouteTransition(
-        child: WagerSummaryScreen(),
-        routeName: Routes.create_wager_summary,
-      ),
-    ),
 
-    GoRoute(
-      path: Routes.warger_created,
-      pageBuilder: (context, state) => SlideRouteTransition(
-        child: WargerCreatedScreen(),
-        routeName: Routes.warger_created,
-      ),
-    ),
 
     GoRoute(
       path: Routes.create_wager_summary,
@@ -79,6 +64,16 @@ final GoRouter router = GoRouter(
         routeName: Routes.create_wager_summary,
       ),
     ),
+
+
+    GoRoute(
+      path: Routes.wager_created,
+      pageBuilder: (context, state) => SlideRouteTransition(
+        child: WagerCreatedScreen(),
+        routeName: Routes.wager_created,
+      ),
+    ),
+
 
 //----------------------------------------------- Tablet Shell Route ----------------------------------------------- //
 

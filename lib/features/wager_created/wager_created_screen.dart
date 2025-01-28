@@ -3,12 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/core/constants/app_values.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/warger_created/widgets/warger_created_app_bar.dart';
-import 'package:starkwager/features/warger_created/widgets/warger_created_body.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+import 'package:starkwager/features/wager_created/widgets/wager_created_app_bar.dart';
+import 'package:starkwager/features/wager_created/widgets/wager_created_body.dart';
 
-class WargerCreatedScreen extends ConsumerWidget {
-  WargerCreatedScreen({super.key});
+class WagerCreatedScreen extends ConsumerWidget {
+  WagerCreatedScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = ScreenLayout.isMobile(context);

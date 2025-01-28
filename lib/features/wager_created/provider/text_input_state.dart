@@ -11,7 +11,7 @@ class TextInputState {
 
 class TextInputNotifier extends StateNotifier<TextInputState> {
   TextInputNotifier()
-      : super(TextInputState(text: '', color: Color(0xFFE0FE10)));
+      : super(TextInputState(text: '', color: AppColors.buttonInActiveColor));
 
   void updateText(String newText) {
     if (newText.length > 14) {

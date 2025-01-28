@@ -134,15 +134,15 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                         children: [
                           TextSpan(
                             text: 'wager.strk/',
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(color: AppColors.gray),
                           ),
                           TextSpan(
                             text: '@',
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(color: AppColors.black),
                           ),
                           TextSpan(
                             text: 'username',
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(color: AppColors.gray),
                           ),
                         ],
                       ),
@@ -166,7 +166,7 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                       autofocus: widget.autoFocus ?? false,
                       enabled: widget.readOnly ?? true,
                       cursorHeight: widget.cursorHeight,
-                      cursorColor: widget.cursorColor ?? Colors.black,
+                      cursorColor: widget.cursorColor ?? AppColors.black,
                       textInputAction:
                           widget.textInputAction ?? TextInputAction.done,
                       keyboardType: widget.keyInputType,
@@ -191,12 +191,12 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                           fontWeight: widget.textFontWeight ?? FontWeight.w500),
                       decoration: InputDecoration(
                         prefixIcon: widget.prefixIcon,
-                        fillColor: AppColors.grayCool100,
+                        fillColor: AppColors.gray,
                         filled: true,
                         suffixIcon: widget.suffixIcon,
                         prefix: widget.prefix,
                         hintStyle: TextStyle(
-                            color: widget.hintColor ?? Color(0xFFB9C0D4),
+                            color: widget.hintColor ?? AppColors.gray,
                             fontSize: widget.hintFont ?? 14,
                             fontWeight:
                                 widget.hintFontWeight ?? FontWeight.normal),
@@ -208,7 +208,7 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                                 ? BorderSide.none
                                 : BorderSide(
                                     color: widget.outLineBorderColor ??
-                                        Colors.grey,
+                                        AppColors.gray,
                                     width: 1.0,
                                     style: widget.noBorder == true
                                         ? BorderStyle.none
@@ -221,7 +221,7 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                                 ? BorderSide.none
                                 : BorderSide(
                                     color: widget.outLineBorderColor ??
-                                        Colors.grey,
+                                        AppColors.gray,
                                     style: widget.noBorder == true
                                         ? BorderStyle.none
                                         : BorderStyle.solid),
@@ -236,7 +236,9 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
           Text(
             widget.errorText!,
             style: AppTheme.textSmallMedium.copyWith(
-                color: Colors.red, fontWeight: FontWeight.w500, fontSize: 12),
+                color: AppColors.rambutan100,
+                fontWeight: FontWeight.w500,
+                fontSize: 12),
           )
         ]
       ],

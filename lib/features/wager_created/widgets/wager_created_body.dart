@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/features/warger_created/provider/text_input_state.dart';
-import 'package:starkwager/features/warger_created/widgets/general_text_form_field.dart';
+import 'package:starkwager/features/wager_created/provider/text_input_state.dart';
+import 'package:starkwager/features/wager_created/widgets/general_text_form_field.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
@@ -104,38 +104,38 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                     fontSize: 14),
               ),
               verticalSpace(12),
-              GestureDetector(
-                onTap: () {
-                  Clipboard.setData(
-                      ClipboardData(text: 'https://link.wager.strk/WEpl'));
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('linkCopied'.tr()),
-                    ),
-                  );
-                },
-                child: Container(
-                  height: 72,
-                  padding: EdgeInsets.only(left: 18),
-                  decoration: BoxDecoration(
-                    color: AppColors.grayCool100,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'https://link.wager.strk/WEpl',
-                          style: AppTheme.textRegularMedium.copyWith(
-                              color: AppColors.blue950,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16),
-                        ),
+              Container(
+                height: 72,
+                padding: EdgeInsets.only(left: 18),
+                decoration: BoxDecoration(
+                  color: AppColors.grayCool100,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'https://link.wager.strk/WEpl',
+                        style: AppTheme.textRegularMedium.copyWith(
+                            color: AppColors.blue950,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16),
                       ),
-                      Spacer(),
-                      Container(
+                    ),
+                    Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        Clipboard.setData(ClipboardData(
+                            text: 'https://link.wager.strk/WEpl'));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('linkCopied'.tr()),
+                          ),
+                        );
+                      },
+                      child: Container(
                         height: 72,
                         width: 72,
                         padding: EdgeInsets.all(24),
@@ -147,8 +147,8 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                           AppIcons.copyIcon,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               _isMobile ? verticalSpace(80) : verticalSpace(24),

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:starkwager/core/constants/app_values.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/warger_created/widgets/warger_profile_menu.dart';
+import 'package:starkwager/features/wager_created/widgets/wager_profile_menu.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
 
 class WargerCreatedAppBar extends StatelessWidget
