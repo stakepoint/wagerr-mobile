@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/features/connect_wallet/connect_wallet_screen.dart';
 import 'package:starkwager/features/warger_created/warger_created_screen.dart';
 import '../routing/routes.dart';
