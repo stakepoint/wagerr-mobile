@@ -39,7 +39,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               verticalSpace(AppValues.height60),
-              // Title with different line heights
+             
               RichText(
                 text: TextSpan(
                   children: [
@@ -136,7 +136,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                 ),
               ),
               verticalSpace(AppValues.height40),
-              // Username TextField
+        
               Container(
                 padding: const EdgeInsets.all(AppValues.padding16),
                 decoration: BoxDecoration(
@@ -214,7 +214,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
   }
 
   void _checkUsername(String value) {
-    // TODO: Implement actual username availability check
+
     setState(() {
       _isUsernameAvailable = value.length > 3;
     });
