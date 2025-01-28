@@ -25,16 +25,20 @@ class WargerCreatedScreen extends ConsumerWidget {
               return isMobile
                   ? ConstrainedBox(
                       constraints: BoxConstraints(maxWidth: maxWidth),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppValues.padding16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            verticalSpace(30),
-                            WargerCreatedBody(),
-                            Spacer(),
-                          ],
+                      child: Center(
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: maxWidth,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 100, left: 24, right: 24, bottom: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                WargerCreatedBody(),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     )

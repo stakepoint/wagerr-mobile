@@ -151,7 +151,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                   ),
                 ),
               ),
-              _isMobile ? verticalSpace(150) : verticalSpace(24),
+              _isMobile ? verticalSpace(80) : verticalSpace(24),
               _button(
                   title: 'sendWager'.tr(),
                   buttonColor: textInputState.color,
