@@ -189,7 +189,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                   onPressed: _usernameController.text.isEmpty || !_isUsernameAvailable 
                       ? null 
                       : () {
-                          // Handle continue action
+                       
                         },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE7FF54),
