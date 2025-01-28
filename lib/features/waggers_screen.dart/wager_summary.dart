@@ -25,9 +25,9 @@ class WagerSummaryScreen extends ConsumerWidget {
         toolbarHeight: context.isMobile ? null : AppValues.height100,
         elevation: 0,
         title: context.isMobile
-            ? IconButton(
-                onPressed: () => GoRouter.of(context).pop(),
-                icon: SvgPicture.asset(AppIcons.arrowBack),
+            ? InkWell(
+                onTap: () => GoRouter.of(context).pop(),
+                child: SvgPicture.asset(AppIcons.arrowBack),
               )
             : Padding(
                 padding: const EdgeInsets.only(left: 120),
@@ -84,158 +84,149 @@ class WagerSummaryScreen extends ConsumerWidget {
         child: LayoutBuilder(
           builder: (context, constraints) {
             final double maxWidth = AppValues.width600;
-            return Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Container(
-                    width: AppValues.width500,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: AppValues.padding16),
-                      child: Column(
-                        crossAxisAlignment: context.isMobile
-                            ? CrossAxisAlignment.start
-                            : CrossAxisAlignment.center,
-                        children: [
-                          if (context.isMobile)
-                            Text(
-                              'WAGER SUMMARY'.tr(),
-                              style: AppTheme.headLineLarge32
-                                  .copyWith(color: context.primaryTextColor),
-                            ),
-                          verticalSpace(AppValues.height20),
-                          if (context.isMobile)
-                            verticalDivider(color: context.dividerColor),
-                          verticalSpace(AppValues.height20),
-                          buildStrkVSContainer(
-                            context,
-                            '5',
-                            '@noyi24_7',
-                            'Awaiting Opponent'.tr(),
+            return SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  width: AppValues.width500,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppValues.padding16,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: context.isMobile
+                          ? CrossAxisAlignment.start
+                          : CrossAxisAlignment.center,
+                      children: [
+                        if (context.isMobile)
+                          Text(
+                            'WAGER SUMMARY'.tr(),
+                            style: AppTheme.headLineLarge32
+                                .copyWith(color: context.primaryTextColor),
                           ),
-                          verticalSpace(AppValues.height20),
-                          buildSummarySections(context, 'Title of your Wager',
-                              'Will Bitcoin Hit 100k Before January 31, 2025?'),
-                          verticalSpace(AppValues.height20),
-                          buildSummarySections(
-                            context,
-                            'Potential Winnings',
-                            '10 Strk',
-                            isPotentialWinning: true,
-                          ),
-                          verticalSpace(AppValues.height20),
-                          buildSummarySections(
-                            context,
-                            'Platform Fee',
-                            '5.0%',
-                            hasInfo: true,
-                            infoOnTap: () {},
-                          ),
-                          verticalSpace(AppValues.height20),
-                          buildSummarySections(
-                            context,
-                            'Terms or Wager Description',
-                            '''Think Bitcoin is on track to skyrocket past \$100k? Here's your chance to put your prediction to the test! This wager challenges participants to predict whether Bitcoin will reach or exceed the \$100,000 mark by January 31, 2025. The official price will be determined using CoinMarketCap's data at 11:59 PM UTC on the deadline date.
-                            
-Participants must stake an equal amount of STRK tokens to join this head-to-head challenge. If Bitcoin hits or surpasses \$100k by the specified date and time, those who wager 'Yes' win the wager. If it falls short, those who wager 'No' take the prize.
-                            
-No extensions, no exceptions—this is your chance to back your crypto knowledge with real stakes! Join now and see if your prediction skills can earn you the ultimate reward in STRK tokens. Let's see who's got what it takes to call the next big crypto move!''',
-                          ),
-                          verticalSpace(AppValues.height20),
-                          buildCategoryHashtagSection(
-                            context,
-                            'Category',
-                            wagerItems: [
-                              'Crypto',
-                            ],
-                          ),
-                          verticalSpace(AppValues.height20),
-                          buildCategoryHashtagSection(
-                            context,
-                            'Hashtags',
-                            hasHashtag: true,
-                            wagerItems: [
-                              'Bitcoin',
-                              'Blockchain',
-                            ],
-                          ),
-                          verticalSpace(AppValues.height20),
+                        verticalSpace(AppValues.height20),
+                        if (context.isMobile)
                           verticalDivider(color: context.dividerColor),
-                          verticalSpace(AppValues.height20),
-                          Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.all(AppValues.padding10),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: AppColors.grayCool200),
-                              borderRadius:
-                                  BorderRadius.circular(AppValues.radius16),
-                              color: context.primaryBackgroundColor,
-                            ),
-                            child: Flex(
-                              direction: Axis.horizontal,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
-                                  child: SvgPicture.asset(
-                                    AppIcons.infoIcon,
-                                    fit: BoxFit.scaleDown,
-                                  ),
+                        verticalSpace(AppValues.height20),
+                        buildStrkVSContainer(
+                          context,
+                          '5',
+                          '@noyi24_7',
+                          'Awaiting Opponent'.tr(),
+                        ),
+                        verticalSpace(AppValues.height20),
+                        buildSummarySections(context, 'Title of your Wager',
+                            'Will Bitcoin Hit 100k Before January 31, 2025?'),
+                        verticalSpace(AppValues.height20),
+                        buildSummarySections(
+                          context,
+                          'Potential Winnings',
+                          '10 Strk',
+                          isPotentialWinning: true,
+                        ),
+                        verticalSpace(AppValues.height20),
+                        buildSummarySections(
+                          context,
+                          'Platform Fee',
+                          '5.0%',
+                          hasInfo: true,
+                          infoOnTap: () {},
+                        ),
+                        verticalSpace(AppValues.height20),
+                        buildSummarySections(
+                          context,
+                          'Terms or Wager Description',
+                          '''Think Bitcoin is on track to skyrocket past \$100k? Here's your chance to put your prediction to the test! This wager challenges participants to predict whether Bitcoin will reach or exceed the \$100,000 mark by January 31, 2025. The official price will be determined using CoinMarketCap's data at 11:59 PM UTC on the deadline date.
+                          
+Participants must stake an equal amount of STRK tokens to join this head-to-head challenge. If Bitcoin hits or surpasses \$100k by the specified date and time, those who wager 'Yes' win the wager. If it falls short, those who wager 'No' take the prize.
+                          
+No extensions, no exceptions—this is your chance to back your crypto knowledge with real stakes! Join now and see if your prediction skills can earn you the ultimate reward in STRK tokens. Let's see who's got what it takes to call the next big crypto move!''',
+                        ),
+                        verticalSpace(AppValues.height20),
+                        buildCategoryHashtagSection(
+                          context,
+                          'Category',
+                          wagerItems: [
+                            'Crypto',
+                          ],
+                        ),
+                        verticalSpace(AppValues.height20),
+                        buildCategoryHashtagSection(
+                          context,
+                          'Hashtags',
+                          hasHashtag: true,
+                          wagerItems: [
+                            'Bitcoin',
+                            'Blockchain',
+                          ],
+                        ),
+                        verticalSpace(AppValues.height20),
+                        verticalDivider(color: context.dividerColor),
+                        verticalSpace(AppValues.height20),
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(AppValues.padding10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.grayCool200),
+                            borderRadius:
+                                BorderRadius.circular(AppValues.radius16),
+                            color: context.primaryBackgroundColor,
+                          ),
+                          child: Flex(
+                            direction: Axis.horizontal,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: SvgPicture.asset(
+                                  AppIcons.infoIcon,
+                                  fit: BoxFit.scaleDown,
                                 ),
-                                Expanded(
-                                  child: Text(
-                                    'Always keep verifiable evidence of your wagers for dispute resolution purposes.'
-                                        .tr(),
-                                    style: AppTheme.textSmallMedium.copyWith(
-                                      color: AppColors.blue950,
-                                    ),
-                                    softWrap: true,
-                                    maxLines: null,
-                                    overflow: TextOverflow.visible,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'Always keep verifiable evidence of your wagers for dispute resolution purposes.'
+                                      .tr(),
+                                  style: AppTheme.textSmallMedium.copyWith(
+                                    color: AppColors.blue950,
                                   ),
-                                )
-                              ],
+                                  softWrap: true,
+                                  maxLines: null,
+                                  overflow: TextOverflow.visible,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        verticalSpace(AppValues.height50),
+                        Container(
+                          height: AppValues.height56,
+                          width: AppValues.width400,
+                          child: TextButton(
+                            onPressed: () {},
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.black,
+                              backgroundColor: AppColors.buttonColor,
+                              padding: EdgeInsets.symmetric(
+                                  vertical: AppValues.padding16),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            child: Text(
+                              "Create Wager".tr(),
+                              style: AppTheme.titleMedium18.copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
-                          verticalSpace(150),
-                        ],
-                      ),
+                        ),
+                        verticalSpace(AppValues.height20),
+                      ],
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: Platform.isIOS ? 30 : 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    color: context.primaryBackgroundColor,
-                    child: Container(
-                      height: AppValues.height56,
-                      width: AppValues.width400,
-                      child: TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor: AppColors.buttonColor,
-                          padding: EdgeInsets.symmetric(
-                              vertical: AppValues.padding16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        child: Text(
-                          "Create Wager".tr(),
-                          style: AppTheme.titleMedium18.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             );
           },
         ),
@@ -249,54 +240,61 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
     bool hasHashtag = false,
     required List<String> wagerItems,
   }) {
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(
-          title.tr(),
-          style: AppTheme.textSmallMedium.copyWith(
-            color: AppColors.grayCool400,
-          ),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        Wrap(
-          spacing: 5,
-          children: wagerItems
-              .map((item) => Container(
-                    padding: EdgeInsets.all(AppValues.padding10),
-                    decoration: BoxDecoration(
-                      color: context.primaryBackgroundColor,
-                      borderRadius: BorderRadius.circular(1000),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        if (hasHashtag)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: SvgPicture.asset(AppIcons.hashTagIcon),
-                          ),
-                        Flexible(
-                          child: SingleChildScrollView(
-                            child: Text(
-                              item.tr(),
-                              style: AppTheme.textSmallMedium.copyWith(
-                                color: AppColors.blue950,
-                              ),
-                              softWrap: true,
-                              maxLines: null,
-                              overflow: TextOverflow.visible,
-                            ),
-                          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              title.tr(),
+              style: AppTheme.textSmallMedium.copyWith(
+                color: AppColors.grayCool400,
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Wrap(
+              spacing: 5,
+              children: wagerItems
+                  .map((item) => Container(
+                        padding: EdgeInsets.all(AppValues.padding10),
+                        decoration: BoxDecoration(
+                          color: context.primaryBackgroundColor,
+                          borderRadius: BorderRadius.circular(1000),
                         ),
-                      ],
-                    ),
-                  ))
-              .toList(),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            if (hasHashtag)
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: SvgPicture.asset(AppIcons.hashTagIcon),
+                              ),
+                            Flexible(
+                              child: SingleChildScrollView(
+                                child: Text(
+                                  item.tr(),
+                                  style: AppTheme.textSmallMedium.copyWith(
+                                    color: AppColors.blue950,
+                                  ),
+                                  softWrap: true,
+                                  maxLines: null,
+                                  overflow: TextOverflow.visible,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ))
+                  .toList(),
+            ),
+          ],
         ),
       ],
     );

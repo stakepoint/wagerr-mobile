@@ -87,7 +87,7 @@ class HomeScreen extends ConsumerWidget {
           ],
         ),
         child: Row(
-          // spacing: 12,
+          spacing: 12,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(AppIcons.handshakeIcon),
