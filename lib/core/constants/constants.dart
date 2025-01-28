@@ -5,5 +5,4 @@ class Constants {
 
   // SharedPreferences key
   static const String themeModeKey = 'theme_mode_key';
-
 }

@@ -4,7 +4,6 @@ class Routes {
   static const splash = '/';
   static const welcome = '/welcome';
   static const login = '/connect_wallet';
-
   static const home = '/home';
   static const wagger = '/wagger';
   static const wallet = '/wallet';
@@ -17,4 +16,5 @@ class Routes {
 
   //wrager created
   static const warger_created = '/warger_created';
+
 }
