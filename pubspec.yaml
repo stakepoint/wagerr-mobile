@@ -86,3 +86,6 @@ flutter:
         - asset: assets/fonts/GeneralSans-Semibold.otf
         - asset: assets/fonts/GeneralSans-Bold.otf
 
+scripts:
+  build_runner: fvm flutter pub run build_runner build
+
