@@ -4,5 +4,6 @@ class Routes {
   static const splash = '/';
   static const welcome = '/welcome';
   static const login = '/connect_wallet';
+  static const profileSetup = '/profile-setup';
 
 }

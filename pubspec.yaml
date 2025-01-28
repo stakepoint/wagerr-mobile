@@ -40,6 +40,7 @@ dependencies:
   riverpod_annotation: ^2.6.1
   shared_preferences: ^2.2.3
   appcheck: ^1.5.2
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:

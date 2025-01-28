@@ -5,5 +5,6 @@ class AppIcons {
   static const argentIcon = 'assets/icons/argent_icon.png';
   static const braavosIcon = 'assets/icons/braavos_icon.png';
   static const metaMaskIcon = 'assets/icons/metamask_icon.svg';
+  static const profileDummy = 'assets/icons/profile_dummy.png';
 
 }
