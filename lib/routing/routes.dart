@@ -17,5 +17,4 @@ class Routes {
 
   //wrager created
   static const warger_created = '/warger_created';
-
 }
