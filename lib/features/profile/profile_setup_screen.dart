@@ -61,17 +61,19 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: 'setupYourProfile'.tr() + '\n',
+                                text: isMobile 
+                                  ? 'setupYourProfile'.tr() + '\n'
+                                  : 'setupYourProfile'.tr() + ' ',
                                 style: AppTheme.headLineLarge32.copyWith(
                                   color: context.primaryTextColor,
                                   height: 1.0,
                                 ),
                               ),
                               TextSpan(
-                                text: 'profile'.tr(),
+                                text: 'PROFILE'.tr(),
                                 style: AppTheme.headLineLarge32.copyWith(
                                   color: context.primaryTextColor,
-                                  height: 1.2,
+                                  height: isMobile ? 1.2 : 1.0,
                                 ),
                               ),
                             ],
