@@ -9,6 +9,7 @@ import 'package:starkwager/features/connect_wallet/widgets/installed_wallet_widg
 import 'package:starkwager/utils/ui_widgets.dart';
 import '../../core/constants/assets.dart';
 import '../../theme/app_theme.dart';
+import 'package:starkwager/features/fund_wallet/widgets/fund_wallet_button.dart';
 
 class ConnectWalletScreen extends ConsumerWidget {
   ConnectWalletScreen({super.key});
@@ -71,57 +72,59 @@ class ConnectWalletScreen extends ConsumerWidget {
                       verticalSpace(AppValues.height30),
                       verticalDivider(color: context.dividerColor),
                       verticalSpace(AppValues.height30),
-
                       argent.when(
                           data: (isInstalled) => InstalledWalletWidget(
-                            title: 'Argent X',
-                            icon: Image.asset(AppIcons.argentIcon),
-                            isInstalled: isInstalled,
-                            onTap: () {},
-                          ),
+                                title: 'Argent X',
+                                icon: Image.asset(AppIcons.argentIcon),
+                                isInstalled: isInstalled,
+                                onTap: () {},
+                              ),
                           error: (error, stack) => InstalledWalletWidget(
-                            title: 'Argent X',
-                            icon: Image.asset(AppIcons.argentIcon),
-                            isInstalled: false,
-                            onTap: () {},
-                          ),
-                          loading: () => const CircularProgressIndicator()
-                      ),
+                                title: 'Argent X',
+                                icon: Image.asset(AppIcons.argentIcon),
+                                isInstalled: false,
+                                onTap: () {},
+                              ),
+                          loading: () => const CircularProgressIndicator()),
                       verticalSpace(AppValues.height15),
                       braavos.when(
                           data: (isInstalled) => InstalledWalletWidget(
-                            title: 'Braavos',
-                            icon: Image.asset(AppIcons.braavosIcon),
-                            isInstalled: isInstalled,
-                            onTap: () {},
-                          ),
+                                title: 'Braavos',
+                                icon: Image.asset(AppIcons.braavosIcon),
+                                isInstalled: isInstalled,
+                                onTap: () {},
+                              ),
                           error: (error, stack) => InstalledWalletWidget(
-                            title: 'Braavos',
-                            icon: Image.asset(AppIcons.braavosIcon),
-                            isInstalled: false,
-                            onTap: () {},
-                          ),
-                          loading: () => const CircularProgressIndicator()
-                      ),
+                                title: 'Braavos',
+                                icon: Image.asset(AppIcons.braavosIcon),
+                                isInstalled: false,
+                                onTap: () {},
+                              ),
+                          loading: () => const CircularProgressIndicator()),
                       verticalSpace(AppValues.height15),
                       metamask.when(
                           data: (isInstalled) => InstalledWalletWidget(
-                            title: 'Metamask',
-                            icon: SvgPicture.asset(AppIcons.metaMaskIcon,
-                                width: AppValues.width24,
-                                height: AppValues.height24),
-                            isInstalled: isInstalled,
-                            onTap: () {},
-                          ),
+                                title: 'Metamask',
+                                icon: SvgPicture.asset(AppIcons.metaMaskIcon,
+                                    width: AppValues.width24,
+                                    height: AppValues.height24),
+                                isInstalled: isInstalled,
+                                onTap: () {},
+                              ),
                           error: (error, stack) => InstalledWalletWidget(
-                            title: 'Metamask',
-                            icon: SvgPicture.asset(AppIcons.metaMaskIcon,
-                                width: AppValues.width24,
-                                height: AppValues.height24),
-                            isInstalled: false,
-                            onTap: () {},
-                          ),
-                          loading: () => const CircularProgressIndicator()
+                                title: 'Metamask',
+                                icon: SvgPicture.asset(AppIcons.metaMaskIcon,
+                                    width: AppValues.width24,
+                                    height: AppValues.height24),
+                                isInstalled: false,
+                                onTap: () {},
+                              ),
+                          loading: () => const CircularProgressIndicator()),
+                      verticalSpace(AppValues.height15),
+                      FundWalletButton(
+                        onFund: () {
+                          print('Funding wallet...'); // For testing
+                        },
                       ),
                     ],
                   ),
