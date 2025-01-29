@@ -46,11 +46,11 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                   padding: EdgeInsets.symmetric(
                     horizontal: isMobile 
                       ? AppValues.padding24
-                      : isLandscape ? 184 : 90
+                      : isLandscape ? 184 : 120
                   ),
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
-                      maxWidth: isMobile ? AppValues.width600 : AppValues.width500
+                      maxWidth: isMobile ? AppValues.width600 : AppValues.width400
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,8 +62,8 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                             children: [
                               TextSpan(
                                 text: isMobile 
-                                  ? 'setupYourProfile'.tr() + '\n'
-                                  : 'setupYourProfile'.tr() + ' ',
+                                  ? 'setupYourProfile'.tr() + '\n'  
+                                  : 'setupYourProfile'.tr() + ' ',  
                                 style: AppTheme.headLineLarge32.copyWith(
                                   color: context.primaryTextColor,
                                   height: 1.0,
@@ -73,7 +73,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                                 text: 'PROFILE'.tr(),
                                 style: AppTheme.headLineLarge32.copyWith(
                                   color: context.primaryTextColor,
-                                  height: isMobile ? 1.2 : 1.0,
+                                  height: isMobile ? 1.2 : 1.0,  
                                 ),
                               ),
                             ],
@@ -81,7 +81,11 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                         ),
                         verticalSpace(AppValues.height8),
                         Text(
-                          'chooseProfilePicture'.tr(),
+                          isMobile 
+                            ? 'chooseProfilePicture'.tr()
+                            : 'Choose your picture and a unique username other users can use to invite you to wagers'
+                                .split('\n')
+                                .join(' '),
                           style: AppTheme.titleMedium18.copyWith(
                             color: context.primaryTextColor,
                           ),
@@ -154,7 +158,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                             ),
                           ),
                         ),
-                        verticalSpace(AppValues.height40),
+                        verticalSpace(AppValues.height20),
                       
                         Container(
                           padding: const EdgeInsets.all(AppValues.padding16),
@@ -174,9 +178,16 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                                 child: TextField(
                                   controller: _usernameController,
                                   onChanged: _checkUsername,
+                                  style: AppTheme.titleMedium18.copyWith(
+                                    color: AppColors.blue950,
+                                  ),
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    hintText: '@username',
+                                    prefixText: '@',
+                                    prefixStyle: AppTheme.titleMedium18.copyWith(
+                                      color: AppColors.blue950,
+                                    ),
+                                    hintText: 'username',
                                     hintStyle: AppTheme.titleMedium18.copyWith(
                                       color: AppColors.grayCool100,
                                     ),
@@ -201,7 +212,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                             ),
                           ),
                        
-                         SizedBox(height: 100),
+                         SizedBox(height: 40),
                           Padding(
                             padding: const EdgeInsets.only(bottom: AppValues.height40),
                             child: ElevatedButton(
