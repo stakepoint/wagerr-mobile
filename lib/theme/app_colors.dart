@@ -4,7 +4,7 @@ class AppColors {
   AppColors._();
 
   static const blue950 = Color(0xFF102A56);
-  static const black = Color(0xFF000000);
+  static const black = Color(0xFF000000);static const white = Color(0xFFFFFFFF);
 
   static const blueberry100 = Color(0xFF0093FF);
   static const gray = Color.fromRGBO(158, 158, 158, 1);

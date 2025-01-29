@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/features/wager_created/provider/text_input_state.dart';
 import 'package:starkwager/features/wager_created/widgets/general_text_form_field.dart';
+import 'package:starkwager/routing/routes.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
@@ -161,9 +163,9 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
               verticalSpace(12),
               _button(
                   title: 'backHome'.tr(),
-                  buttonColor: Color(0xFFFFFFFF),
+                  buttonColor: AppColors.white,
                   textColor: AppColors.blue950,
-                  onPressed: () {},
+                  onPressed: () => context.go(Routes.splash),
                   textInputState: textInputState),
             ],
           ),

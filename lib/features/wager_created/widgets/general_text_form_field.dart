@@ -191,7 +191,7 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                           fontWeight: widget.textFontWeight ?? FontWeight.w500),
                       decoration: InputDecoration(
                         prefixIcon: widget.prefixIcon,
-                        fillColor: AppColors.gray,
+                        fillColor: AppColors.grayCool100,
                         filled: true,
                         suffixIcon: widget.suffixIcon,
                         prefix: widget.prefix,
