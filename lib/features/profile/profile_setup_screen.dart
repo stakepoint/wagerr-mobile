@@ -95,7 +95,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                           color: context.dividerColor,
                           margin: const EdgeInsets.symmetric(vertical: AppValues.height24),
                         ),
-                        // Profile Picture aligned to left
+                  
                         Padding(
                           padding: const EdgeInsets.only(left: AppValues.padding8),
                           child: GestureDetector(
