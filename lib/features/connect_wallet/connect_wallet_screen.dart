@@ -32,8 +32,8 @@ class ConnectWalletScreen extends ConsumerWidget {
             child: GestureDetector(
                 onTap: () {
                   _isMobile
-                      ? GoRouter.of(context).go(Routes.home)
-                      : GoRouter.of(context).go(Routes.home_tablet);
+                      ? GoRouter.of(context).go(Routes.profileSetup)
+                      : GoRouter.of(context).go(Routes.profileSetup);
                 },
                 child: SvgPicture.asset(AppIcons.hamburgerIcon)),
           )

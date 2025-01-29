@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
+import 'package:starkwager/routing/routes.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
 import '../../core/constants/app_values.dart';
@@ -10,6 +11,8 @@ import '../../theme/app_theme.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import '../../core/constants/assets.dart';
+import 'package:go_router/go_router.dart';
+
 
 
 class ProfileSetupScreen extends ConsumerStatefulWidget {
@@ -219,8 +222,12 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                               onPressed: _usernameController.text.isEmpty || !_isUsernameAvailable 
                                   ? null 
                                   : () {
-                                   
-                                    },
+                                    if (isMobile) {
+                                      GoRouter.of(context).go(Routes.home);
+                                    } else {
+                                      GoRouter.of(context).go(Routes.home_tablet);
+                                    }
+                                  },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFE7FF54),
                                 minimumSize: const Size(double.infinity, AppValues.height56),

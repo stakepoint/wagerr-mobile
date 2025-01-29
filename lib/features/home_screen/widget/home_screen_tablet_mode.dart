@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/features/home_screen/widget/home_screen_body.dart';
 import 'package:starkwager/features/home_screen/widget/profile_menu.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
+
+
+import '../../../routing/routes.dart';
 
 class HomeScreenTabletMode extends ConsumerWidget {
   const HomeScreenTabletMode({
@@ -32,7 +36,10 @@ class HomeScreenTabletMode extends ConsumerWidget {
             ),
             Row(
               children: [
-                ProfileMenu(),
+                GestureDetector(
+                  onTap: () => GoRouter.of(context).go(Routes.profileSetup),
+                  child: ProfileMenu(),
+                ),
                 horizontalSpace(24),
                 SvgPicture.asset(
                   AppIcons.notificationIcon,
