@@ -31,5 +31,9 @@
   "backHome": "Back Home",
   "sendWager": "Send Wager",
   "linkCopied": "Link copied to clipboard",
-  "inviteThroughUsername": "Invite through username"
+  "inviteThroughUsername": "Invite through username",
+  "setupYourProfile": "SET UP YOUR",
+  "chooseProfilePicture": "Choose your picture and a unique username\nother users can use to invite you to wagers",
+  "usernameAvailable": "Username available",
+  "usernameUnavailable": "Username unavailable"
 }
