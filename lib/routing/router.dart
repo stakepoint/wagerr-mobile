@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/features/connect_wallet/connect_wallet_screen.dart';
+import 'package:starkwager/features/profile/profile_setup_screen.dart';
 import 'package:starkwager/features/home_screen/home_screen.dart';
 import 'package:starkwager/features/home_screen/naviagtion.dart';
 import 'package:starkwager/features/home_screen/widget/home_screen_tablet_menu_bar.dart';
@@ -45,6 +46,13 @@ final GoRouter router = GoRouter(
       pageBuilder: (context, state) => SlideRouteTransition(
         child: ConnectWalletScreen(),
         routeName: Routes.splash,
+      ),
+    ),
+    GoRoute(
+      path: Routes.profileSetup,
+      pageBuilder: (context, state) => SlideRouteTransition(
+        child: ProfileSetupScreen(),
+        routeName: Routes.profileSetup,
       ),
     ),
 
