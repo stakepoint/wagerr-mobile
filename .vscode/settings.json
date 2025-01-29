@@ -1,0 +1,8 @@
+{
+  "dart.flutterSdkPath": ".fvm/flutter_sdk",
+  "dart.flutterAdditionalArgs": [],
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "java.configuration.updateBuildConfiguration": "automatic"
+}
