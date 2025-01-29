@@ -5,10 +5,6 @@ class AppIcons {
   static const argentIcon = 'assets/icons/argent_icon.png';
   static const braavosIcon = 'assets/icons/braavos_icon.png';
   static const metaMaskIcon = 'assets/icons/metamask_icon.svg';
-<<<<<<< HEAD
-  static const closeIcon = 'assets/icons/close_icon.svg';
-  static const walletIcon = 'assets/icons/wallet_icon.svg';
-=======
   static const profileDummy = 'assets/icons/profile_dummy.png';
   static const copyIcon = 'assets/icons/copy.svg';
   static const notificationIcon = 'assets/icons/notification.svg';
@@ -36,5 +32,4 @@ class AppIcons {
   static const String notificationPath = '$baseIconPath/notification.svg';
   static const String snSymbol = '$baseIconPath/sn_symbol.png';
   static const String arrowBack = '$baseIconPath/arrow_back.svg';
->>>>>>> b1283a13938975e077bfa347cdde896a7d8e8acc
 }

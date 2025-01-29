@@ -131,15 +131,12 @@ class ConnectWalletScreen extends ConsumerWidget {
                                 onTap: () {},
                               ),
                           loading: () => const CircularProgressIndicator()),
-<<<<<<< HEAD
                       verticalSpace(AppValues.height15),
                       FundWalletButton(
                         onFund: () {
                           print('Funding wallet...'); // For testing
                         },
                       ),
-=======
->>>>>>> b1283a13938975e077bfa347cdde896a7d8e8acc
                     ],
                   ),
                 ),
