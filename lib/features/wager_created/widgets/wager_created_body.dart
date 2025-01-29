@@ -165,7 +165,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                   title: 'backHome'.tr(),
                   buttonColor: AppColors.white,
                   textColor: AppColors.blue950,
-                  onPressed: () => context.go(Routes.splash),
+                  onPressed: () => context.go(Routes.create_wager_summary),
                   textInputState: textInputState),
             ],
           ),
