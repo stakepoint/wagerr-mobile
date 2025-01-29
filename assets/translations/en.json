@@ -22,5 +22,14 @@
   "withdraw": "Withdraw",
   "walletBalance": "Wallet Balance",
   "nowagerscreatedyet": "No wagers created yet",
-  "stake": "Stake"
+  "stake": "Stake",
+  "sendWagerInvite" :"Your wager has been created, send wager invite 🚀",
+  "wagerCreated" : "WAGER CREATED",
+  "inviteViaUsername" : "Invite through username",
+  "publicInvite" : "Invite publicly (Anyone with this link can join it)",
+  "copyLink" : "Copy Link",
+  "backHome": "Back Home",
+  "sendWager": "Send Wager",
+  "linkCopied": "Link copied to clipboard",
+  "inviteThroughUsername": "Invite through username"
 }

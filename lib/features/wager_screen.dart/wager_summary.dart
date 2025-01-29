@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/app_values.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
+import 'package:starkwager/routing/routes.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
@@ -203,7 +204,9 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           height: AppValues.height56,
                           width: AppValues.width400,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.go(Routes.wager_created);
+                            },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.black,
                               backgroundColor: AppColors.buttonColor,
