@@ -1,12 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/app_values.dart';
+import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/features/connect_wallet/provider/connect_wallet_provider.dart';
 import 'package:starkwager/features/connect_wallet/widgets/installed_wallet_widget.dart';
+import 'package:starkwager/routing/routes.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
+
 import '../../core/constants/assets.dart';
 import '../../theme/app_theme.dart';
 import 'package:starkwager/features/fund_wallet/widgets/fund_wallet_button.dart';
@@ -19,13 +23,20 @@ class ConnectWalletScreen extends ConsumerWidget {
     final argent = ref.watch(argentCheckProvider);
     final braavos = ref.watch(braavosCheckProvider);
     final metamask = ref.watch(metamaskCheckProvider);
+    final _isMobile = ScreenLayout.isMobile(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: AppValues.padding16),
-            child: SvgPicture.asset(AppIcons.hamburgerIcon),
+            child: GestureDetector(
+                onTap: () {
+                  _isMobile
+                      ? GoRouter.of(context).go(Routes.profileSetup)
+                      : GoRouter.of(context).go(Routes.profileSetup);
+                },
+                child: SvgPicture.asset(AppIcons.hamburgerIcon)),
           )
         ],
         automaticallyImplyLeading: false,
@@ -120,12 +131,15 @@ class ConnectWalletScreen extends ConsumerWidget {
                                 onTap: () {},
                               ),
                           loading: () => const CircularProgressIndicator()),
+<<<<<<< HEAD
                       verticalSpace(AppValues.height15),
                       FundWalletButton(
                         onFund: () {
                           print('Funding wallet...'); // For testing
                         },
                       ),
+=======
+>>>>>>> b1283a13938975e077bfa347cdde896a7d8e8acc
                     ],
                   ),
                 ),

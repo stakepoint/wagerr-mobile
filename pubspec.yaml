@@ -40,6 +40,7 @@ dependencies:
   riverpod_annotation: ^2.6.1
   shared_preferences: ^2.2.3
   appcheck: ^1.5.2
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +69,7 @@ flutter:
     #- assets/animations/
     - assets/fonts/
     - assets/icons/
-    #- assets/images/
+    - assets/images/
     - assets/translations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -85,4 +86,7 @@ flutter:
         - asset: assets/fonts/GeneralSans-Extralight.otf
         - asset: assets/fonts/GeneralSans-Semibold.otf
         - asset: assets/fonts/GeneralSans-Bold.otf
+
+scripts:
+  build_runner: fvm flutter pub run build_runner build
 
