@@ -38,185 +38,193 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
         child: LayoutBuilder(
           builder: (context, constraints) {
             final isMobile = ScreenLayout.isMobile(context);
-            final maxWidth = isMobile ? AppValues.width600 : AppValues.width1440;
+            final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
             
-            return Center(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: maxWidth),
+            return SingleChildScrollView(
+              child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppValues.padding24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      verticalSpace(AppValues.height60),
-                     
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'setupYourProfile'.tr() + '\n',
-                              style: AppTheme.headLineLarge32.copyWith(
-                                color: context.primaryTextColor,
-                                height: 1.0,
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'profile'.tr(),
-                              style: AppTheme.headLineLarge32.copyWith(
-                                color: context.primaryTextColor,
-                                height: 1.2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      verticalSpace(AppValues.height8),
-                      Text(
-                        'chooseProfilePicture'.tr(),
-                        style: AppTheme.titleMedium18.copyWith(
-                          color: context.primaryTextColor,
-                        ),
-                      ),
-                      Container(
-                        height: 1,
-                        color: context.dividerColor,
-                        margin: const EdgeInsets.symmetric(vertical: AppValues.height24),
-                      ),
-                      // Profile Picture aligned to left
-                      Padding(
-                        padding: const EdgeInsets.only(left: AppValues.padding8),
-                        child: GestureDetector(
-                          onTap: () async {
-                            final ImagePicker picker = ImagePicker();
-                            final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-                            if (image != null) {
-                              setState(() {
-                                _selectedImage = File(image.path);
-                              });
-                            }
-                          },
-                          child: Stack(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: isMobile 
+                      ? AppValues.padding24
+                      : isLandscape ? 184 : 90
+                  ),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: isMobile ? AppValues.width600 : AppValues.width500
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        verticalSpace(AppValues.height60),
+                       
+                        RichText(
+                          text: TextSpan(
                             children: [
-                              Container(
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
+                              TextSpan(
+                                text: 'setupYourProfile'.tr() + '\n',
+                                style: AppTheme.headLineLarge32.copyWith(
+                                  color: context.primaryTextColor,
+                                  height: 1.0,
                                 ),
-                                child: _selectedImage != null
-                                    ? ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: Image.file(
-                                          _selectedImage!,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      )
-                                    : ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: Image.asset(
-                                          AppIcons.userImage,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
                               ),
-                              Positioned(
-                                right: -4,
-                                bottom: -4,
-                                child: Container(
-                                  padding: const EdgeInsets.all(8),
+                              TextSpan(
+                                text: 'profile'.tr(),
+                                style: AppTheme.headLineLarge32.copyWith(
+                                  color: context.primaryTextColor,
+                                  height: 1.2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        verticalSpace(AppValues.height8),
+                        Text(
+                          'chooseProfilePicture'.tr(),
+                          style: AppTheme.titleMedium18.copyWith(
+                            color: context.primaryTextColor,
+                          ),
+                        ),
+                        Container(
+                          height: 1,
+                          color: context.dividerColor,
+                          margin: const EdgeInsets.symmetric(vertical: AppValues.height24),
+                        ),
+                        // Profile Picture aligned to left
+                        Padding(
+                          padding: const EdgeInsets.only(left: AppValues.padding8),
+                          child: GestureDetector(
+                            onTap: () async {
+                              final ImagePicker picker = ImagePicker();
+                              final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+                              if (image != null) {
+                                setState(() {
+                                  _selectedImage = File(image.path);
+                                });
+                              }
+                            },
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: 80,
+                                  height: 80,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(16),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.1),
-                                        blurRadius: 4,
-                                        offset: const Offset(0, 2),
-                                      ),
-                                    ],
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child: const Icon(Icons.camera_alt, 
-                                    color: Colors.black, 
-                                    size: 20
+                                  child: _selectedImage != null
+                                      ? ClipRRect(
+                                          borderRadius: BorderRadius.circular(20),
+                                          child: Image.file(
+                                            _selectedImage!,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        )
+                                      : ClipRRect(
+                                          borderRadius: BorderRadius.circular(20),
+                                          child: Image.asset(
+                                            AppIcons.userImage,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                ),
+                                Positioned(
+                                  right: -4,
+                                  bottom: -4,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(16),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.1),
+                                          blurRadius: 4,
+                                          offset: const Offset(0, 2),
+                                        ),
+                                      ],
+                                    ),
+                                    child: const Icon(Icons.camera_alt, 
+                                      color: Colors.black, 
+                                      size: 20
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        verticalSpace(AppValues.height40),
+                      
+                        Container(
+                          padding: const EdgeInsets.all(AppValues.padding16),
+                          decoration: BoxDecoration(
+                            color: context.secondaryBackgroundColor,
+                            borderRadius: BorderRadius.circular(AppValues.radius16),
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'wager.strk/',
+                                style: AppTheme.titleMedium18.copyWith(
+                                  color: AppColors.gray,
+                                ),
+                              ),
+                              Expanded(
+                                child: TextField(
+                                  controller: _usernameController,
+                                  onChanged: _checkUsername,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: '@username',
+                                    hintStyle: AppTheme.titleMedium18.copyWith(
+                                      color: AppColors.grayCool100,
+                                    ),
+                                    contentPadding: EdgeInsets.zero,
                                   ),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      ),
-                      verticalSpace(AppValues.height40),
-                    
-                      Container(
-                        padding: const EdgeInsets.all(AppValues.padding16),
-                        decoration: BoxDecoration(
-                          color: context.secondaryBackgroundColor,
-                          borderRadius: BorderRadius.circular(AppValues.radius16),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'wager.strk/',
-                              style: AppTheme.titleMedium18.copyWith(
-                                color: AppColors.gray,
-                              ),
-                            ),
-                            Expanded(
-                              child: TextField(
-                                controller: _usernameController,
-                                onChanged: _checkUsername,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: '@username',
-                                  hintStyle: AppTheme.titleMedium18.copyWith(
-                                    color: AppColors.grayCool100,
-                                  ),
-                                  contentPadding: EdgeInsets.zero,
+                        if (_usernameController.text.isNotEmpty)
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8, right: 8),
+                              child: Text(
+                                _isUsernameAvailable ? 'usernameAvailable'.tr() : 'usernameUnavailable'.tr(),
+                                style: AppTheme.titleSmall16.copyWith(
+                                  color: _isUsernameAvailable ? Colors.green : Colors.red,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      if (_usernameController.text.isNotEmpty)
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 8, right: 8),
-                            child: Text(
-                              _isUsernameAvailable ? 'usernameAvailable'.tr() : 'usernameUnavailable'.tr(),
-                              style: AppTheme.titleSmall16.copyWith(
-                                color: _isUsernameAvailable ? Colors.green : Colors.red,
+                          ),
+                       
+                         SizedBox(height: 100),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: AppValues.height40),
+                            child: ElevatedButton(
+                              onPressed: _usernameController.text.isEmpty || !_isUsernameAvailable 
+                                  ? null 
+                                  : () {
+                                   
+                                    },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFFE7FF54),
+                                minimumSize: const Size(double.infinity, AppValues.height56),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(AppValues.radius16),
+                                ),
+                              ),
+                              child: Text(
+                                'continue'.tr(),
+                                style: AppTheme.titleMedium18.copyWith(
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                   
-                     SizedBox(height: 100),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: AppValues.height40),
-                        child: ElevatedButton(
-                          onPressed: _usernameController.text.isEmpty || !_isUsernameAvailable 
-                              ? null 
-                              : () {
-                               
-                                },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFE7FF54),
-                            minimumSize: const Size(double.infinity, AppValues.height56),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(AppValues.radius16),
-                            ),
-                          ),
-                          child: Text(
-                            'continue'.tr(),
-                            style: AppTheme.titleMedium18.copyWith(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
