@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:starkwager/core/constants/screen_layout.dart';
+import 'package:starkwager/theme/app_colors.dart';
+import 'package:starkwager/theme/app_theme.dart';
+import 'package:starkwager/core/constants/assets.dart';
 
-class FundWalletDialog extends StatelessWidget {
+class FundWalletDialog extends StatefulWidget {
   final VoidCallback? onFund;
   final VoidCallback? onClose;
 
@@ -11,35 +15,111 @@ class FundWalletDialog extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      insetPadding: EdgeInsets.zero,
-      child: Container(
-        padding: const EdgeInsets.only(top: 16), // Adjust top padding
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16),
+  State<FundWalletDialog> createState() => _FundWalletDialogState();
+}
+
+class _FundWalletDialogState extends State<FundWalletDialog> {
+  bool showInput = false;
+  final TextEditingController amountController = TextEditingController();
+
+  @override
+  void dispose() {
+    amountController.dispose();
+    super.dispose();
+  }
+
+  Widget _buildMainContent() {
+    if (!showInput) {
+      return Column(
+        children: [
+          const SizedBox(height: 24),
+          SizedBox(
+            height: 120,
+            child: Image.asset(
+              'assets/icons/wallet_icon.png',
+              fit: BoxFit.contain,
+            ),
+          ),
+          const SizedBox(height: 24),
+        ],
+      );
+    }
+
+    return Column(
+      children: [
+        const SizedBox(height: 24),
+        Material(
+          color: Colors.transparent,
+          child: TextField(
+            controller: amountController,
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: '\$0.00',
+              hintStyle: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF0F172A).withOpacity(0.5),
+              ),
+            ),
+            style: const TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF0F172A),
+            ),
           ),
         ),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(AppIcons.starknetImage),
+            const SizedBox(width: 4),
+            Text(
+              '0 Strk',
+              style: AppTheme.textSmallMedium.copyWith(
+                color: AppColors.blue950,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 32),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isMobile = ScreenLayout.isMobile(context);
+
+    final dialogContent = Container(
+      height: 360,
+      padding: const EdgeInsets.only(top: 8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+          bottomLeft: Radius.circular(16),
+          bottomRight: Radius.circular(16),
+        ),
+      ),
+      child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Close button at the top right
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 16), // Right padding
+                padding: const EdgeInsets.only(right: 8),
                 child: GestureDetector(
-                  onTap: onClose,
+                  onTap: widget.onClose,
                   child: const Icon(Icons.close, size: 24),
                 ),
               ),
             ),
-
-            const SizedBox(height: 8), // Space below the close button
-
-            // Title
+            const SizedBox(height: 8),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: Text(
@@ -51,14 +131,11 @@ class FundWalletDialog extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 8),
-
-            // Description
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: Text(
-                'To be able to create wagers you need to fund your wallet with Strk.',
+                'Enter the amount you want to fund your wallet and create wagers.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
@@ -66,28 +143,22 @@ class FundWalletDialog extends StatelessWidget {
                 ),
               ),
             ),
-
-            const SizedBox(height: 24),
-
-            // Wallet Icon
-            SizedBox(
-              height: 120,
-              child: Image.asset(
-                'assets/icons/wallet_icon.png',
-                fit: BoxFit.contain,
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Fund Button
+            _buildMainContent(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: SizedBox(
                 width: double.infinity,
-                height: 56,
+                height: 46,
                 child: ElevatedButton(
-                  onPressed: onFund,
+                  onPressed: () {
+                    if (!showInput) {
+                      setState(() {
+                        showInput = true;
+                      });
+                    } else {
+                      widget.onFund?.call();
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE0FE10),
                     foregroundColor: Colors.black,
@@ -106,11 +177,23 @@ class FundWalletDialog extends StatelessWidget {
                 ),
               ),
             ),
-
-            const SizedBox(height: 24),
+            const SizedBox(height: 8),
           ],
         ),
       ),
     );
+
+    return isMobile
+        ? Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: dialogContent,
+            ),
+          )
+        : Dialog(
+            insetPadding: EdgeInsets.zero,
+            child: dialogContent,
+          );
   }
 }

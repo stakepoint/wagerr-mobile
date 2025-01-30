@@ -18,16 +18,33 @@ class HomeScreenBody extends ConsumerWidget {
   });
 
   void _showFundWalletDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => FundWalletDialog(
-        onClose: () => Navigator.of(context).pop(),
-        onFund: () {
-          // Add your funding logic here
-          Navigator.of(context).pop();
-        },
-      ),
-    );
+    final isMobile = ScreenLayout.isMobile(context);
+
+    if (isMobile) {
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext context) => FundWalletDialog(
+          onClose: () => Navigator.of(context).pop(),
+          onFund: () {
+            // Add your funding logic here
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => FundWalletDialog(
+          onClose: () => Navigator.of(context).pop(),
+          onFund: () {
+            // Add your funding logic here
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    }
   }
 
   @override
