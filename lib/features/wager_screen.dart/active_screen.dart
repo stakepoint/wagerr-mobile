@@ -1,9 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
+import 'package:starkwager/features/wager_screen.dart/widget/wagger_widget.dart';
+import 'package:starkwager/utils/ui_widgets.dart';
 
 class ActiveScreen extends ConsumerWidget {
   const ActiveScreen({
@@ -15,10 +14,19 @@ class ActiveScreen extends ConsumerWidget {
     final _isMobile = ScreenLayout.isMobile(context);
     return Column(
       children: [
-        Text(
-          'nowagerscreatedyet'.tr(),
-          style: AppTheme.titleSmall16.copyWith(
-            color: AppColors.grayCool400,
+        Expanded(
+          child: ListView.separated(
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemCount: 3,
+            separatorBuilder: (context, index) => verticalSpace(16),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: _isMobile ? 0 : 130,
+                ),
+                child: const WaggerWidget(),
+              );
+            },
           ),
         ),
       ],

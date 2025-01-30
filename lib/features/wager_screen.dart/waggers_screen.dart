@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/core/constants/app_values.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/features/waggers_screen.dart/widget/mobile_body.dart';
+import 'package:starkwager/features/wager_screen.dart/widget/mobile_body.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 
@@ -51,16 +51,14 @@ class WaggersScreen extends ConsumerWidget {
   Widget _buildTabletLayout(BuildContext context) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: AppValues.width1440),
-      child: Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppValues.padding16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Wagger Screen",
-              style: AppTheme.titleSmall16.copyWith(
-                color: AppColors.blue950,
-              ),
-            ).tr(),
+            Expanded(
+              child: MobileBody(),
+            ),
           ],
         ),
       ),
