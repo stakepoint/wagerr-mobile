@@ -13,7 +13,6 @@ import 'package:starkwager/utils/ui_widgets.dart';
 
 import '../../core/constants/assets.dart';
 import '../../theme/app_theme.dart';
-import 'package:starkwager/features/fund_wallet/widgets/fund_wallet_button.dart';
 
 class ConnectWalletScreen extends ConsumerWidget {
   ConnectWalletScreen({super.key});
@@ -132,11 +131,6 @@ class ConnectWalletScreen extends ConsumerWidget {
                               ),
                           loading: () => const CircularProgressIndicator()),
                       verticalSpace(AppValues.height15),
-                      FundWalletButton(
-                        onFund: () {
-                          print('Funding wallet...'); // For testing
-                        },
-                      ),
                     ],
                   ),
                 ),
