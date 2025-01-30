@@ -58,7 +58,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
               border: InputBorder.none,
               hintText: '\$0.00',
               hintStyle: TextStyle(
-                fontSize: 40,
+                fontSize: 45,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF0F172A).withOpacity(0.5),
               ),
@@ -170,7 +170,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
                   child: const Text(
                     'Fund',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -183,17 +183,21 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
       ),
     );
 
+    final wrappedContent = isMobile
+        ? dialogContent
+        : Container(
+            width: 400,
+            child: dialogContent,
+          );
+
     return isMobile
-        ? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: dialogContent,
-            ),
+        ? Align(
+            alignment: Alignment.bottomCenter,
+            child: dialogContent,
           )
         : Dialog(
             insetPadding: EdgeInsets.zero,
-            child: dialogContent,
+            child: wrappedContent,
           );
   }
 }
