@@ -140,7 +140,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
           Align(
             alignment: Alignment.topRight,
             child: Padding(
-              padding: const EdgeInsets.only(right: 16, top: 12),
+              padding: const EdgeInsets.only(right: 24, top: 16),
               child: GestureDetector(
                 onTap: widget.onClose,
                 child: const Icon(Icons.close, size: 24),
@@ -240,9 +240,13 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      child: SizedBox(
-        width: 420, // Fixed width
-        height: 400, // Fixed height (Adjust if needed)
+      child: Container(
+        width: 420,
+        height: 360,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
