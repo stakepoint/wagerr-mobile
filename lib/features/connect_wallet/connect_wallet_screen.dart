@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:reown_appkit/modal/appkit_modal_impl.dart';
+import 'package:reown_appkit/reown_appkit.dart';
 import 'package:starkwager/core/constants/app_values.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
@@ -23,6 +25,10 @@ class ConnectWalletScreen extends ConsumerWidget {
     final braavos = ref.watch(braavosCheckProvider);
     final metamask = ref.watch(metamaskCheckProvider);
     final _isMobile = ScreenLayout.isMobile(context);
+    final appKitModal = ref.watch(appKitModalProvider(context));
+
+
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -82,20 +88,34 @@ class ConnectWalletScreen extends ConsumerWidget {
                       verticalSpace(AppValues.height30),
                       verticalDivider(color: context.dividerColor),
                       verticalSpace(AppValues.height30),
-                      argent.when(
-                          data: (isInstalled) => InstalledWalletWidget(
+                      appKitModal.when(
+                        error: (error, stack) => Container(),
+                        loading: ()=> Container(),
+                        data: (modal){
+                          return argent.when(
+                              data: (isInstalled) => InstalledWalletWidget(
                                 title: 'Argent X',
                                 icon: Image.asset(AppIcons.argentIcon),
                                 isInstalled: isInstalled,
-                                onTap: () {},
+                                onTap: () {
+                                  modal.openModalView(ReownAppKitModalAllWalletsPage());
+
+                                },
                               ),
-                          error: (error, stack) => InstalledWalletWidget(
+                              error: (error, stack) => InstalledWalletWidget(
                                 title: 'Argent X',
                                 icon: Image.asset(AppIcons.argentIcon),
                                 isInstalled: false,
-                                onTap: () {},
+                                onTap: () {
+                                  print('onclickii');
+                                  modal.openModalView(ReownAppKitModalAllWalletsPage());
+                                },
                               ),
-                          loading: () => const CircularProgressIndicator()),
+                              loading: () => const CircularProgressIndicator());
+                        },
+
+                      ),
+
                       verticalSpace(AppValues.height15),
                       braavos.when(
                           data: (isInstalled) => InstalledWalletWidget(

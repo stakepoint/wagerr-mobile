@@ -23,6 +23,16 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- your own custom scheme -->
+                <!-- Should be the same you set on Redirect.native on Flutter side -->
+                <!-- Be mindful of removing :// for this step -->
+                <data android:scheme="starkwagerapp" />
+            </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
@@ -33,7 +43,6 @@
     <queries>
         <package android:name="app.braavos.wallet"/>
         <package android:name="im.argent.contractwalletclient"/>
-        <!-- TODO: find meta mask actual package name -->
-        <package android:name="app.metamask.wallet"/>
+        <package android:name="io.metamask"/>
     </queries>
 </manifest>

@@ -23,48 +23,51 @@ class InstalledWalletWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      height: AppValues.height56,
-      decoration: BoxDecoration(
-        color: AppColors.baseWhite,
-        borderRadius: BorderRadius.circular(AppValues.radius16),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: AppValues.padding24, vertical: AppValues.padding12),
-        child: Row(
-          children: [
-            icon,
-            horizontalSpace(AppValues.padding10),
-            Text(
-              isInstalled ? title : '${'install'.tr()} $title',
-              style: AppTheme.titleMedium18.copyWith(
-                  color: context.primaryTextColor, fontWeight: FontWeight.w500),
-            ),
-            Spacer(),
-            Visibility(
-              visible: isInstalled,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.baseWhite,
-                  border: Border.all(
-                      width: AppValues.width1,
-                      color: AppColors.grayCool200
-                  ),
-                  borderRadius: BorderRadius.circular(AppValues.radius4),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(AppValues.padding8),
-                  child: Text(
-                    'installed'.tr(),
-                    style: AppTheme.bodySmall12.copyWith(
-                        color: context.primaryTextColor,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
+    return GestureDetector(
+      onTap: ()=> onTap(),
+      child: Container(
+        height: AppValues.height56,
+        decoration: BoxDecoration(
+          color: AppColors.baseWhite,
+          borderRadius: BorderRadius.circular(AppValues.radius16),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppValues.padding24, vertical: AppValues.padding12),
+          child: Row(
+            children: [
+              icon,
+              horizontalSpace(AppValues.padding10),
+              Text(
+                isInstalled ? title : '${'install'.tr()} $title',
+                style: AppTheme.titleMedium18.copyWith(
+                    color: context.primaryTextColor, fontWeight: FontWeight.w500),
               ),
-            )
-          ],
+              Spacer(),
+              Visibility(
+                visible: isInstalled,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.baseWhite,
+                    border: Border.all(
+                        width: AppValues.width1,
+                        color: AppColors.grayCool200
+                    ),
+                    borderRadius: BorderRadius.circular(AppValues.radius4),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppValues.padding8),
+                    child: Text(
+                      'installed'.tr(),
+                      style: AppTheme.bodySmall12.copyWith(
+                          color: context.primaryTextColor,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
