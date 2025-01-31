@@ -20,6 +20,7 @@ class AppIcons {
   static const logoIcon = 'assets/icons/logo.svg';
   static const infoIcon = 'assets/icons/infoIcon.svg';
   static const hashTagIcon = 'assets/icons/hashTagIcon.svg';
+  static const fundWalletIcon = 'assets/icons/wallet_icon.svg';
 
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const userImage = 'assets/images/user.png';

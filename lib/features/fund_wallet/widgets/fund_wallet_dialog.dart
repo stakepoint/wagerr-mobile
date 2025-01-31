@@ -3,6 +3,7 @@ import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 import 'package:starkwager/core/constants/assets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class FundWalletDialog extends StatefulWidget {
   final VoidCallback? onFund;
@@ -35,10 +36,8 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
           const SizedBox(height: 24),
           SizedBox(
             height: 120,
-            child: Image.asset(
-              'assets/icons/wallet_icon.png',
-              fit: BoxFit.contain,
-            ),
+            child:
+                SvgPicture.asset(AppIcons.fundWalletIcon, fit: BoxFit.contain),
           ),
           const SizedBox(height: 24),
         ],
@@ -125,7 +124,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
               child: Text(
                 'Fund Your Wallet',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 24,
                   fontWeight: FontWeight.w600,
                   color: Color(0xFF0F172A),
                 ),
@@ -133,7 +132,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             ),
             const SizedBox(height: 8),
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: 32),
               child: Text(
                 'Enter the amount you want to fund your wallet and create wagers.',
                 textAlign: TextAlign.center,
@@ -145,7 +144,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             ),
             _buildMainContent(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: SizedBox(
                 width: double.infinity,
                 height: 46,
@@ -163,6 +162,8 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
                     backgroundColor: const Color(0xFFE0FE10),
                     foregroundColor: Colors.black,
                     elevation: 0,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
