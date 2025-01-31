@@ -42,7 +42,7 @@ class WagerSummaryScreen extends ConsumerWidget {
                       onPressed: () => GoRouter.of(context).pop(),
                     ),
                     Text(
-                      !context.isMobile ? 'WAGER SUMMARY'.tr() : '',
+                      !context.isMobile ? 'wagerSummary'.tr() : '',
                       style: AppTheme.headLineLarge32,
                     ),
                   ],
@@ -100,7 +100,7 @@ class WagerSummaryScreen extends ConsumerWidget {
                       children: [
                         if (context.isMobile)
                           Text(
-                            'WAGER SUMMARY'.tr(),
+                            'wagerSummary'.tr(),
                             style: AppTheme.headLineLarge32
                                 .copyWith(color: context.primaryTextColor),
                           ),

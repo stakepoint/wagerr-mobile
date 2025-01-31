@@ -11,7 +11,8 @@ class ActiveScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _isMobile = ScreenLayout.isMobile(context);
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Column(
       children: [
         Expanded(
@@ -22,7 +23,11 @@ class ActiveScreen extends ConsumerWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: _isMobile ? 0 : 130,
+                  horizontal: ScreenLayout.isTablet(context)
+                      ? isLandscape
+                          ? 200
+                          : 0
+                      : 0,
                 ),
                 child: const WaggerWidget(),
               );

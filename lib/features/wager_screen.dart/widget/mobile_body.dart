@@ -38,59 +38,72 @@ class _MobileBodyState extends ConsumerState<MobileBody>
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ScreenLayout.isMobile(context);
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        verticalSpace(20),
-        isMobile
-            ? Text(
-                'WAGERS'.tr(),
-                style: AppTheme.headLineLarge32.copyWith(
-                  color: AppColors.blue950,
-                ),
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Home',
-                    style: AppTheme.headLineLarge32.copyWith(
-                      color: AppColors.blue950,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      ProfileMenu(),
-                      horizontalSpace(24),
-                      SvgPicture.asset(
-                        AppIcons.notificationIcon,
-                        width: 20,
-                        height: 20,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-        isMobile ? verticalSpace(24) : verticalSpace(120),
+        verticalSpace(25),
         ScreenLayout.isTablet(context)
             ? isLandscape
                 ? Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 280),
+                    padding: const EdgeInsets.only(right: 70),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'waggers'.tr(),
+                          style: AppTheme.headLineLarge32.copyWith(
+                            color: AppColors.blue950,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            ProfileMenu(),
+                            horizontalSpace(24),
+                            SvgPicture.asset(
+                              AppIcons.notificationIcon,
+                              width: 20,
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Text(
+                    'waggers'.tr(),
+                    style: AppTheme.headLineLarge32.copyWith(
+                      color: AppColors.blue950,
+                    ),
+                  )
+            : Text(
+                'waggers'.tr(),
+                style: AppTheme.headLineLarge32.copyWith(
+                  color: AppColors.blue950,
+                ),
+              ),
+        ScreenLayout.isTablet(context)
+            ? isLandscape
+                ? verticalSpace(100)
+                : verticalSpace(44)
+            : verticalSpace(24),
+        ScreenLayout.isTablet(context)
+            ? isLandscape
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 320),
                     child: TabWidget(
                       controller: _tabController,
-                      tabs: ['Active'.tr(), 'Pending'.tr(), 'Complete'.tr()],
+                      tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
                     ),
                   )
                 : TabWidget(
                     controller: _tabController,
-                    tabs: ['Active'.tr(), 'Pending'.tr(), 'Complete'.tr()],
+                    tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
                   )
             : TabWidget(
                 controller: _tabController,
-                tabs: ['Active'.tr(), 'Pending'.tr(), 'Complete'.tr()],
+                tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
               ),
         verticalSpace(24),
         Expanded(

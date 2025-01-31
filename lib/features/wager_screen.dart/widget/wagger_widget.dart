@@ -36,7 +36,7 @@ class WaggerWidget extends ConsumerWidget {
               SvgPicture.asset(AppIcons.ellipseIcon),
               horizontalSpace(5),
               Text(
-                'In Progress'.tr(),
+                'inProgress'.tr(),
                 style: AppTheme.bodyMedium14.copyWith(
                   color: AppColors.grayCool400,
                 ),
@@ -97,7 +97,7 @@ class WaggerWidget extends ConsumerWidget {
     return Column(
       children: [
         Text(
-          "One-on-One",
+          "oneOnOne".tr(),
           style: AppTheme.textTinyNormal.copyWith(
             color: AppColors.blue950,
           ),
@@ -122,8 +122,8 @@ class WaggerWidget extends ConsumerWidget {
         verticalSpace(8),
         Text(
           '@noyi24_7',
-          style: AppTheme.textTinyMedium
-              .copyWith(color: context.primaryTextColor),
+          style:
+              AppTheme.textTinyMedium.copyWith(color: context.primaryTextColor),
         ),
       ],
     );
