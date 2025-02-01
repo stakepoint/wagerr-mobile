@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class FundWalletDialog extends StatefulWidget {
   final VoidCallback? onFund;
@@ -25,9 +25,8 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
   final TextEditingController amountController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
-  String get _dialogText => showInput
-      ? 'Enter the amount you want to fund your wallet and create wagers.'
-      : 'To be able to create wagers you need to fund your wallet with Strk.';
+  String get _dialogText =>
+      showInput ? 'enterAmountDescription'.tr() : 'fundWalletDescription'.tr();
 
   @override
   void initState() {
@@ -73,26 +72,16 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             focusNode: _focusNode,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             textAlign: TextAlign.center,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d{0,2}')),
-            ],
             decoration: InputDecoration(
               border: InputBorder.none,
+              prefixText: '\$', // Always show the dollar sign
               hintText: '\$0.00',
-              hintStyle: const TextStyle(
-                fontFamily: 'General Sans Variable',
-                fontSize: 48,
-                height: 1.2,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF9DA4AE), // Updated color
+              hintStyle: AppTheme.headingMobileH1.copyWith(
+                color: AppColors.grayCool400,
               ),
             ),
-            style: const TextStyle(
-              fontFamily: 'General Sans Variable',
-              fontSize: 48,
-              height: 1.2,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF0F172A),
+            style: AppTheme.headingMobileH1.copyWith(
+              color: AppColors.black,
             ),
           ),
         ),
@@ -122,8 +111,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
 
     final dialogContent = AnimatedPadding(
       duration: const Duration(milliseconds: 200),
-      padding:
-          EdgeInsets.only(bottom: viewInsets), // Adjusts when keyboard appears
+      padding: EdgeInsets.only(bottom: viewInsets),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -133,7 +121,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
               height: 4,
               margin: const EdgeInsets.only(top: 8, bottom: 4),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -147,12 +135,10 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
               ),
             ),
           ),
-          const Text(
-            'Fund Your Wallet',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF0F172A),
+          Text(
+            'fundYourWallet'.tr(), // "Fund Your Wallet"
+            style: AppTheme.titleExtraLarge24.copyWith(
+              color: AppColors.black,
             ),
           ),
           const SizedBox(height: 8),
@@ -161,9 +147,8 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             child: Text(
               _dialogText,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 16, // Now font size changes will take effect
-                color: Color(0xFF64748B),
+              style: AppTheme.bodyLarge16.copyWith(
+                color: AppColors.grayCool800,
               ),
             ),
           ),
@@ -187,8 +172,8 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFE0FE10),
-                  foregroundColor: Colors.black,
+                  backgroundColor: AppColors.buttonColor,
+                  foregroundColor: AppColors.black,
                   elevation: 0,
                   padding:
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -196,10 +181,9 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text(
-                  'Fund',
-                  style: TextStyle(
-                    fontSize: 18,
+                child: Text(
+                  'fundButton'.tr(), // "Fund"
+                  style: AppTheme.titleMedium18.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -221,7 +205,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
           builder: (context, scrollController) {
             return Container(
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
               child: SingleChildScrollView(
@@ -235,6 +219,10 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
     }
 
     // **Tablet UI**
+    final availableHeight = MediaQuery.of(context).size.height - 48;
+    final dialogHeight =
+        (availableHeight < 360 ? availableHeight : 360).toDouble();
+
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 24),
       shape: RoundedRectangleBorder(
@@ -242,9 +230,9 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
       ),
       child: Container(
         width: 420,
-        height: 360,
+        height: dialogHeight,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
