@@ -21,7 +21,7 @@ class CurrencyTextInputFormatter extends TextInputFormatter {
       );
     }
 
-    text = "\$" + text; // Add "$" prefix
+    text = "\$" + text;
 
     return TextEditingValue(
       text: text,
@@ -154,7 +154,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
       duration: const Duration(milliseconds: 200),
       padding: EdgeInsets.only(bottom: keyboardHeight),
       child: Column(
-        mainAxisSize: MainAxisSize.min, // Critical fix
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (isMobile)
             Container(
@@ -277,8 +277,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
       ),
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height *
-              maxHeightPercentage, // 50% of screen for landscape
+          maxHeight: MediaQuery.of(context).size.height * maxHeightPercentage,
           minWidth: 420,
           maxWidth: 420,
         ),
