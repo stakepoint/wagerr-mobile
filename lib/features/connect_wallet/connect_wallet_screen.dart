@@ -59,22 +59,19 @@ class ConnectWalletScreen extends ConsumerWidget {
                       verticalSpace(AppValues.height60),
                       Text(
                         'welcomeToStarkWager'.tr(),
-                        style: AppTheme.headLineLarge32
-                            .copyWith(color: context.primaryTextColor),
+                        style: AppTheme.of(context).headLineLarge32
                       ),
                       verticalSpace(AppValues.height8),
                       Row(
                         children: [
                           Text(
                             'connectYourWalletToUse'.tr(),
-                            style: AppTheme.titleMedium18
-                                .copyWith(color: context.primaryTextColor),
+                            style: AppTheme.of(context).bodyExtraLarge18
                           ),
                           horizontalSpace(AppValues.padding3),
                           Text(
                             'starkWager'.tr(),
-                            style: AppTheme.titleMedium18.copyWith(
-                                color: context.primaryTextColor,
+                            style: AppTheme.of(context).bodyExtraLarge18.copyWith(
                                 fontWeight: FontWeight.w600),
                           ),
                         ],

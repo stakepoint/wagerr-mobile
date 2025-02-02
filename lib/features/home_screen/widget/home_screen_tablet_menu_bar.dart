@@ -101,9 +101,7 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
             const SizedBox(width: 12),
             Text(
               'newWager'.tr(),
-              style: AppTheme.textMediumMedium.copyWith(
-                color: AppColors.blue950,
-              ),
+              style: AppTheme.of(context).textMediumMedium
             ),
           ],
         ),

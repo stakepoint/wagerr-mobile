@@ -112,8 +112,7 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
       children: [
         Text(
           'inviteViaUsername'.tr(),
-          style: AppTheme.textMediumNormal.copyWith(
-              color: AppColors.blue950,
+          style: AppTheme.of(context).textMediumNormal.copyWith(
               fontWeight: FontWeight.w500,
               fontSize: 14),
         ),
@@ -235,7 +234,7 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
           verticalSpace(8),
           Text(
             widget.errorText!,
-            style: AppTheme.textSmallMedium.copyWith(
+            style: AppTheme.of(context).textSmallMedium.copyWith(
                 color: AppColors.rambutan100,
                 fontWeight: FontWeight.w500,
                 fontSize: 12),

@@ -93,9 +93,7 @@ class HomeScreen extends ConsumerWidget {
             SvgPicture.asset(AppIcons.handshakeIcon),
             Text(
               'newWager'.tr(),
-              style: AppTheme.textMediumMedium.copyWith(
-                color: AppColors.blue950,
-              ),
+              style: AppTheme.of(context).textMediumMedium
             ),
           ],
         ),

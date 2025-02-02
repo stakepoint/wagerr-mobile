@@ -28,9 +28,7 @@ class WaggersScreen extends ConsumerWidget {
                         children: [
                           Text(
                             "Wagger Screen",
-                            style: AppTheme.titleSmall16.copyWith(
-                              color: AppColors.blue950,
-                            ),
+                            style: AppTheme.of(context).bodyLarge16
                           ),
                         ],
                       ),
@@ -43,9 +41,7 @@ class WaggersScreen extends ConsumerWidget {
                       children: [
                         Text(
                           "Wagger Screen",
-                          style: AppTheme.titleSmall16.copyWith(
-                            color: AppColors.blue950,
-                          ),
+                          style: AppTheme.of(context).bodyLarge16
                         ),
                       ],
                     ),

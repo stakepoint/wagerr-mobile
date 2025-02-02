@@ -53,15 +53,14 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
             children: [
               Text(
                 'wagerCreated'.tr(),
-                style: AppTheme.headLineLarge32.copyWith(
-                    color: AppColors.blue950,
+                style: AppTheme.of(context).headLineLarge32.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: 32),
               ),
               verticalSpace(8),
               Text(
                 'sendWagerInvite'.tr(),
-                style: AppTheme.textMediumNormal.copyWith(
+                style: AppTheme.of(context).textMediumNormal.copyWith(
                     color: AppColors.grayCool800,
                     fontWeight: FontWeight.w400,
                     fontSize: 16),
@@ -100,8 +99,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
               verticalSpace(20),
               Text(
                 'publicInvite'.tr(),
-                style: AppTheme.textMediumNormal.copyWith(
-                    color: AppColors.blue950,
+                style: AppTheme.of(context).textMediumNormal.copyWith(
                     fontWeight: FontWeight.w500,
                     fontSize: 14),
               ),
@@ -120,8 +118,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'https://link.wager.strk/WEpl',
-                        style: AppTheme.textRegularMedium.copyWith(
-                            color: AppColors.blue950,
+                        style: AppTheme.of(context).textRegularMedium.copyWith(
                             fontWeight: FontWeight.w500,
                             fontSize: 16),
                       ),
@@ -192,8 +189,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
         ),
         child: Text(
           title ?? 'No Title',
-          style: AppTheme.textRegularMedium.copyWith(
-              color: AppColors.blue950,
+          style: AppTheme.of(context).textRegularMedium.copyWith(
               fontWeight: FontWeight.w500,
               fontSize: 16),
         ),

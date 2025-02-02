@@ -42,8 +42,7 @@ class ProfileMenu extends ConsumerWidget {
               children: [
                 Text(
                   '@noyi24_7',
-                  style: AppTheme.textSmallMedium
-                      .copyWith(color: context.primaryTextColor),
+                  style: AppTheme.of(context).textSmallMedium
                 ),
                 SvgPicture.asset(AppIcons.copyIcon)
               ],
@@ -54,8 +53,7 @@ class ProfileMenu extends ConsumerWidget {
               children: [
                 Text(
                   '@noyi24_7',
-                  style: AppTheme.textRegularMedium
-                      .copyWith(color: context.primaryTextColor),
+                  style: AppTheme.of(context).textRegularMedium
                 ),
                 SvgPicture.asset(
                   AppIcons.copyIcon,

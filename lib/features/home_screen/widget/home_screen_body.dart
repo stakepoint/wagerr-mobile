@@ -25,18 +25,18 @@ class HomeScreenBody extends ConsumerWidget {
             ? _mobileContractAddress(context)
             : _tabletContractAddress(context),
         verticalSpace(8),
-        _isMobile ? _mobileStarkAmount() : _tabletStarkAmount(),
+        _isMobile ? _mobileStarkAmount(context) : _tabletStarkAmount(context),
         verticalSpace(16),
         _isMobile ? HomeAddAndWithdraw() : SizedBox(),
         _isMobile ? verticalSpace(48) : verticalSpace(40),
-        _isMobile ? _mobileNoWagger() : _tabletNoWagger(),
+        _isMobile ? _mobileNoWager(context) : _tabletNoWager(context),
       ],
     );
   }
 
-//----------------------------------------------- MOBILENOWAGGER ----------------------------------------------- //
+//----------------------------------------------- MOBILE_NO_WAGER ----------------------------------------------- //
 
-  Widget _mobileNoWagger() {
+  Widget _mobileNoWager(BuildContext context) {
     return Container(
       height: 81,
       decoration: BoxDecoration(
@@ -51,7 +51,7 @@ class HomeScreenBody extends ConsumerWidget {
           SvgPicture.asset(AppIcons.noWaggerIcon),
           Text(
             'nowagerscreatedyet'.tr(),
-            style: AppTheme.titleSmall16.copyWith(
+            style: AppTheme.of(context).bodyLarge16.copyWith(
               color: AppColors.grayCool400,
             ),
           ),
@@ -60,9 +60,9 @@ class HomeScreenBody extends ConsumerWidget {
     );
   }
 
-  //----------------------------------------------- MOBILENOWAGGER ----------------------------------------------- //
+  //----------------------------------------------- MOBILE_NO_WAGER ----------------------------------------------- //
 
-  Widget _tabletNoWagger() {
+  Widget _tabletNoWager(BuildContext context) {
     return Container(
       height: 175,
       width: 696,
@@ -77,7 +77,7 @@ class HomeScreenBody extends ConsumerWidget {
           SvgPicture.asset(AppIcons.noWaggerIcon, width: 88, height: 88),
           Text(
             'nowagerscreatedyet'.tr(),
-            style: AppTheme.textMediumNormal.copyWith(
+            style: AppTheme.of(context).textMediumNormal.copyWith(
               color: AppColors.grayCool400,
             ),
           ),
@@ -86,17 +86,15 @@ class HomeScreenBody extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- MOBILESTARKAMOUNT ----------------------------------------------- //
+//----------------------------------------------- MOBILE_STARK_AMOUNT ----------------------------------------------- //
 
-  Widget _mobileStarkAmount() {
+  Widget _mobileStarkAmount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           '\$0.00',
-          style: AppTheme.headingMobileH1.copyWith(
-            color: AppColors.blue950,
-          ),
+          style: AppTheme.of(context).headingMobileH1
         ),
         Row(
           children: [
@@ -104,9 +102,7 @@ class HomeScreenBody extends ConsumerWidget {
             horizontalSpace(4),
             Text(
               '${'0'} Strk',
-              style: AppTheme.textSmallMedium.copyWith(
-                color: AppColors.blue950,
-              ),
+              style: AppTheme.of(context).textSmallMedium
             ),
           ],
         ),
@@ -114,9 +110,9 @@ class HomeScreenBody extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- TABLETSTARKAMOUNT ----------------------------------------------- //
+//----------------------------------------------- TABLET_STARK_AMOUNT ----------------------------------------------- //
 
-  Widget _tabletStarkAmount() {
+  Widget _tabletStarkAmount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -126,9 +122,7 @@ class HomeScreenBody extends ConsumerWidget {
           children: [
             Text(
               '\$0.00',
-              style: AppTheme.headingMobileH1.copyWith(
-                color: AppColors.blue950,
-              ),
+              style: AppTheme.of(context).headingMobileH1
             ),
             Row(
               children: [
@@ -136,9 +130,7 @@ class HomeScreenBody extends ConsumerWidget {
                 horizontalSpace(4),
                 Text(
                   '${'0'} Strk',
-                  style: AppTheme.textSmallMedium.copyWith(
-                    color: AppColors.blue950,
-                  ),
+                  style: AppTheme.of(context).textSmallMedium
                 ),
               ],
             ),
@@ -166,7 +158,7 @@ class HomeScreenBody extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- MOBILECONTRACTADDRESS ----------------------------------------------- //
+//----------------------------------------------- MOBILE_CONTRACT_ADDRESS ----------------------------------------------- //
 
   Widget _mobileContractAddress(BuildContext context) {
     return Row(
@@ -174,7 +166,7 @@ class HomeScreenBody extends ConsumerWidget {
       children: [
         Text(
           'walletBalance'.tr(),
-          style: AppTheme.bodyMedium14.copyWith(
+          style: AppTheme.of(context).bodyMedium14.copyWith(
             color: AppColors.grayCool400,
           ),
         ),
@@ -191,8 +183,7 @@ class HomeScreenBody extends ConsumerWidget {
             children: [
               Text(
                 '0x400e44000...',
-                style: AppTheme.textSmallMedium
-                    .copyWith(color: context.primaryTextColor),
+                style: AppTheme.of(context).textSmallMedium
               ),
               SvgPicture.asset(AppIcons.copyIcon)
             ],
@@ -202,7 +193,7 @@ class HomeScreenBody extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- TABLETCONTRACTADDRESS ----------------------------------------------- //
+//----------------------------------------------- TABLET_CONTRACT_ADDRESS ----------------------------------------------- //
 
   Widget _tabletContractAddress(BuildContext context) {
     return Row(
@@ -210,7 +201,7 @@ class HomeScreenBody extends ConsumerWidget {
       children: [
         Text(
           'walletBalance'.tr(),
-          style: AppTheme.titleSmall16.copyWith(
+          style: AppTheme.of(context).bodyLarge16.copyWith(
             color: AppColors.grayCool400,
           ),
         ),
@@ -227,8 +218,7 @@ class HomeScreenBody extends ConsumerWidget {
             children: [
               Text(
                 '0x400e44000...',
-                style: AppTheme.textRegularMedium
-                    .copyWith(color: context.primaryTextColor),
+                style: AppTheme.of(context).textRegularMedium
               ),
               SvgPicture.asset(AppIcons.copyIcon)
             ],

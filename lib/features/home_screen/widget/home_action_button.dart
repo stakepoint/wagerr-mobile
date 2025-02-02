@@ -54,7 +54,7 @@ class HomeActionButton extends StatelessWidget {
             horizontalSpace(8),
             Text(
               text,
-              style: AppTheme.textSmallMedium.copyWith(
+              style: AppTheme.of(context).textSmallMedium.copyWith(
                 color: textColor,
               ),
             ),

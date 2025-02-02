@@ -41,7 +41,7 @@ class CreateWagerScreen extends StatelessWidget {
                     ),
                     Text(
                       !context.isMobile ? 'createWager'.tr() : '',
-                      style: AppTheme.headLineLarge32,
+                      style: AppTheme.of(context).headLineLarge32,
                     ),
                   ],
                 ),
@@ -93,7 +93,7 @@ class CreateWagerScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       'createWager'.tr(),
-                      style: AppTheme.headLineLarge32,
+                      style: AppTheme.of(context).headLineLarge32,
                     ),
                   ),
                 verticalSpace(size.height * 0.02),
@@ -178,7 +178,7 @@ class CreateWagerScreen extends StatelessWidget {
                     ),
                     child: Text(
                       "Continue".tr(),
-                      style: AppTheme.titleMedium18.copyWith(
+                      style: AppTheme.of(context).bodyExtraLarge18.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
                     ),
