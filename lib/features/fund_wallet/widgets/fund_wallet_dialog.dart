@@ -1,10 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+class CurrencyTextInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    String text =
+        newValue.text.replaceAll("\$", ""); // Remove any "$" before adding it
+
+    if (text.isEmpty) {
+      return const TextEditingValue(
+        text: '',
+        selection: TextSelection.collapsed(offset: 0),
+      );
+    }
+
+    text = "\$" + text; // Add "$" prefix
+
+    return TextEditingValue(
+      text: text,
+      selection: TextSelection.collapsed(offset: text.length),
+    );
+  }
+}
+
+@override
+TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue, TextEditingValue newValue) {
+  String text = newValue.text;
+
+  if (!text.startsWith("\$")) {
+    text = "\$" + text.replaceAll("\$", "");
+  }
+
+  return TextEditingValue(
+    text: text,
+    selection: TextSelection.collapsed(offset: text.length),
+  );
+}
 
 class FundWalletDialog extends StatefulWidget {
   final VoidCallback? onFund;
@@ -32,6 +71,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
   void initState() {
     super.initState();
     _focusNode.addListener(_onFocusChange);
+    amountController.text = "";
   }
 
   @override
@@ -44,7 +84,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
 
   void _onFocusChange() {
     if (_focusNode.hasFocus && mounted) {
-      setState(() {}); // Ensures bottom sheet resizes dynamically
+      setState(() {});
     }
   }
 
@@ -72,9 +112,9 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             focusNode: _focusNode,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             textAlign: TextAlign.center,
+            inputFormatters: [CurrencyTextInputFormatter()],
             decoration: InputDecoration(
               border: InputBorder.none,
-              prefixText: '\$', // Always show the dollar sign
               hintText: '\$0.00',
               hintStyle: AppTheme.headingMobileH1.copyWith(
                 color: AppColors.grayCool400,
@@ -107,13 +147,14 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
   @override
   Widget build(BuildContext context) {
     final isMobile = ScreenLayout.isMobile(context);
-    final viewInsets = MediaQuery.of(context).viewInsets.bottom;
+    final mediaQuery = MediaQuery.of(context);
+    final keyboardHeight = mediaQuery.viewInsets.bottom;
 
     final dialogContent = AnimatedPadding(
       duration: const Duration(milliseconds: 200),
-      padding: EdgeInsets.only(bottom: viewInsets),
+      padding: EdgeInsets.only(bottom: keyboardHeight),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.min, // Critical fix
         children: [
           if (isMobile)
             Container(
@@ -136,7 +177,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             ),
           ),
           Text(
-            'fundYourWallet'.tr(), // "Fund Your Wallet"
+            'fundYourWallet'.tr(),
             style: AppTheme.titleExtraLarge24.copyWith(
               color: AppColors.black,
             ),
@@ -154,7 +195,11 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
           ),
           _buildMainContent(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.only(
+              bottom: keyboardHeight > 0 ? 16 : 0,
+              left: 24,
+              right: 24,
+            ),
             child: SizedBox(
               width: double.infinity,
               height: 56,
@@ -182,7 +227,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
                   ),
                 ),
                 child: Text(
-                  'fundButton'.tr(), // "Fund"
+                  'fundButton'.tr(),
                   style: AppTheme.titleMedium18.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -199,7 +244,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
       return Align(
         alignment: Alignment.bottomCenter,
         child: DraggableScrollableSheet(
-          initialChildSize: viewInsets > 0 ? 0.7 : 0.5,
+          initialChildSize: keyboardHeight > 0 ? 0.7 : 0.5,
           minChildSize: 0.3,
           maxChildSize: 0.9,
           builder: (context, scrollController) {
@@ -218,34 +263,29 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
       );
     }
 
-    // **Tablet UI**
-    final availableHeight = MediaQuery.of(context).size.height - 48;
-    final dialogHeight =
-        (availableHeight < 360 ? availableHeight : 360).toDouble();
+    // ========== Tablet Section ==========
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    final maxHeightPercentage =
+        isLandscape ? 0.5 : 0.4; // 50% in landscape, 40% in portrait
 
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 24),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Container(
-        width: 420,
-        height: dialogHeight,
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(16),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height *
+              maxHeightPercentage, // 50% of screen for landscape
+          minWidth: 420,
+          maxWidth: 420,
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: dialogContent,
-              ),
-            ),
-          ],
+        child: ClipRect(
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: dialogContent, // No extra padding here
+          ),
         ),
       ),
     );
