@@ -270,6 +270,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
         isLandscape ? 0.5 : 0.4; // 50% in landscape, 40% in portrait
 
     return Dialog(
+      backgroundColor: Colors.white,
       insetPadding: const EdgeInsets.symmetric(horizontal: 24),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
