@@ -57,8 +57,7 @@ class InstalledWalletWidget extends ConsumerWidget {
                   padding: const EdgeInsets.all(AppValues.padding8),
                   child: Text(
                     'installed'.tr(),
-                    style: AppTheme.bodySmall12.copyWith(
-                        color: context.primaryTextColor,
+                    style: AppTheme.of(context).bodySmall12.copyWith(
                         fontWeight: FontWeight.w600),
                   ),
                 ),

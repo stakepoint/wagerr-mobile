@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 
 class AppTheme {
-  AppTheme._();
+
+  final BuildContext context;
+
+  const AppTheme._(this.context);
+
+  factory AppTheme.of(BuildContext context) => AppTheme._(context);
 
   static final fontFamily = 'General Sans';
 
@@ -101,9 +107,10 @@ class AppTheme {
     fontWeight: FontWeight.w400,
   );
 
-  static final bodySmall12 = TextStyle(
+  TextStyle get bodySmall12 => TextStyle(
     fontFamily: fontFamily,
     fontSize: 12,
     fontWeight: FontWeight.w400,
+    color: context.primaryTextColor
   );
 }
