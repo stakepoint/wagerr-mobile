@@ -121,7 +121,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
               ),
             ),
             style: AppTheme.headingMobileH1.copyWith(
-              color: AppColors.black,
+              color: AppColors.grayCool400,
             ),
           ),
         ),
@@ -179,7 +179,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
           Text(
             'fundYourWallet'.tr(),
             style: AppTheme.titleExtraLarge24.copyWith(
-              color: AppColors.black,
+              color: AppColors.blue950,
             ),
           ),
           const SizedBox(height: 8),
@@ -218,7 +218,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.buttonColor,
-                  foregroundColor: AppColors.black,
+                  foregroundColor: AppColors.blue950,
                   elevation: 0,
                   padding:
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -241,24 +241,24 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
     );
 
     if (isMobile) {
-      return Align(
-        alignment: Alignment.bottomCenter,
-        child: DraggableScrollableSheet(
-          initialChildSize: keyboardHeight > 0 ? 0.7 : 0.5,
-          minChildSize: 0.3,
-          maxChildSize: 0.9,
-          builder: (context, scrollController) {
-            return Container(
-              decoration: const BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-              ),
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: dialogContent,
-              ),
-            );
-          },
+      final sheetHeight = keyboardHeight > 0
+          ? MediaQuery.of(context).size.height * 0.6
+          : MediaQuery.of(context).size.height * 0.48;
+      return MediaQuery.removePadding(
+        context: context,
+        removeBottom: true,
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: sheetHeight,
+            decoration: const BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+            ),
+            child: SingleChildScrollView(
+              child: dialogContent,
+            ),
+          ),
         ),
       );
     }
