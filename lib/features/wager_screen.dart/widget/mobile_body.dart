@@ -40,6 +40,8 @@ class _MobileBodyState extends ConsumerState<MobileBody>
   Widget build(BuildContext context) {
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -97,23 +99,36 @@ class _MobileBodyState extends ConsumerState<MobileBody>
                       tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
                     ),
                   )
-                : TabWidget(
-                    controller: _tabController,
-                    tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 90),
+                    child: TabWidget(
+                      controller: _tabController,
+                      tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
+                    ),
                   )
-            : TabWidget(
-                controller: _tabController,
-                tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 90),
+                child: TabWidget(
+                  controller: _tabController,
+                  tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
+                ),
               ),
         verticalSpace(24),
         Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: const [
-              ActiveScreen(),
-              PendingScreen(),
-              CompleteScreen(),
-            ],
+          child: Padding(
+            padding: ScreenLayout.isTablet(context)
+                ? isPortrait
+                    ? const EdgeInsets.symmetric(horizontal: 90)
+                    : EdgeInsets.zero
+                : EdgeInsets.zero,
+            child: TabBarView(
+              controller: _tabController,
+              children: const [
+                ActiveScreen(),
+                PendingScreen(),
+                CompleteScreen(),
+              ],
+            ),
           ),
         ),
       ],
