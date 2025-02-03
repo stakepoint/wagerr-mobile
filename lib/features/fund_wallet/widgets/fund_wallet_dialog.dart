@@ -98,7 +98,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             child:
                 SvgPicture.asset(AppIcons.fundWalletIcon, fit: BoxFit.contain),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
         ],
       );
     }
@@ -152,7 +152,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
 
     final dialogContent = AnimatedPadding(
       duration: const Duration(milliseconds: 200),
-      padding: EdgeInsets.only(bottom: keyboardHeight),
+      padding: const EdgeInsets.only(bottom: 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -267,7 +267,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
     final maxHeightPercentage =
-        isLandscape ? 0.5 : 0.4; // 50% in landscape, 40% in portrait
+        isLandscape ? 0.5 : 0.38; // 50% in landscape, 40% in portrait
 
     return Dialog(
       backgroundColor: Colors.white,
