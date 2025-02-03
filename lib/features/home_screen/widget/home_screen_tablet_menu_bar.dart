@@ -18,29 +18,70 @@ class HomeScreenTabletMenuBar extends StatefulWidget {
   });
 
   @override
-  State<HomeScreenTabletMenuBar> createState() =>
-      _HomeScreenTabletMenuBarState();
+  State<HomeScreenTabletMenuBar> createState() => _HomeScreenTabletMenuBarState();
 }
 
 class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
   int _currentIndex = 0;
+  String _currentRoute = Routes.home_tablet;
 
-  void _onNavigate(String route) {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final GoRouter router = GoRouter.of(context);
+      _updateIndexFromRoute(router.routerDelegate.currentConfiguration.fullPath);
+    });
+  }
+
+  void _updateIndexFromRoute(String route) {
+    int index;
+    switch (route) {
+      case Routes.home_tablet:
+        index = 0;
+        break;
+      case Routes.wagger_tablet:
+        index = 1;
+        break;
+      case Routes.wallet_tablet:
+        index = 2;
+        break;
+      case Routes.profile_tablet:
+        index = 3;
+        break;
+      default:
+        index = 0;
+    }
+    if (mounted) {
+      setState(() {
+        _currentIndex = index;
+        _currentRoute = route;
+      });
+    }
+  }
+
+  void _onNavigate(int index) {
+    String route;
+    switch (index) {
+      case 0:
+        route = Routes.home_tablet;
+        break;
+      case 1:
+        route = Routes.wagger_tablet;
+        break;
+      case 2:
+        route = Routes.wallet_tablet;
+        break;
+      case 3:
+        route = Routes.profile_tablet;
+        break;
+      default:
+        route = Routes.home_tablet;
+    }
+    
     setState(() {
-      switch (route) {
-        case Routes.home_tablet:
-          _currentIndex = 0;
-          break;
-        case Routes.wagger_tablet:
-          _currentIndex = 1;
-          break;
-        case Routes.wallet_tablet:
-          _currentIndex = 2;
-          break;
-        case Routes.profile_tablet:
-          _currentIndex = 3;
-          break;
-      }
+      _currentIndex = index;
+      _currentRoute = route;
     });
     GoRouter.of(context).go(route);
   }
@@ -117,25 +158,21 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
         'index': 0,
         'label': 'home'.tr(),
         'icon': AppIcons.homeNoneIcon,
-        'route': Routes.home_tablet
       },
       {
         'index': 1,
         'label': 'wagers'.tr(),
         'icon': AppIcons.homeShakeIcon,
-        'route': Routes.wagger_tablet
       },
       {
         'index': 2,
         'label': 'wallet'.tr(),
         'icon': AppIcons.walletIcon,
-        'route': Routes.wallet_tablet
       },
       {
         'index': 3,
         'label': 'profile'.tr(),
         'icon': AppIcons.profileIcon,
-        'route': Routes.profile_tablet
       },
     ];
 
@@ -146,7 +183,6 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
                       item['index'] as int,
                       item['label'] as String,
                       item['icon'] as String,
-                      item['route'] as String,
                     ))
                 .toList(),
           )
@@ -157,19 +193,16 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
                       item['index'] as int,
                       item['label'] as String,
                       item['icon'] as String,
-                      item['route'] as String,
                     ))
                 .toList(),
           );
   }
 
-  Widget _buildNavItem(int index, String label, String icon, String route) {
+  Widget _buildNavItem(int index, String label, String icon) {
     final isSelected = _currentIndex == index;
+    
     return GestureDetector(
-      onTap: () {
-        _onNavigate(route);
-        GoRouter.of(context).go(route);
-      },
+      onTap: () => _onNavigate(index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
