@@ -99,14 +99,26 @@ class _MobileBodyState extends ConsumerState<MobileBody>
                       tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
                     ),
                   )
-                : TabWidget(
-                  controller: _tabController,
-                  tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
-                )
+                : isPortrait
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 90),
+                        child: TabWidget(
+                          controller: _tabController,
+                          tabs: [
+                            'active'.tr(),
+                            'pending'.tr(),
+                            'complete'.tr()
+                          ],
+                        ),
+                      )
+                    : TabWidget(
+                        controller: _tabController,
+                        tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
+                      )
             : TabWidget(
-              controller: _tabController,
-              tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
-            ),
+                controller: _tabController,
+                tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
+              ),
         verticalSpace(24),
         Expanded(
           child: Padding(

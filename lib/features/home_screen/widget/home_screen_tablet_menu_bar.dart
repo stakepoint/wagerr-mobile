@@ -23,7 +23,6 @@ class HomeScreenTabletMenuBar extends StatefulWidget {
 
 class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
   int _currentIndex = 0;
-  String _currentRoute = Routes.home_tablet;
 
   @override
   void initState() {
@@ -55,7 +54,6 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
     if (mounted) {
       setState(() {
         _currentIndex = index;
-        _currentRoute = route;
       });
     }
   }
@@ -81,7 +79,6 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
     
     setState(() {
       _currentIndex = index;
-      _currentRoute = route;
     });
     GoRouter.of(context).go(route);
   }
