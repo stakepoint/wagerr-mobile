@@ -93,26 +93,20 @@ class _MobileBodyState extends ConsumerState<MobileBody>
         ScreenLayout.isTablet(context)
             ? isLandscape
                 ? Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 320),
+                    padding: const EdgeInsets.symmetric(horizontal: 270),
                     child: TabWidget(
                       controller: _tabController,
                       tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
                     ),
                   )
-                : Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 90),
-                    child: TabWidget(
-                      controller: _tabController,
-                      tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
-                    ),
-                  )
-            : Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 90),
-                child: TabWidget(
+                : TabWidget(
                   controller: _tabController,
                   tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
-                ),
-              ),
+                )
+            : TabWidget(
+              controller: _tabController,
+              tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
+            ),
         verticalSpace(24),
         Expanded(
           child: Padding(
