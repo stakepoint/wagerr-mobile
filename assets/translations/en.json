@@ -36,7 +36,7 @@
   "chooseProfilePicture": "Choose your picture and a unique username\nother users can use to invite you to wagers",
   "usernameAvailable": "Username available",
   "usernameUnavailable": "Username unavailable",
-  "waggers": "WAGERS",
+  "WAGERS": "WAGERS",
   "active": "Active",
   "pending": "Pending",
   "complete": "Complete",

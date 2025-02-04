@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/features/wager_screen.dart/widget/wagger_widget.dart';
+import 'package:starkwager/features/wager_screen.dart/widget/wager_widget.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
 
 class ActiveScreen extends ConsumerWidget {
@@ -29,7 +29,7 @@ class ActiveScreen extends ConsumerWidget {
                           : 0
                       : 0,
                 ),
-                child: const WaggerWidget(),
+                child: const WagerWidget(),
               );
             },
           ),

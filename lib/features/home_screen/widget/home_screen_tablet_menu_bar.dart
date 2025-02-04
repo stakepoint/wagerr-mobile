@@ -2,60 +2,39 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/assets.dart';
+import 'package:starkwager/features/wager_screen.dart/provider/navigation_provider.dart';
 import 'package:starkwager/routing/routes.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
 
-class HomeScreenTabletMenuBar extends StatefulWidget {
+class HomeScreenTabletMenuBar extends ConsumerStatefulWidget {
   final Widget child;
+
   const HomeScreenTabletMenuBar({
     required this.child,
     super.key,
   });
 
   @override
-  State<HomeScreenTabletMenuBar> createState() => _HomeScreenTabletMenuBarState();
+  ConsumerState<HomeScreenTabletMenuBar> createState() =>
+      _HomeScreenTabletMenuBarState();
 }
 
-class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
-  int _currentIndex = 0;
-
+class _HomeScreenTabletMenuBarState
+    extends ConsumerState<HomeScreenTabletMenuBar> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final GoRouter router = GoRouter.of(context);
-      _updateIndexFromRoute(router.routerDelegate.currentConfiguration.fullPath);
+      ref.read(navigationStateProvider.notifier).updateIndexFromRoute(
+          router.routerDelegate.currentConfiguration.fullPath);
     });
-  }
-
-  void _updateIndexFromRoute(String route) {
-    int index;
-    switch (route) {
-      case Routes.home_tablet:
-        index = 0;
-        break;
-      case Routes.wagger_tablet:
-        index = 1;
-        break;
-      case Routes.wallet_tablet:
-        index = 2;
-        break;
-      case Routes.profile_tablet:
-        index = 3;
-        break;
-      default:
-        index = 0;
-    }
-    if (mounted) {
-      setState(() {
-        _currentIndex = index;
-      });
-    }
   }
 
   void _onNavigate(int index) {
@@ -76,10 +55,8 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
       default:
         route = Routes.home_tablet;
     }
-    
-    setState(() {
-      _currentIndex = index;
-    });
+
+    ref.read(navigationStateProvider.notifier).updateIndex(index);
     GoRouter.of(context).go(route);
   }
 
@@ -196,8 +173,9 @@ class _HomeScreenTabletMenuBarState extends State<HomeScreenTabletMenuBar> {
   }
 
   Widget _buildNavItem(int index, String label, String icon) {
-    final isSelected = _currentIndex == index;
-    
+    final currentIndex = ref.watch(navigationStateProvider);
+    final isSelected = currentIndex == index;
+
     return GestureDetector(
       onTap: () => _onNavigate(index),
       child: Column(

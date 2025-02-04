@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,8 +13,8 @@ import 'package:starkwager/routing/routes.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 
-class WaggersScreen extends ConsumerWidget {
-  const WaggersScreen({super.key});
+class WagersScreen extends ConsumerWidget {
+  const WagersScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,9 +22,11 @@ class WaggersScreen extends ConsumerWidget {
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
-      floatingActionButton: ScreenLayout.isTablet(context) ? isPortrait
-          ? _floatingActionButton(context)
-          : SizedBox() : SizedBox(),
+      floatingActionButton: ScreenLayout.isTablet(context)
+          ? isPortrait
+              ? _floatingActionButton(context)
+              : SizedBox()
+          : _floatingActionButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: LayoutBuilder(

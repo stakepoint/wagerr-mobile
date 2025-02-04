@@ -45,6 +45,9 @@ class _MobileBodyState extends ConsumerState<MobileBody>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+
+//----------------------------------------------- TOPBAR ----------------------------------------------- //
+
         verticalSpace(25),
         ScreenLayout.isTablet(context)
             ? isLandscape
@@ -54,7 +57,7 @@ class _MobileBodyState extends ConsumerState<MobileBody>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'waggers'.tr(),
+                          'WAGERS'.tr(),
                           style: AppTheme.headLineLarge32.copyWith(
                             color: AppColors.blue950,
                           ),
@@ -74,17 +77,20 @@ class _MobileBodyState extends ConsumerState<MobileBody>
                     ),
                   )
                 : Text(
-                    'waggers'.tr(),
+                    'WAGERS'.tr(),
                     style: AppTheme.headLineLarge32.copyWith(
                       color: AppColors.blue950,
                     ),
                   )
             : Text(
-                'waggers'.tr(),
+                'WAGERS'.tr(),
                 style: AppTheme.headLineLarge32.copyWith(
                   color: AppColors.blue950,
                 ),
               ),
+
+//----------------------------------------------- TAB BAR ----------------------------------------------- //
+
         ScreenLayout.isTablet(context)
             ? isLandscape
                 ? verticalSpace(100)
@@ -120,6 +126,9 @@ class _MobileBodyState extends ConsumerState<MobileBody>
                 tabs: ['active'.tr(), 'pending'.tr(), 'complete'.tr()],
               ),
         verticalSpace(24),
+
+//----------------------------------------------- CONTENT ----------------------------------------------- //
+
         Expanded(
           child: Padding(
             padding: ScreenLayout.isTablet(context)
