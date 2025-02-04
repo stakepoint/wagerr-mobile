@@ -32,10 +32,7 @@ class ProfileMenu extends ConsumerWidget {
               spacing: 6,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  '@noyi24_7',
-                  style: AppTheme.of(context).textSmallMedium
-                ),
+                Text('@noyi24_7', style: AppTheme.of(context).textSmallMedium),
                 SvgPicture.asset(AppIcons.copyIcon)
               ],
             )
@@ -43,10 +40,8 @@ class ProfileMenu extends ConsumerWidget {
               spacing: 4,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  '@noyi24_7',
-                  style: AppTheme.of(context).textRegularMedium
-                ),
+                Text('@noyi24_7',
+                    style: AppTheme.of(context).textRegularMedium),
                 SvgPicture.asset(
                   AppIcons.copyIcon,
                   width: 15,

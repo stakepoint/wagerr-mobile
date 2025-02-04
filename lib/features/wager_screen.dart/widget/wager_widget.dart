@@ -28,14 +28,14 @@ class WagerWidget extends ConsumerWidget {
                   ? Text(
                       'inProgress'.tr(),
                       style: AppTheme.of(context).bodyMedium14.copyWith(
-                        color: context.textHintColor,
-                      ),
+                            color: context.textHintColor,
+                          ),
                     )
                   : Text(
                       'inProgress'.tr(),
                       style: AppTheme.of(context).bodyLarge16.copyWith(
-                        color: context.textHintColor,
-                      ),
+                            color: context.textHintColor,
+                          ),
                     ),
             ],
           ),
@@ -44,16 +44,13 @@ class WagerWidget extends ConsumerWidget {
               ? Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Text(
-                    "Will Bitcoin Hit \$100k Before January 31, 2025?",
-                    textAlign: TextAlign.center,
-                    style: AppTheme.of(context).textRegularMedium
-                  ),
+                      "Will Bitcoin Hit \$100k Before January 31, 2025?",
+                      textAlign: TextAlign.center,
+                      style: AppTheme.of(context).textRegularMedium),
                 )
-              : Text(
-                  "Will Bitcoin Hit \$100k Before January 31, 2025?",
+              : Text("Will Bitcoin Hit \$100k Before January 31, 2025?",
                   textAlign: TextAlign.center,
-                  style: AppTheme.of(context).textMediumMedium
-                ),
+                  style: AppTheme.of(context).textMediumMedium),
           verticalSpace(12),
           Container(
             height: 37,
@@ -72,10 +69,8 @@ class WagerWidget extends ConsumerWidget {
                     height: 16,
                   ),
                   horizontalSpace(2.5),
-                  Text(
-                    "5 Strk each",
-                    style: AppTheme.of(context).textSmallMedium
-                  ),
+                  Text("5 Strk each",
+                      style: AppTheme.of(context).textSmallMedium),
                 ],
               ),
             ),
@@ -104,14 +99,8 @@ class WagerWidget extends ConsumerWidget {
     return Column(
       children: [
         _isMobile
-            ? Text(
-                "oneOnOne".tr(),
-                style: AppTheme.textTinyNormal
-              )
-            : Text(
-                "oneOnOne".tr(),
-                style: AppTheme.of(context).bodyMedium14
-              ),
+            ? Text("oneOnOne".tr(), style: AppTheme.textTinyNormal)
+            : Text("oneOnOne".tr(), style: AppTheme.of(context).bodyMedium14),
         verticalSpace(10),
         SvgPicture.asset(AppIcons.vsIcon)
       ],
@@ -139,10 +128,7 @@ class WagerWidget extends ConsumerWidget {
                 style: AppTheme.textTinyMedium
                     .copyWith(color: context.primaryTextColor),
               )
-            : Text(
-                '@noyi24_7',
-                style: AppTheme.of(context).bodyMedium14
-        ),
+            : Text('@noyi24_7', style: AppTheme.of(context).bodyMedium14),
       ],
     );
   }

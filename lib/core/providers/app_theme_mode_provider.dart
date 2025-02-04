@@ -12,7 +12,7 @@ class AppThemeMode extends _$AppThemeMode {
     final prefs = await SharedPreferences.getInstance();
     final currentMode = prefs.getString(Constants.themeModeKey);
     return ThemeMode.values.firstWhere(
-          (value) => currentMode == value.name,
+      (value) => currentMode == value.name,
       orElse: () => ThemeMode.system,
     );
   }

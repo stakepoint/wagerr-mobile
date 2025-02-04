@@ -23,10 +23,7 @@ Widget _copyUsername(BuildContext context) => Container(
         spacing: 4,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '@noyi24_7',
-            style: AppTheme.of(context).textSmallMedium
-          ),
+          Text('@noyi24_7', style: AppTheme.of(context).textSmallMedium),
           SvgPicture.asset(
             AppIcons.copyIcon,
             width: 15,

@@ -106,9 +106,9 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
       children: [
         Text(
           'inviteViaUsername'.tr(),
-          style: AppTheme.of(context).textMediumNormal.copyWith(
-              fontWeight: FontWeight.w500,
-              fontSize: 14),
+          style: AppTheme.of(context)
+              .textMediumNormal
+              .copyWith(fontWeight: FontWeight.w500, fontSize: 14),
         ),
         verticalSpace(12),
         GestureDetector(
@@ -127,9 +127,7 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                         children: [
                           TextSpan(
                             text: 'wager.strk/',
-                            style: TextStyle(
-                                color: context.textHintColor
-                            ),
+                            style: TextStyle(color: context.textHintColor),
                           ),
                           TextSpan(
                             text: '@',

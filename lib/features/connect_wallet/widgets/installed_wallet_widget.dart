@@ -6,13 +6,12 @@ class InstalledWalletWidget extends ConsumerWidget {
   final bool isInstalled;
   final Function() onTap;
 
-  const InstalledWalletWidget({
-    super.key,
-    required this.title,
-    required this.icon,
-    required this.isInstalled,
-    required this.onTap
-  });
+  const InstalledWalletWidget(
+      {super.key,
+      required this.title,
+      required this.icon,
+      required this.isInstalled,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,8 +30,9 @@ class InstalledWalletWidget extends ConsumerWidget {
             horizontalSpace(AppValues.padding10),
             Text(
               isInstalled ? title : '${'install'.tr()} $title',
-              style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                  fontWeight: FontWeight.w500),
+              style: AppTheme.of(context)
+                  .bodyExtraLarge18
+                  .copyWith(fontWeight: FontWeight.w500),
             ),
             Spacer(),
             Visibility(
@@ -42,16 +42,16 @@ class InstalledWalletWidget extends ConsumerWidget {
                   color: context.containerColor,
                   border: Border.all(
                       width: AppValues.width1,
-                      color: context.secondaryBackgroundColor
-                  ),
+                      color: context.secondaryBackgroundColor),
                   borderRadius: BorderRadius.circular(AppValues.radius4),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(AppValues.padding8),
                   child: Text(
                     'installed'.tr(),
-                    style: AppTheme.of(context).bodySmall12.copyWith(
-                        fontWeight: FontWeight.w600),
+                    style: AppTheme.of(context)
+                        .bodySmall12
+                        .copyWith(fontWeight: FontWeight.w600),
                   ),
                 ),
               ),

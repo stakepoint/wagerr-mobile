@@ -9,18 +9,15 @@ class HomeScreenTabletMode extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
-        return SingleChildScrollView( 
-    child: Column(
+    return SingleChildScrollView(
+        child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         verticalSpace(32),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Home',
-              style: AppTheme.of(context).headLineLarge32
-            ),
+            Text('Home', style: AppTheme.of(context).headLineLarge32),
             Row(
               children: [
                 GestureDetector(
@@ -43,7 +40,6 @@ class HomeScreenTabletMode extends ConsumerWidget {
           child: HomeScreenBody(),
         ),
       ],
-    )
-        );
+    ));
   }
 }

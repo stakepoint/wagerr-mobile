@@ -16,7 +16,8 @@ class TabWidget extends StatelessWidget {
     return Container(
       height: 48,
       decoration: BoxDecoration(
-          color: context.containerColor, borderRadius: BorderRadius.circular(6)),
+          color: context.containerColor,
+          borderRadius: BorderRadius.circular(6)),
       child: TabBar(
           dividerColor: context.containerColor,
           controller: controller,

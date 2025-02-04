@@ -74,10 +74,7 @@ class HomeScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(AppIcons.handshakeIcon),
-            Text(
-              'newWager'.tr(),
-              style: AppTheme.of(context).textMediumMedium
-            ),
+            Text('newWager'.tr(), style: AppTheme.of(context).textMediumMedium),
           ],
         ),
       ),

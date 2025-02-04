@@ -43,22 +43,19 @@ class ConnectWalletScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       verticalSpace(AppValues.height60),
-                      Text(
-                        'welcomeToStarkWager'.tr(),
-                        style: AppTheme.of(context).headLineLarge32
-                      ),
+                      Text('welcomeToStarkWager'.tr(),
+                          style: AppTheme.of(context).headLineLarge32),
                       verticalSpace(AppValues.height8),
                       Row(
                         children: [
-                          Text(
-                            'connectYourWalletToUse'.tr(),
-                            style: AppTheme.of(context).bodyExtraLarge18
-                          ),
+                          Text('connectYourWalletToUse'.tr(),
+                              style: AppTheme.of(context).bodyExtraLarge18),
                           horizontalSpace(AppValues.padding3),
                           Text(
                             'starkWager'.tr(),
-                            style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                                fontWeight: FontWeight.w600),
+                            style: AppTheme.of(context)
+                                .bodyExtraLarge18
+                                .copyWith(fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),

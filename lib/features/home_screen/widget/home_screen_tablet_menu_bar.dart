@@ -104,10 +104,7 @@ class _HomeScreenTabletMenuBarState
           children: [
             SvgPicture.asset(AppIcons.handshakeIcon),
             const SizedBox(width: 12),
-            Text(
-              'newWager'.tr(),
-              style: AppTheme.of(context).textMediumMedium
-            ),
+            Text('newWager'.tr(), style: AppTheme.of(context).textMediumMedium),
           ],
         ),
       ),
@@ -199,7 +196,9 @@ class _HomeScreenTabletMenuBarState
           Text(
             label,
             style: TextStyle(
-              color: isSelected ? context.primaryButtonColor : AppColors.grayneutral500,
+              color: isSelected
+                  ? context.primaryButtonColor
+                  : AppColors.grayneutral500,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),

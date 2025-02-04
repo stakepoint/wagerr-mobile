@@ -4,8 +4,7 @@ class CurrencyTextInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    String text =
-        newValue.text.replaceAll("\$", "");
+    String text = newValue.text.replaceAll("\$", "");
 
     if (text.isEmpty) {
       return const TextEditingValue(
@@ -101,20 +100,20 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
         Material(
           color: Colors.transparent,
           child: TextField(
-            controller: amountController,
-            focusNode: _focusNode,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            textAlign: TextAlign.center,
-            inputFormatters: [CurrencyTextInputFormatter()],
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: '\$0.00',
-              hintStyle: AppTheme.of(context).headingMobileH1.copyWith(
-                color: context.textHintColor,
+              controller: amountController,
+              focusNode: _focusNode,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+              textAlign: TextAlign.center,
+              inputFormatters: [CurrencyTextInputFormatter()],
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: '\$0.00',
+                hintStyle: AppTheme.of(context).headingMobileH1.copyWith(
+                      color: context.textHintColor,
+                    ),
               ),
-            ),
-            style: AppTheme.of(context).headingMobileH1
-          ),
+              style: AppTheme.of(context).headingMobileH1),
         ),
         const SizedBox(height: 8),
         Row(
@@ -122,10 +121,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
           children: [
             Image.asset(AppIcons.starknetImage),
             const SizedBox(width: 4),
-            Text(
-              '0 Strk',
-              style: AppTheme.of(context).textSmallMedium
-            ),
+            Text('0 Strk', style: AppTheme.of(context).textSmallMedium),
           ],
         ),
         const SizedBox(height: 32),
@@ -165,20 +161,16 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
               ),
             ),
           ),
-          Text(
-            'fundYourWallet'.tr(),
-            style: AppTheme.of(context).titleExtraLarge24
-          ),
+          Text('fundYourWallet'.tr(),
+              style: AppTheme.of(context).titleExtraLarge24),
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Text(
-              _dialogText,
-              textAlign: TextAlign.center,
-              style: AppTheme.of(context).bodyLarge16.copyWith(
-                color: context.subTitleTextColor
-              )
-            ),
+            child: Text(_dialogText,
+                textAlign: TextAlign.center,
+                style: AppTheme.of(context)
+                    .bodyLarge16
+                    .copyWith(color: context.subTitleTextColor)),
           ),
           _buildMainContent(),
           Padding(
@@ -216,8 +208,8 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
                 child: Text(
                   'fundButton'.tr(),
                   style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
+                        fontWeight: FontWeight.w500,
+                      ),
                 ),
               ),
             ),

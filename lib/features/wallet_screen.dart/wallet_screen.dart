@@ -21,10 +21,8 @@ class WalletScreen extends ConsumerWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "Wallet Screen",
-                            style: AppTheme.of(context).bodyLarge16
-                          ),
+                          Text("Wallet Screen",
+                              style: AppTheme.of(context).bodyLarge16),
                         ],
                       ),
                     ),
@@ -34,10 +32,8 @@ class WalletScreen extends ConsumerWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Wallet Screen",
-                          style: AppTheme.of(context).bodyLarge16
-                        ),
+                        Text("Wallet Screen",
+                            style: AppTheme.of(context).bodyLarge16),
                       ],
                     ),
                   );

@@ -46,8 +46,8 @@ class HomeActionButton extends StatelessWidget {
             Text(
               text,
               style: AppTheme.of(context).textSmallMedium.copyWith(
-                color: textColor ?? context.primaryTextColor,
-              ),
+                    color: textColor ?? context.primaryTextColor,
+                  ),
             ),
           ],
         ),

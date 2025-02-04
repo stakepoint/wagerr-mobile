@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/constants/constants.dart';
 
-
 class AppObserver extends ProviderObserver {
   @override
   void didAddProvider(

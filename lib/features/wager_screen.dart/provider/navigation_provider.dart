@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/routing/routes.dart';
 
-final navigationStateProvider = StateNotifierProvider<NavigationNotifier, int>((ref) {
+final navigationStateProvider =
+    StateNotifierProvider<NavigationNotifier, int>((ref) {
   return NavigationNotifier();
 });
 
