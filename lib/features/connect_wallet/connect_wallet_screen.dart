@@ -127,6 +127,7 @@ class ConnectWalletScreen extends ConsumerWidget {
                                 onTap: () {},
                               ),
                           loading: () => const CircularProgressIndicator()),
+                      verticalSpace(AppValues.height15),
                     ],
                   ),
                 ),
