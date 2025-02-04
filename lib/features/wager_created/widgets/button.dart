@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../../feature.dart';
 
 // is to be used in column, rows and other grid element
 Widget button(BuildContext context,

@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
+part of '../../feature.dart';
 
 class TabWidget extends StatelessWidget {
   final TabController controller;

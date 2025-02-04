@@ -1,19 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/routing/routes.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
-import '../../core/constants/app_values.dart';
-import '../../extensions/build_context_extension.dart';
-import '../../theme/app_theme.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import '../../core/constants/assets.dart';
-import 'package:go_router/go_router.dart';
-
-
+part of '../feature.dart';
 
 class ProfileSetupScreen extends ConsumerStatefulWidget {
   const ProfileSetupScreen({super.key});

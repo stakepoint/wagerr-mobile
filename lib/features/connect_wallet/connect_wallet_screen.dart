@@ -1,18 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:starkwager/core/constants/app_values.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/connect_wallet/provider/connect_wallet_provider.dart';
-import 'package:starkwager/features/connect_wallet/widgets/installed_wallet_widget.dart';
-import 'package:starkwager/routing/routes.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
-
-import '../../core/constants/assets.dart';
-import '../../theme/app_theme.dart';
+part of '../feature.dart';
 
 class ConnectWalletScreen extends ConsumerWidget {
   ConnectWalletScreen({super.key});

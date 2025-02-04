@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../../feature.dart';
 
 class HomeActionButton extends StatelessWidget {
   final String text;

@@ -1,16 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/home_screen/widget/home_action_button.dart';
-import 'package:starkwager/features/fund_wallet/widgets/fund_wallet_dialog.dart';
-import 'package:starkwager/features/home_screen/widget/home_add_and_withdraw.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../../feature.dart';
 
 class HomeScreenBody extends ConsumerWidget {
   const HomeScreenBody({

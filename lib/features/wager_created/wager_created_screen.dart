@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starkwager/core/constants/app_values.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/wager_created/widgets/wager_created_app_bar.dart';
-import 'package:starkwager/features/wager_created/widgets/wager_created_body.dart';
+part of '../feature.dart';
 
 class WagerCreatedScreen extends ConsumerWidget {
   WagerCreatedScreen({super.key});
@@ -12,7 +6,7 @@ class WagerCreatedScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = ScreenLayout.isMobile(context);
     return Scaffold(
-      appBar: !isMobile ? WargerCreatedAppBar() : null,
+      appBar: !isMobile ? WagerCreatedAppBar() : null,
       backgroundColor: context.primaryBackgroundColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
@@ -34,7 +28,7 @@ class WagerCreatedScreen extends ConsumerWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                WargerCreatedBody(),
+                                WagerCreatedBody(),
                               ],
                             ),
                           ),
@@ -52,7 +46,7 @@ class WagerCreatedScreen extends ConsumerWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                WargerCreatedBody(),
+                                WagerCreatedBody(),
                               ],
                             ),
                           ),

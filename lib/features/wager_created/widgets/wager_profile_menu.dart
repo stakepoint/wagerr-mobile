@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/theme/app_theme.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../../feature.dart';
 
-class WargerProfileMenu extends ConsumerWidget {
-  const WargerProfileMenu({super.key});
+class WagerProfileMenu extends ConsumerWidget {
+  const WagerProfileMenu({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

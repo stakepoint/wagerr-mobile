@@ -1,27 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/wager_created/provider/text_input_state.dart';
-import 'package:starkwager/features/wager_created/widgets/general_text_form_field.dart';
-import 'package:starkwager/routing/routes.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../../feature.dart';
 
-class WargerCreatedBody extends ConsumerStatefulWidget {
-  WargerCreatedBody({super.key});
+class WagerCreatedBody extends ConsumerStatefulWidget {
+  WagerCreatedBody({super.key});
 
   @override
-  ConsumerState<WargerCreatedBody> createState() => _AccountCreatedBodyState();
+  ConsumerState<WagerCreatedBody> createState() => _AccountCreatedBodyState();
 }
 
-class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
+class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
   late TextEditingController _usernameTextController;
   late FocusNode _usernameTextControllerFocusNode;
   late bool hasEnteredUsername = false;

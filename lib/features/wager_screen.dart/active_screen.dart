@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/features/wager_screen.dart/widget/wager_widget.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../feature.dart';
 
 class ActiveScreen extends ConsumerWidget {
   const ActiveScreen({

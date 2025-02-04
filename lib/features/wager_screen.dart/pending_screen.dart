@@ -1,9 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
+part of '../feature.dart';
 
 class PendingScreen extends ConsumerWidget {
   const PendingScreen({
