@@ -10,7 +10,7 @@ import 'package:starkwager/features/profile_screen.dart/profile_screen.dart';
 import 'package:starkwager/features/wager_created/wager_created_screen.dart';
 import 'package:starkwager/features/wager_screen.dart/create_wager_screen.dart';
 import 'package:starkwager/features/wager_screen.dart/wager_summary.dart';
-import 'package:starkwager/features/wager_screen.dart/waggers_screen.dart';
+import 'package:starkwager/features/wager_screen.dart/wagers_screen.dart';
 import 'package:starkwager/features/wallet_screen.dart/wallet_screen.dart';
 
 import '../routing/routes.dart';
@@ -104,7 +104,7 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: Routes.wagger_tablet,
           pageBuilder: (context, state) => SlideRouteTransition(
-            child: WaggersScreen(),
+            child: WagersScreen(),
             routeName: Routes.wagger_tablet,
           ),
         ),
@@ -142,7 +142,7 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: Routes.wagger,
           pageBuilder: (context, state) => SlideRouteTransition(
-            child: WaggersScreen(),
+            child: WagersScreen(),
             routeName: Routes.wagger,
           ),
         ),
