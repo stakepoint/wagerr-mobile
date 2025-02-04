@@ -121,7 +121,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
               ),
             ),
             style: AppTheme.headingMobileH1.copyWith(
-              color: AppColors.grayCool400,
+              color: AppColors.blue950,
             ),
           ),
         ),
