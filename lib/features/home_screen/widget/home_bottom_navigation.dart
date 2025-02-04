@@ -94,11 +94,10 @@ class CustomBottomNavigation extends StatelessWidget {
                     ),
                     child: Center(
                       child: SvgPicture.asset(
-                          item.icon,
-                          colorFilter: ColorFilter.mode(
-                              isSelected ? selectedColor : unselectedColor,
-                              BlendMode.srcIn
-                          ),
+                        item.icon,
+                        colorFilter: ColorFilter.mode(
+                            isSelected ? selectedColor : unselectedColor,
+                            BlendMode.srcIn),
                       ),
                     ),
                   ),
@@ -127,11 +126,10 @@ class CustomBottomNavigation extends StatelessWidget {
                     ),
                     child: Center(
                       child: SvgPicture.asset(
-                          item.icon,
-                          colorFilter: ColorFilter.mode(
-                              isSelected ? selectedColor : unselectedColor,
-                              BlendMode.srcIn
-                          ),
+                        item.icon,
+                        colorFilter: ColorFilter.mode(
+                            isSelected ? selectedColor : unselectedColor,
+                            BlendMode.srcIn),
                       ),
                     ),
                   ),

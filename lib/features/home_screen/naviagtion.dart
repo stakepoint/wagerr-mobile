@@ -41,9 +41,8 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
       label: 'wagers'.tr(),
       icon: AppIcons.homeShakeIcon,
       onTap: () {
-        _onNavigate(ScreenLayout.isTablet(context)
-            ? Routes.wagerTablet
-            : Routes.wager);
+        _onNavigate(
+            ScreenLayout.isTablet(context) ? Routes.wagerTablet : Routes.wager);
       },
     ),
     NavigationItem(

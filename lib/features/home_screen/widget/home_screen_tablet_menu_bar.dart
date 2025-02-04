@@ -186,10 +186,10 @@ class _HomeScreenTabletMenuBarState
                 child: SvgPicture.asset(
                   icon,
                   colorFilter: ColorFilter.mode(
-                      isSelected ? context.primaryButtonColor
+                      isSelected
+                          ? context.primaryButtonColor
                           : AppColors.grayneutral500,
-                      BlendMode.srcIn
-                  ),
+                      BlendMode.srcIn),
                 ),
               ),
             ),
