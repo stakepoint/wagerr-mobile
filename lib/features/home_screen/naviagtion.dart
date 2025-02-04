@@ -2,14 +2,16 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/features/home_screen/widget/home_bottom_navigation.dart';
+import 'package:starkwager/features/wager_screen.dart/provider/navigation_provider.dart';
 import 'package:starkwager/routing/routes.dart';
 import 'package:starkwager/theme/app_colors.dart';
 
-class ScaffoldWithNavBar extends StatefulWidget {
+class ScaffoldWithNavBar extends ConsumerStatefulWidget {
   final Widget child;
 
   const ScaffoldWithNavBar({
@@ -18,33 +20,22 @@ class ScaffoldWithNavBar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ScaffoldWithNavBar> createState() => _ScaffoldWithNavBarState();
+  ConsumerState<ScaffoldWithNavBar> createState() => _ScaffoldWithNavBarState();
 }
 
-class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
-  int _currentIndex = 0;
+class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final GoRouter router = GoRouter.of(context);
+      ref.read(navigationStateProvider.notifier).updateIndexFromRoute(
+          router.routerDelegate.currentConfiguration.fullPath);
+    });
+  }
 
   void _onNavigate(String route) {
-    setState(() {
-      switch (route) {
-        case Routes.home:
-        case Routes.home_tablet:
-          _currentIndex = 0;
-          break;
-        case Routes.wagger:
-        case Routes.wagger_tablet:
-          _currentIndex = 1;
-          break;
-        case Routes.wallet:
-        case Routes.wallet_tablet:
-          _currentIndex = 2;
-          break;
-        case Routes.profile:
-        case Routes.profile_tablet:
-          _currentIndex = 3;
-          break;
-      }
-    });
+    ref.read(navigationStateProvider.notifier).updateIndexFromRoute(route);
     GoRouter.of(context).go(route);
   }
 
@@ -88,11 +79,12 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final currentIndex = ref.watch(navigationStateProvider);
+
     return WillPopScope(
       onWillPop: () async {
-        if (_currentIndex != 0) {
+        if (currentIndex != 0) {
           _onNavigate(Routes.home);
-          GoRouter.of(context).go(Routes.home);
           return false;
         }
         return true;
@@ -100,16 +92,12 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
       child: Scaffold(
         body: widget.child,
         bottomNavigationBar: CustomBottomNavigation(
-          currentIndex: _currentIndex,
+          currentIndex: currentIndex,
           items: _navigationItems,
           selectedColor: AppColors.green100,
           unselectedColor: AppColors.grayneutral500,
           isVertical: false,
           onIndexChanged: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-
             if (ScreenLayout.isTablet(context)) {
               switch (index) {
                 case 0:
