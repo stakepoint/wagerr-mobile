@@ -21,10 +21,11 @@ class HomeScreenTabletMode extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
-    return Column(
+        return SingleChildScrollView( 
+    child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        verticalSpace(48),
+        verticalSpace(32),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -52,10 +53,11 @@ class HomeScreenTabletMode extends ConsumerWidget {
         ),
         verticalSpace(120),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: isLandscape ? 184 : 90),
+          padding: EdgeInsets.symmetric(horizontal: isLandscape ? 120 : 60),
           child: HomeScreenBody(),
         ),
       ],
-    );
+    )
+        );
   }
 }

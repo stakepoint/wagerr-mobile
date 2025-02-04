@@ -6,6 +6,7 @@ import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/features/home_screen/widget/home_action_button.dart';
+import 'package:starkwager/features/fund_wallet/widgets/fund_wallet_dialog.dart';
 import 'package:starkwager/features/home_screen/widget/home_add_and_withdraw.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
@@ -16,6 +17,36 @@ class HomeScreenBody extends ConsumerWidget {
     super.key,
   });
 
+  void _showFundWalletDialog(BuildContext context) {
+    final isMobile = ScreenLayout.isMobile(context);
+
+    if (isMobile) {
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext context) => FundWalletDialog(
+          onClose: () => Navigator.of(context).pop(),
+          onFund: () {
+            // Add your funding logic here
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => FundWalletDialog(
+          onClose: () => Navigator.of(context).pop(),
+          onFund: () {
+            // Add your funding logic here
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _isMobile = ScreenLayout.isMobile(context);
@@ -25,7 +56,7 @@ class HomeScreenBody extends ConsumerWidget {
             ? _mobileContractAddress(context)
             : _tabletContractAddress(context),
         verticalSpace(8),
-        _isMobile ? _mobileStarkAmount() : _tabletStarkAmount(),
+        _isMobile ? _mobileStarkAmount() : _tabletStarkAmount(context),
         verticalSpace(16),
         _isMobile ? HomeAddAndWithdraw() : SizedBox(),
         _isMobile ? verticalSpace(48) : verticalSpace(40),
@@ -116,7 +147,7 @@ class HomeScreenBody extends ConsumerWidget {
 
 //----------------------------------------------- TABLETSTARKAMOUNT ----------------------------------------------- //
 
-  Widget _tabletStarkAmount() {
+  Widget _tabletStarkAmount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -152,7 +183,7 @@ class HomeScreenBody extends ConsumerWidget {
               HomeActionButton(
                 text: 'addMoney'.tr(),
                 iconPath: AppIcons.addIcon,
-                onTap: () {},
+                onTap: () => _showFundWalletDialog(context),
               ),
               HomeActionButton(
                 text: 'withdraw'.tr(),

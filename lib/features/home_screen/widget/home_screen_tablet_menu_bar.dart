@@ -77,15 +77,17 @@ class _HomeScreenTabletMenuBarState
       height: MediaQuery.of(context).size.height,
       width: 208,
       color: Colors.black,
-      child: Column(
-        children: [
-          verticalSpace(64),
-          SvgPicture.asset(AppIcons.logoIcon),
-          verticalSpace(40),
-          _buildNewWagerButton(),
-          verticalSpace(120),
-          _buildNavItems(isVertical: true),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            verticalSpace(64),
+            SvgPicture.asset(AppIcons.logoIcon),
+            verticalSpace(40),
+            _buildNewWagerButton(),
+            verticalSpace(40), // Reduced from 120
+            _buildNavItems(isVertical: true),
+          ],
+        ),
       ),
     );
   }
