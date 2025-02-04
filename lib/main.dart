@@ -12,18 +12,15 @@ void main() async {
   /// Localization
   await EasyLocalization.ensureInitialized();
 
-  runApp(
-    ProviderScope(
+  runApp(ProviderScope(
       observers: [AppObserver()],
-        child: EasyLocalization(
-            supportedLocales: const [Locale('en')],
-            path: 'assets/translations',
-            fallbackLocale: const Locale('en'),
-            useOnlyLangCode: true,
-            child: MainApp(),
-        )
-    )
-  );
+      child: EasyLocalization(
+        supportedLocales: const [Locale('en')],
+        path: 'assets/translations',
+        fallbackLocale: const Locale('en'),
+        useOnlyLangCode: true,
+        child: MainApp(),
+      )));
 }
 
 class MainApp extends ConsumerWidget {
@@ -50,7 +47,6 @@ class MainApp extends ConsumerWidget {
     );
   }
 }
-
 
 class _EagerInitialization extends ConsumerWidget {
   final Widget child;
