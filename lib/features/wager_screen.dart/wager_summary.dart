@@ -71,10 +71,9 @@ class WagerSummaryScreen extends ConsumerWidget {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final double maxWidth = AppValues.width600;
             return SingleChildScrollView(
               child: Center(
-                child: Container(
+                child: SizedBox(
                   width: AppValues.width500,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -153,7 +152,8 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           width: double.infinity,
                           padding: EdgeInsets.all(AppValues.padding10),
                           decoration: BoxDecoration(
-                            border: Border.all(color: context.secondaryBackgroundColor),
+                            border: Border.all(
+                                color: context.secondaryBackgroundColor),
                             borderRadius:
                                 BorderRadius.circular(AppValues.radius16),
                             color: context.primaryBackgroundColor,
@@ -184,12 +184,12 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           ),
                         ),
                         verticalSpace(AppValues.height50),
-                        Container(
+                        SizedBox(
                           height: AppValues.height56,
                           width: AppValues.width400,
                           child: TextButton(
                             onPressed: () {
-                              context.go(Routes.wager_created);
+                              context.go(Routes.wagerCreated);
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.black,
@@ -202,9 +202,11 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                             ),
                             child: Text(
                               "Create Wager".tr(),
-                              style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: AppTheme.of(context)
+                                  .bodyExtraLarge18
+                                  .copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
                             ),
                           ),
                         ),
@@ -238,8 +240,8 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
             Text(
               title.tr(),
               style: AppTheme.of(context).textSmallMedium.copyWith(
-                color: context.textHintColor,
-              ),
+                    color: context.textHintColor,
+                  ),
             ),
             SizedBox(
               height: 5,
@@ -299,8 +301,8 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
         Text(
           title.tr(),
           style: AppTheme.of(context).textSmallMedium.copyWith(
-            color: context.textHintColor,
-          ),
+                color: context.textHintColor,
+              ),
         ),
         SizedBox(
           height: 5,
@@ -396,10 +398,8 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                 SizedBox(
                   width: 5,
                 ),
-                Text(
-                  '$strkNumber Strk each'.tr(),
-                  style: AppTheme.of(context).textSmallMedium
-                ),
+                Text('$strkNumber Strk each'.tr(),
+                    style: AppTheme.of(context).textSmallMedium),
               ],
             ),
           ),
@@ -423,16 +423,14 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
               Expanded(
                 child: Column(
                   children: [
-                    Text(
-                      'one-on-one'.tr(),
-                      style: AppTheme.of(context).bodySmall12
-                    ),
+                    Text('one-on-one'.tr(),
+                        style: AppTheme.of(context).bodySmall12),
                     Text(
                       'VS',
                       style: AppTheme.of(context).headLineLarge32.copyWith(
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.w700,
-                      ),
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                   ],
                 ),
@@ -441,11 +439,9 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                 children: [
                   Image.asset(AppIcons.awaitingUserPath),
                   verticalSpace(8),
-                  Text(
-                    opponent,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTheme.of(context).bodySmall12
-                  ),
+                  Text(opponent,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTheme.of(context).bodySmall12),
                 ],
               ),
             ],

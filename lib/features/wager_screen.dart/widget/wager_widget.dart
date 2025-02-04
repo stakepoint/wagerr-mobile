@@ -7,10 +7,10 @@ class WagerWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _isMobile = ScreenLayout.isMobile(context);
+    final isMobile = ScreenLayout.isMobile(context);
     return Container(
-      height: _isMobile ? 250 : 239,
-      width: _isMobile ? 343 : 696,
+      height: isMobile ? 250 : 239,
+      width: isMobile ? 343 : 696,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: context.containerColor,
@@ -24,36 +24,33 @@ class WagerWidget extends ConsumerWidget {
             children: [
               SvgPicture.asset(AppIcons.ellipseIcon),
               horizontalSpace(5),
-              _isMobile
+              isMobile
                   ? Text(
                       'inProgress'.tr(),
                       style: AppTheme.of(context).bodyMedium14.copyWith(
-                        color: context.textHintColor,
-                      ),
+                            color: context.textHintColor,
+                          ),
                     )
                   : Text(
                       'inProgress'.tr(),
                       style: AppTheme.of(context).bodyLarge16.copyWith(
-                        color: context.textHintColor,
-                      ),
+                            color: context.textHintColor,
+                          ),
                     ),
             ],
           ),
           verticalSpace(12),
-          _isMobile
+          isMobile
               ? Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Text(
-                    "Will Bitcoin Hit \$100k Before January 31, 2025?",
-                    textAlign: TextAlign.center,
-                    style: AppTheme.of(context).textRegularMedium
-                  ),
+                      "Will Bitcoin Hit \$100k Before January 31, 2025?",
+                      textAlign: TextAlign.center,
+                      style: AppTheme.of(context).textRegularMedium),
                 )
-              : Text(
-                  "Will Bitcoin Hit \$100k Before January 31, 2025?",
+              : Text("Will Bitcoin Hit \$100k Before January 31, 2025?",
                   textAlign: TextAlign.center,
-                  style: AppTheme.of(context).textMediumMedium
-                ),
+                  style: AppTheme.of(context).textMediumMedium),
           verticalSpace(12),
           Container(
             height: 37,
@@ -72,10 +69,8 @@ class WagerWidget extends ConsumerWidget {
                     height: 16,
                   ),
                   horizontalSpace(2.5),
-                  Text(
-                    "5 Strk each",
-                    style: AppTheme.of(context).textSmallMedium
-                  ),
+                  Text("5 Strk each",
+                      style: AppTheme.of(context).textSmallMedium),
                 ],
               ),
             ),
@@ -100,18 +95,12 @@ class WagerWidget extends ConsumerWidget {
 //----------------------------------------------- VS ----------------------------------------------- //
 
   Widget _vs(BuildContext context) {
-    final _isMobile = ScreenLayout.isMobile(context);
+    final isMobile = ScreenLayout.isMobile(context);
     return Column(
       children: [
-        _isMobile
-            ? Text(
-                "oneOnOne".tr(),
-                style: AppTheme.textTinyNormal
-              )
-            : Text(
-                "oneOnOne".tr(),
-                style: AppTheme.of(context).bodyMedium14
-              ),
+        isMobile
+            ? Text("oneOnOne".tr(), style: AppTheme.textTinyNormal)
+            : Text("oneOnOne".tr(), style: AppTheme.of(context).bodyMedium14),
         verticalSpace(10),
         SvgPicture.asset(AppIcons.vsIcon)
       ],
@@ -121,28 +110,25 @@ class WagerWidget extends ConsumerWidget {
 //----------------------------------------------- USERDETAILS ----------------------------------------------- //
 
   Widget _userDetails(BuildContext context) {
-    final _isMobile = ScreenLayout.isMobile(context);
+    final isMobile = ScreenLayout.isMobile(context);
     return Column(
       children: [
         Container(
-          height: _isMobile ? 56 : 64,
-          width: _isMobile ? 56 : 64,
+          height: isMobile ? 56 : 64,
+          width: isMobile ? 56 : 64,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
           ),
           child: Image.asset(AppIcons.userImage),
         ),
         verticalSpace(4),
-        _isMobile
+        isMobile
             ? Text(
                 '@noyi24_7',
                 style: AppTheme.textTinyMedium
                     .copyWith(color: context.primaryTextColor),
               )
-            : Text(
-                '@noyi24_7',
-                style: AppTheme.of(context).bodyMedium14
-        ),
+            : Text('@noyi24_7', style: AppTheme.of(context).bodyMedium14),
       ],
     );
   }

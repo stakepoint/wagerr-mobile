@@ -37,18 +37,18 @@ class HomeScreenBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _isMobile = ScreenLayout.isMobile(context);
+    final isMobile = ScreenLayout.isMobile(context);
     return Column(
       children: [
-        _isMobile
+        isMobile
             ? _mobileContractAddress(context)
             : _tabletContractAddress(context),
         verticalSpace(8),
-        _isMobile ? _mobileStarkAmount(context) : _tabletStarkAmount(context),
+        isMobile ? _mobileStarkAmount(context) : _tabletStarkAmount(context),
         verticalSpace(16),
-        _isMobile ? HomeAddAndWithdraw() : SizedBox(),
-        _isMobile ? verticalSpace(48) : verticalSpace(40),
-        _isMobile ? _mobileNoWager(context) : _tabletNoWager(context),
+        isMobile ? HomeAddAndWithdraw() : SizedBox(),
+        isMobile ? verticalSpace(48) : verticalSpace(40),
+        isMobile ? _mobileNoWager(context) : _tabletNoWager(context),
       ],
     );
   }
@@ -71,8 +71,8 @@ class HomeScreenBody extends ConsumerWidget {
           Text(
             'nowagerscreatedyet'.tr(),
             style: AppTheme.of(context).bodyLarge16.copyWith(
-              color: context.textHintColor,
-            ),
+                  color: context.textHintColor,
+                ),
           ),
         ],
       ),
@@ -97,8 +97,8 @@ class HomeScreenBody extends ConsumerWidget {
           Text(
             'nowagerscreatedyet'.tr(),
             style: AppTheme.of(context).textMediumNormal.copyWith(
-              color: context.textHintColor,
-            ),
+                  color: context.textHintColor,
+                ),
           ),
         ],
       ),
@@ -111,18 +111,12 @@ class HomeScreenBody extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          '\$0.00',
-          style: AppTheme.of(context).headingMobileH1
-        ),
+        Text('\$0.00', style: AppTheme.of(context).headingMobileH1),
         Row(
           children: [
             Image.asset(AppIcons.starknetImage),
             horizontalSpace(4),
-            Text(
-              '${'0'} Strk',
-              style: AppTheme.of(context).textSmallMedium
-            ),
+            Text('${'0'} Strk', style: AppTheme.of(context).textSmallMedium),
           ],
         ),
       ],
@@ -139,18 +133,13 @@ class HomeScreenBody extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 8,
           children: [
-            Text(
-              '\$0.00',
-              style: AppTheme.of(context).headingMobileH1
-            ),
+            Text('\$0.00', style: AppTheme.of(context).headingMobileH1),
             Row(
               children: [
                 Image.asset(AppIcons.starknetImage),
                 horizontalSpace(4),
-                Text(
-                  '${'0'} Strk',
-                  style: AppTheme.of(context).textSmallMedium
-                ),
+                Text('${'0'} Strk',
+                    style: AppTheme.of(context).textSmallMedium),
               ],
             ),
           ],
@@ -186,8 +175,8 @@ class HomeScreenBody extends ConsumerWidget {
         Text(
           'walletBalance'.tr(),
           style: AppTheme.of(context).bodyMedium14.copyWith(
-            color: context.textHintColor,
-          ),
+                color: context.textHintColor,
+              ),
         ),
         Container(
           height: 29,
@@ -200,10 +189,8 @@ class HomeScreenBody extends ConsumerWidget {
             spacing: 7,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                '0x400e44000...',
-                style: AppTheme.of(context).textSmallMedium
-              ),
+              Text('0x400e44000...',
+                  style: AppTheme.of(context).textSmallMedium),
               SvgPicture.asset(AppIcons.copyIcon)
             ],
           ),
@@ -221,8 +208,8 @@ class HomeScreenBody extends ConsumerWidget {
         Text(
           'walletBalance'.tr(),
           style: AppTheme.of(context).bodyLarge16.copyWith(
-            color: context.textHintColor,
-          ),
+                color: context.textHintColor,
+              ),
         ),
         Container(
           height: 29,
@@ -235,10 +222,8 @@ class HomeScreenBody extends ConsumerWidget {
             spacing: 7,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                '0x400e44000...',
-                style: AppTheme.of(context).textRegularMedium
-              ),
+              Text('0x400e44000...',
+                  style: AppTheme.of(context).textRegularMedium),
               SvgPicture.asset(AppIcons.copyIcon)
             ],
           ),

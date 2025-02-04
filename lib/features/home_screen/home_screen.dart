@@ -1,7 +1,7 @@
 part of '../feature.dart';
 
 class HomeScreen extends ConsumerWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -53,7 +53,7 @@ class HomeScreen extends ConsumerWidget {
   Widget _floatingActionButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Routes.create_wager);
+        GoRouter.of(context).push(Routes.createWager);
       },
       child: Container(
         height: 56,
@@ -63,7 +63,7 @@ class HomeScreen extends ConsumerWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 8,
               offset: Offset(0, 4),
             ),
@@ -74,10 +74,7 @@ class HomeScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(AppIcons.handshakeIcon),
-            Text(
-              'newWager'.tr(),
-              style: AppTheme.of(context).textMediumMedium
-            ),
+            Text('newWager'.tr(), style: AppTheme.of(context).textMediumMedium),
           ],
         ),
       ),

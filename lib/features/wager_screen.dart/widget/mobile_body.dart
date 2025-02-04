@@ -32,7 +32,6 @@ class _MobileBodyState extends ConsumerState<MobileBody>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
 //----------------------------------------------- TOPBAR ----------------------------------------------- //
 
         verticalSpace(25),
@@ -43,10 +42,8 @@ class _MobileBodyState extends ConsumerState<MobileBody>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'WAGERS'.tr(),
-                          style: AppTheme.of(context).headLineLarge32
-                        ),
+                        Text('WAGERS'.tr(),
+                            style: AppTheme.of(context).headLineLarge32),
                         Row(
                           children: [
                             ProfileMenu(),
@@ -61,14 +58,9 @@ class _MobileBodyState extends ConsumerState<MobileBody>
                       ],
                     ),
                   )
-                : Text(
-                    'WAGERS'.tr(),
-                    style: AppTheme.of(context).headLineLarge32
-                  )
-            : Text(
-                'WAGERS'.tr(),
-                style: AppTheme.of(context).headLineLarge32
-              ),
+                : Text('WAGERS'.tr(),
+                    style: AppTheme.of(context).headLineLarge32)
+            : Text('WAGERS'.tr(), style: AppTheme.of(context).headLineLarge32),
 
 //----------------------------------------------- TAB BAR ----------------------------------------------- //
 

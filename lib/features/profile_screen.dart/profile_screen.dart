@@ -1,7 +1,7 @@
 part of '../feature.dart';
 
 class ProfileScreen extends ConsumerWidget {
-  ProfileScreen({super.key});
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,10 +21,8 @@ class ProfileScreen extends ConsumerWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "Profile Screen",
-                            style: AppTheme.of(context).bodyLarge16
-                          ),
+                          Text("Profile Screen",
+                              style: AppTheme.of(context).bodyLarge16),
                         ],
                       ),
                     ),
@@ -34,10 +32,8 @@ class ProfileScreen extends ConsumerWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Profile Screen",
-                          style: AppTheme.of(context).bodyLarge16
-                        ),
+                        Text("Profile Screen",
+                            style: AppTheme.of(context).bodyLarge16),
                       ],
                     ),
                   );

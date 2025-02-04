@@ -16,17 +16,14 @@ class WagerProfileMenu extends ConsumerWidget {
 }
 
 // COPY USERNAME
-Widget _copyUsername(BuildContext context) => Container(
+Widget _copyUsername(BuildContext context) => SizedBox(
       height: 29,
       width: 116,
       child: Row(
         spacing: 4,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            '@noyi24_7',
-            style: AppTheme.of(context).textSmallMedium
-          ),
+          Text('@noyi24_7', style: AppTheme.of(context).textSmallMedium),
           SvgPicture.asset(
             AppIcons.copyIcon,
             width: 15,

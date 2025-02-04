@@ -4,9 +4,9 @@ class ScaffoldWithNavBar extends ConsumerStatefulWidget {
   final Widget child;
 
   const ScaffoldWithNavBar({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<ScaffoldWithNavBar> createState() => _ScaffoldWithNavBarState();
@@ -34,16 +34,15 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
       icon: AppIcons.homeNoneIcon,
       onTap: () {
         _onNavigate(
-            ScreenLayout.isTablet(context) ? Routes.home_tablet : Routes.home);
+            ScreenLayout.isTablet(context) ? Routes.homeTablet : Routes.home);
       },
     ),
     NavigationItem(
       label: 'wagers'.tr(),
       icon: AppIcons.homeShakeIcon,
       onTap: () {
-        _onNavigate(ScreenLayout.isTablet(context)
-            ? Routes.wager_tablet
-            : Routes.wager);
+        _onNavigate(
+            ScreenLayout.isTablet(context) ? Routes.wagerTablet : Routes.wager);
       },
     ),
     NavigationItem(
@@ -51,7 +50,7 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
       icon: AppIcons.walletIcon,
       onTap: () {
         _onNavigate(ScreenLayout.isTablet(context)
-            ? Routes.wallet_tablet
+            ? Routes.walletTablet
             : Routes.wallet);
       },
     ),
@@ -60,7 +59,7 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
       icon: AppIcons.profileIcon,
       onTap: () {
         _onNavigate(ScreenLayout.isTablet(context)
-            ? Routes.profile_tablet
+            ? Routes.profileTablet
             : Routes.profile);
       },
     ),
@@ -70,13 +69,13 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(navigationStateProvider);
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) async {
         if (currentIndex != 0) {
           _onNavigate(Routes.home);
-          return false;
+          return;
         }
-        return true;
+        return;
       },
       child: Scaffold(
         body: widget.child,
@@ -90,16 +89,16 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
             if (ScreenLayout.isTablet(context)) {
               switch (index) {
                 case 0:
-                  _onNavigate(Routes.home_tablet);
+                  _onNavigate(Routes.homeTablet);
                   break;
                 case 1:
-                  _onNavigate(Routes.wager_tablet);
+                  _onNavigate(Routes.wagerTablet);
                   break;
                 case 2:
-                  _onNavigate(Routes.wallet_tablet);
+                  _onNavigate(Routes.walletTablet);
                   break;
                 case 3:
-                  _onNavigate(Routes.profile_tablet);
+                  _onNavigate(Routes.profileTablet);
                   break;
               }
             } else {

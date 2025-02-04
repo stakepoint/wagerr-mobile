@@ -1,14 +1,14 @@
 part of '../feature.dart';
 
 class ConnectWalletScreen extends ConsumerWidget {
-  ConnectWalletScreen({super.key});
+  const ConnectWalletScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final argent = ref.watch(argentCheckProvider);
     final braavos = ref.watch(braavosCheckProvider);
     final metamask = ref.watch(metamaskCheckProvider);
-    final _isMobile = ScreenLayout.isMobile(context);
+    final isMobile = ScreenLayout.isMobile(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -17,7 +17,7 @@ class ConnectWalletScreen extends ConsumerWidget {
                 const EdgeInsets.symmetric(horizontal: AppValues.padding16),
             child: GestureDetector(
                 onTap: () {
-                  _isMobile
+                  isMobile
                       ? GoRouter.of(context).go(Routes.profileSetup)
                       : GoRouter.of(context).go(Routes.profileSetup);
                 },
@@ -43,22 +43,19 @@ class ConnectWalletScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       verticalSpace(AppValues.height60),
-                      Text(
-                        'welcomeToStarkWager'.tr(),
-                        style: AppTheme.of(context).headLineLarge32
-                      ),
+                      Text('welcomeToStarkWager'.tr(),
+                          style: AppTheme.of(context).headLineLarge32),
                       verticalSpace(AppValues.height8),
                       Row(
                         children: [
-                          Text(
-                            'connectYourWalletToUse'.tr(),
-                            style: AppTheme.of(context).bodyExtraLarge18
-                          ),
+                          Text('connectYourWalletToUse'.tr(),
+                              style: AppTheme.of(context).bodyExtraLarge18),
                           horizontalSpace(AppValues.padding3),
                           Text(
                             'starkWager'.tr(),
-                            style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                                fontWeight: FontWeight.w600),
+                            style: AppTheme.of(context)
+                                .bodyExtraLarge18
+                                .copyWith(fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),

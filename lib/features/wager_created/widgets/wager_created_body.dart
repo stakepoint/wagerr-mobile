@@ -1,7 +1,7 @@
 part of '../../feature.dart';
 
 class WagerCreatedBody extends ConsumerStatefulWidget {
-  WagerCreatedBody({super.key});
+  const WagerCreatedBody({super.key});
 
   @override
   ConsumerState<WagerCreatedBody> createState() => _AccountCreatedBodyState();
@@ -28,10 +28,9 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
 
   @override
   Widget build(BuildContext context) {
-    final _isMobile = ScreenLayout.isMobile(context);
+    final isMobile = ScreenLayout.isMobile(context);
 
     return Consumer(builder: (context, ref, child) {
-      //final textInputState = ref.watch(textInputProvider);
       return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
         child: SingleChildScrollView(
@@ -40,17 +39,15 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
             children: [
               Text(
                 'wagerCreated'.tr(),
-                style: AppTheme.of(context).headLineLarge32.copyWith(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 32),
+                style: AppTheme.of(context)
+                    .headLineLarge32
+                    .copyWith(fontWeight: FontWeight.w600, fontSize: 32),
               ),
               verticalSpace(8),
-              Text(
-                'sendWagerInvite'.tr(),
-                style: AppTheme.of(context).textMediumNormal.copyWith(
-                  color: context.subTitleTextColor
-                )
-              ),
+              Text('sendWagerInvite'.tr(),
+                  style: AppTheme.of(context)
+                      .textMediumNormal
+                      .copyWith(color: context.subTitleTextColor)),
               verticalSpace(22),
               Container(
                 height: 0.5,
@@ -84,9 +81,9 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
               verticalSpace(20),
               Text(
                 'publicInvite'.tr(),
-                style: AppTheme.of(context).textMediumNormal.copyWith(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14),
+                style: AppTheme.of(context)
+                    .textMediumNormal
+                    .copyWith(fontWeight: FontWeight.w500, fontSize: 14),
               ),
               verticalSpace(12),
               Container(
@@ -104,8 +101,7 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
                       child: Text(
                         'https://link.wager.strk/WEpl',
                         style: AppTheme.of(context).textRegularMedium.copyWith(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
+                            fontWeight: FontWeight.w500, fontSize: 16),
                       ),
                     ),
                     Spacer(),
@@ -135,21 +131,19 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
                   ],
                 ),
               ),
-              _isMobile ? verticalSpace(80) : verticalSpace(24),
+              isMobile ? verticalSpace(80) : verticalSpace(24),
               _button(
-                  title: 'sendWager'.tr(),
-                  buttonColor: context.primaryButtonColor,
-                  textColor: context.primaryTextColor,
-                  onPressed: () {},
-
+                title: 'sendWager'.tr(),
+                buttonColor: context.primaryButtonColor,
+                textColor: context.primaryTextColor,
+                onPressed: () {},
               ),
               verticalSpace(12),
               _button(
-                  title: 'backHome'.tr(),
-                  buttonColor: context.containerColor,
-                  textColor: context.primaryTextColor,
-                  onPressed: () => context.go(Routes.profileSetup),
-
+                title: 'backHome'.tr(),
+                buttonColor: context.containerColor,
+                textColor: context.primaryTextColor,
+                onPressed: () => context.go(Routes.profileSetup),
               ),
             ],
           ),
@@ -159,10 +153,7 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
   }
 
   _button(
-      {String? title,
-      required Function onPressed,
-      buttonColor,
-      textColor}) {
+      {String? title, required Function onPressed, buttonColor, textColor}) {
     return GestureDetector(
       onTap: () => onPressed(),
       child: Container(
@@ -175,9 +166,9 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
         ),
         child: Text(
           title ?? 'No Title',
-          style: AppTheme.of(context).textRegularMedium.copyWith(
-              fontWeight: FontWeight.w500,
-              fontSize: 16),
+          style: AppTheme.of(context)
+              .textRegularMedium
+              .copyWith(fontWeight: FontWeight.w500, fontSize: 16),
         ),
       ),
     );

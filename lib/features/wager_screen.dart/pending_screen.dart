@@ -12,8 +12,8 @@ class PendingScreen extends ConsumerWidget {
         Text(
           'nowagerscreatedyet'.tr(),
           style: AppTheme.of(context).bodyLarge16.copyWith(
-            color: context.textHintColor,
-          ),
+                color: context.textHintColor,
+              ),
         ),
       ],
     );

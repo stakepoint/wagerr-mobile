@@ -84,7 +84,7 @@ class FormattedTextFields extends StatefulWidget {
 }
 
 class _FormattedTextFieldsState extends State<FormattedTextFields> {
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
   @override
   void initState() {
     super.initState();
@@ -106,9 +106,9 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
       children: [
         Text(
           'inviteViaUsername'.tr(),
-          style: AppTheme.of(context).textMediumNormal.copyWith(
-              fontWeight: FontWeight.w500,
-              fontSize: 14),
+          style: AppTheme.of(context)
+              .textMediumNormal
+              .copyWith(fontWeight: FontWeight.w500, fontSize: 14),
         ),
         verticalSpace(12),
         GestureDetector(
@@ -127,9 +127,7 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                         children: [
                           TextSpan(
                             text: 'wager.strk/',
-                            style: TextStyle(
-                                color: context.textHintColor
-                            ),
+                            style: TextStyle(color: context.textHintColor),
                           ),
                           TextSpan(
                             text: '@',
@@ -145,7 +143,6 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                   : TextFormField(
                       focusNode: widget.focusNode,
                       onTap: () {
-                        print("tapped");
                         if (widget.onTap != null) {
                           widget.onTap!();
                         }
@@ -177,10 +174,10 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                       inputFormatters: widget.inputFormatters,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       onEditingComplete: () {
-                        if (widget.onEditingComplete != null)
+                        if (widget.onEditingComplete != null) {
                           widget.onEditingComplete!();
+                        }
                       },
-
                       style: TextStyle(
                           fontSize: widget.textFont ?? 15,
                           fontWeight: widget.textFontWeight ?? FontWeight.w500),

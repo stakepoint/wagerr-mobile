@@ -18,9 +18,6 @@ import '../theme/app_theme.dart';
 import '../utils/ui_widgets.dart';
 import 'connect_wallet/provider/connect_wallet_provider.dart';
 
-
-
-
 part 'connect_wallet/widgets/installed_wallet_widget.dart';
 part 'connect_wallet/connect_wallet_screen.dart';
 

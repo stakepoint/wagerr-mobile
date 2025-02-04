@@ -1,6 +1,8 @@
 part of '../feature.dart';
 
 class CreateWagerScreen extends StatelessWidget {
+  const CreateWagerScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -136,10 +138,10 @@ class CreateWagerScreen extends StatelessWidget {
                   ],
                 ),
                 verticalSpace(AppValues.height25),
-                buildCreateWagerTextField( context,
-                    'titleOfYourWager'.tr(), 'wager.strk/'.tr(), 50),
+                buildCreateWagerTextField(
+                    context, 'titleOfYourWager'.tr(), 'wager.strk/'.tr(), 50),
                 verticalSpace(AppValues.height30),
-                buildCreateWagerTextField( context,
+                buildCreateWagerTextField(context,
                     'termsOrWagerDescription'.tr(), 'wager.strk/'.tr(), 1000,
                     maxLine: 3),
                 verticalSpace(AppValues.height30),
@@ -153,7 +155,7 @@ class CreateWagerScreen extends StatelessWidget {
                   width: AppValues.width400,
                   child: TextButton(
                     onPressed: () {
-                      GoRouter.of(context).push(Routes.create_wager_summary);
+                      GoRouter.of(context).push(Routes.createWagerSummary);
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.black,
@@ -167,8 +169,8 @@ class CreateWagerScreen extends StatelessWidget {
                     child: Text(
                       "Continue".tr(),
                       style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
+                            fontWeight: FontWeight.w500,
+                          ),
                     ),
                   ),
                 ),
@@ -184,12 +186,10 @@ class CreateWagerScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: AppTheme.of(context).textSmallMedium.copyWith(
-          fontWeight: FontWeight.w600
-          )
-        ),
+        Text(title,
+            style: AppTheme.of(context)
+                .textSmallMedium
+                .copyWith(fontWeight: FontWeight.w600)),
         SizedBox(
           height: 5,
         ),
@@ -224,7 +224,8 @@ class CreateWagerScreen extends StatelessWidget {
     );
   }
 
-  Column buildCreateWagerTextField(BuildContext context, String title, String hintText, int maxLength,
+  Column buildCreateWagerTextField(
+      BuildContext context, String title, String hintText, int maxLength,
       {int maxLine = 1}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
