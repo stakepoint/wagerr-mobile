@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/features/home_screen/widget/home_bottom_navigation.dart';
 import 'package:starkwager/features/wager_screen.dart/provider/navigation_provider.dart';
 import 'package:starkwager/routing/routes.dart';
@@ -53,8 +54,8 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
       icon: AppIcons.homeShakeIcon,
       onTap: () {
         _onNavigate(ScreenLayout.isTablet(context)
-            ? Routes.wagger_tablet
-            : Routes.wagger);
+            ? Routes.wager_tablet
+            : Routes.wager);
       },
     ),
     NavigationItem(
@@ -94,7 +95,7 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
         bottomNavigationBar: CustomBottomNavigation(
           currentIndex: currentIndex,
           items: _navigationItems,
-          selectedColor: AppColors.green100,
+          selectedColor: context.primaryButtonColor,
           unselectedColor: AppColors.grayneutral500,
           isVertical: false,
           onIndexChanged: (index) {
@@ -104,7 +105,7 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
                   _onNavigate(Routes.home_tablet);
                   break;
                 case 1:
-                  _onNavigate(Routes.wagger_tablet);
+                  _onNavigate(Routes.wager_tablet);
                   break;
                 case 2:
                   _onNavigate(Routes.wallet_tablet);
@@ -119,7 +120,7 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
                   _onNavigate(Routes.home);
                   break;
                 case 1:
-                  _onNavigate(Routes.wagger);
+                  _onNavigate(Routes.wager);
                   break;
                 case 2:
                   _onNavigate(Routes.wallet);

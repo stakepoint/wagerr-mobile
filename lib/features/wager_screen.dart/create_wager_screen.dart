@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,7 +19,7 @@ class CreateWagerScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         scrolledUnderElevation: 0.0,
-        backgroundColor: AppColors.mono0,
+        backgroundColor: context.primaryBackgroundColor,
         toolbarHeight: context.isMobile ? null : AppValues.height100,
         elevation: 0,
         title: context.isMobile
@@ -107,7 +106,7 @@ class CreateWagerScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: AppColors.grayCool300,
+                          fillColor: context.textBoxTextColor,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
@@ -129,7 +128,7 @@ class CreateWagerScreen extends StatelessWidget {
                         isExpanded: true,
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: AppColors.grayCool300,
+                          fillColor: context.textBoxTextColor,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
@@ -148,14 +147,14 @@ class CreateWagerScreen extends StatelessWidget {
                   ],
                 ),
                 verticalSpace(AppValues.height25),
-                buildCreateWagerTextField(
+                buildCreateWagerTextField( context,
                     'titleOfYourWager'.tr(), 'wager.strk/'.tr(), 50),
                 verticalSpace(AppValues.height30),
-                buildCreateWagerTextField(
+                buildCreateWagerTextField( context,
                     'termsOrWagerDescription'.tr(), 'wager.strk/'.tr(), 1000,
                     maxLine: 3),
                 verticalSpace(AppValues.height30),
-                buildStakeTextField('stake'.tr()),
+                buildStakeTextField(context, 'stake'.tr()),
                 verticalSpace(size.height * 0.06),
                 Container(
                   margin: EdgeInsets.only(
@@ -169,7 +168,7 @@ class CreateWagerScreen extends StatelessWidget {
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.black,
-                      backgroundColor: AppColors.buttonColor,
+                      backgroundColor: context.primaryButtonColor,
                       padding:
                           EdgeInsets.symmetric(vertical: AppValues.padding16),
                       shape: RoundedRectangleBorder(
@@ -192,16 +191,15 @@ class CreateWagerScreen extends StatelessWidget {
     );
   }
 
-  Column buildStakeTextField(String title) {
+  Column buildStakeTextField(BuildContext context, String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-              color: AppColors.blue950),
+          style: AppTheme.of(context).textSmallMedium.copyWith(
+          fontWeight: FontWeight.w600
+          )
         ),
         SizedBox(
           height: 5,
@@ -213,7 +211,7 @@ class CreateWagerScreen extends StatelessWidget {
             suffixText: "\$0",
             prefixIcon: Image.asset(AppIcons.snSymbol),
             filled: true,
-            fillColor: AppColors.grayCool300,
+            fillColor: context.textBoxTextColor,
             hintStyle: TextStyle(color: Colors.grey),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
@@ -228,7 +226,7 @@ class CreateWagerScreen extends StatelessWidget {
             Text(
               'youHave50.00Strk'.tr(),
               style: TextStyle(
-                color: AppColors.maxLineColor,
+                color: context.textHintColor,
               ),
             ),
           ],
@@ -237,18 +235,14 @@ class CreateWagerScreen extends StatelessWidget {
     );
   }
 
-  Column buildCreateWagerTextField(String title, String hintText, int maxLength,
+  Column buildCreateWagerTextField(BuildContext context, String title, String hintText, int maxLength,
       {int maxLine = 1}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
-            color: AppColors.blue950,
-          ),
+          style: AppTheme.of(context).textSmallMedium,
         ),
         SizedBox(
           height: 5,
@@ -260,7 +254,7 @@ class CreateWagerScreen extends StatelessWidget {
             return Text(
               '$currentLength/$maxLength',
               style: TextStyle(
-                color: AppColors.maxLineColor, // Customize text color
+                color: context.textHintColor, // Customize text color
               ),
             );
           },
@@ -268,7 +262,7 @@ class CreateWagerScreen extends StatelessWidget {
           maxLength: maxLength,
           decoration: InputDecoration(
             filled: true,
-            fillColor: AppColors.grayCool300,
+            fillColor: context.textBoxTextColor,
             hintText: hintText,
             hintStyle: TextStyle(color: Colors.grey),
             border: OutlineInputBorder(

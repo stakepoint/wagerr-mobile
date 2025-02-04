@@ -26,7 +26,7 @@ class InstalledWalletWidget extends ConsumerWidget {
     return Container(
       height: AppValues.height56,
       decoration: BoxDecoration(
-        color: AppColors.baseWhite,
+        color: context.containerColor,
         borderRadius: BorderRadius.circular(AppValues.radius16),
       ),
       child: Padding(
@@ -46,10 +46,10 @@ class InstalledWalletWidget extends ConsumerWidget {
               visible: isInstalled,
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.baseWhite,
+                  color: context.containerColor,
                   border: Border.all(
                       width: AppValues.width1,
-                      color: AppColors.grayCool200
+                      color: context.secondaryBackgroundColor
                   ),
                   borderRadius: BorderRadius.circular(AppValues.radius4),
                 ),

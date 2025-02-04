@@ -24,8 +24,8 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       automaticallyImplyLeading: false,
-      backgroundColor: context.secondaryTextColor,
-      foregroundColor: context.secondaryTextColor,
+      backgroundColor: context.primaryBackgroundColor,
+      foregroundColor: context.primaryBackgroundColor,
     );
   }
 

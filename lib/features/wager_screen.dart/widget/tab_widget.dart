@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 
@@ -18,20 +19,20 @@ class TabWidget extends StatelessWidget {
     return Container(
       height: 48,
       decoration: BoxDecoration(
-          color: AppColors.baseWhite, borderRadius: BorderRadius.circular(6)),
+          color: context.containerColor, borderRadius: BorderRadius.circular(6)),
       child: TabBar(
-          dividerColor: AppColors.baseWhite,
+          dividerColor: context.containerColor,
           controller: controller,
           tabs: tabs.map((title) => Tab(text: title)).toList(),
           indicator: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: AppColors.buttonInActiveColor,
+            color: context.primaryButtonColor,
           ),
           indicatorSize: TabBarIndicatorSize.tab,
-          labelColor: AppColors.blue950,
-          unselectedLabelColor: AppColors.grayCool400,
-          labelStyle: AppTheme.textRegularMedium,
-          unselectedLabelStyle: AppTheme.textRegularMedium,
+          labelColor: context.primaryTextColor,
+          unselectedLabelColor: context.textHintColor,
+          labelStyle: AppTheme.of(context).textRegularMedium,
+          unselectedLabelStyle: AppTheme.of(context).textRegularMedium,
           padding: const EdgeInsets.all(2)),
     );
   }

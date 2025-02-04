@@ -56,23 +56,23 @@ class HomeScreenBody extends ConsumerWidget {
             ? _mobileContractAddress(context)
             : _tabletContractAddress(context),
         verticalSpace(8),
-        _isMobile ? _mobileStarkAmount() : _tabletStarkAmount(context),
+        _isMobile ? _mobileStarkAmount(context) : _tabletStarkAmount(context),
         verticalSpace(16),
         _isMobile ? HomeAddAndWithdraw() : SizedBox(),
         _isMobile ? verticalSpace(48) : verticalSpace(40),
-        _isMobile ? _mobileNoWagger() : _tabletNoWagger(),
+        _isMobile ? _mobileNoWager(context) : _tabletNoWager(context),
       ],
     );
   }
 
-//----------------------------------------------- MOBILENOWAGGER ----------------------------------------------- //
+//----------------------------------------------- MOBILE_NO_WAGER ----------------------------------------------- //
 
-  Widget _mobileNoWagger() {
+  Widget _mobileNoWager(BuildContext context) {
     return Container(
       height: 81,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        color: AppColors.baseWhite,
+        color: context.containerColor,
       ),
       child: Row(
         spacing: 16,
@@ -83,7 +83,7 @@ class HomeScreenBody extends ConsumerWidget {
           Text(
             'nowagerscreatedyet'.tr(),
             style: AppTheme.of(context).bodyLarge16.copyWith(
-              color: AppColors.grayCool400,
+              color: context.textHintColor,
             ),
           ),
         ],
@@ -99,7 +99,7 @@ class HomeScreenBody extends ConsumerWidget {
       width: 696,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        color: AppColors.baseWhite,
+        color: context.containerColor,
       ),
       child: Column(
         spacing: 24,
@@ -109,7 +109,7 @@ class HomeScreenBody extends ConsumerWidget {
           Text(
             'nowagerscreatedyet'.tr(),
             style: AppTheme.of(context).textMediumNormal.copyWith(
-              color: AppColors.grayCool400,
+              color: context.textHintColor,
             ),
           ),
         ],
@@ -198,7 +198,7 @@ class HomeScreenBody extends ConsumerWidget {
         Text(
           'walletBalance'.tr(),
           style: AppTheme.of(context).bodyMedium14.copyWith(
-            color: AppColors.grayCool400,
+            color: context.textHintColor,
           ),
         ),
         Container(
@@ -206,7 +206,7 @@ class HomeScreenBody extends ConsumerWidget {
           width: 151,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: AppColors.baseWhite,
+            color: context.containerColor,
           ),
           child: Row(
             spacing: 7,
@@ -233,7 +233,7 @@ class HomeScreenBody extends ConsumerWidget {
         Text(
           'walletBalance'.tr(),
           style: AppTheme.of(context).bodyLarge16.copyWith(
-            color: AppColors.grayCool400,
+            color: context.textHintColor,
           ),
         ),
         Container(
@@ -241,7 +241,7 @@ class HomeScreenBody extends ConsumerWidget {
           width: 151,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: AppColors.baseWhite,
+            color: context.containerColor,
           ),
           child: Row(
             spacing: 7,

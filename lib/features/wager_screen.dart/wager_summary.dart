@@ -166,7 +166,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           width: double.infinity,
                           padding: EdgeInsets.all(AppValues.padding10),
                           decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.grayCool200),
+                            border: Border.all(color: context.secondaryBackgroundColor),
                             borderRadius:
                                 BorderRadius.circular(AppValues.radius16),
                             color: context.primaryBackgroundColor,
@@ -206,7 +206,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.black,
-                              backgroundColor: AppColors.buttonColor,
+                              backgroundColor: context.primaryButtonColor,
                               padding: EdgeInsets.symmetric(
                                   vertical: AppValues.padding16),
                               shape: RoundedRectangleBorder(
@@ -251,7 +251,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
             Text(
               title.tr(),
               style: AppTheme.of(context).textSmallMedium.copyWith(
-                color: AppColors.grayCool400,
+                color: context.textHintColor,
               ),
             ),
             SizedBox(
@@ -312,7 +312,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
         Text(
           title.tr(),
           style: AppTheme.of(context).textSmallMedium.copyWith(
-            color: AppColors.grayCool400,
+            color: context.textHintColor,
           ),
         ),
         SizedBox(

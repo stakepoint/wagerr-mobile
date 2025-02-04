@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
@@ -20,7 +21,7 @@ class FormattedTextFields extends StatefulWidget {
       labelColor,
       outLineBorderColor,
       focusBorderColor;
-  final bool? noBorder, autoFocus, obscureText, readOnly;
+  final bool? autoFocus, obscureText, readOnly;
   final Function(dynamic)? onChangedFunction;
   final Function? onTap, onEditingComplete;
   final List<TextInputFormatter> inputFormatters;
@@ -51,7 +52,6 @@ class FormattedTextFields extends StatefulWidget {
     this.textFieldMinLineSpan,
     this.containerColor,
     this.enableInteractiveSelection,
-    required this.noBorder,
     this.autoFocus,
     this.textInputAction,
     required this.inputFormatters,
@@ -133,15 +133,17 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                         children: [
                           TextSpan(
                             text: 'wager.strk/',
-                            style: TextStyle(color: AppColors.gray),
+                            style: TextStyle(
+                                color: context.textHintColor
+                            ),
                           ),
                           TextSpan(
                             text: '@',
-                            style: TextStyle(color: AppColors.black),
+                            style: TextStyle(color: context.textHintColor),
                           ),
                           TextSpan(
                             text: 'username',
-                            style: TextStyle(color: AppColors.gray),
+                            style: TextStyle(color: context.primaryTextColor),
                           ),
                         ],
                       ),
@@ -195,7 +197,7 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                         suffixIcon: widget.suffixIcon,
                         prefix: widget.prefix,
                         hintStyle: TextStyle(
-                            color: widget.hintColor ?? AppColors.gray,
+                            color: widget.hintColor ?? context.textHintColor,
                             fontSize: widget.hintFont ?? 14,
                             fontWeight:
                                 widget.hintFontWeight ?? FontWeight.normal),
@@ -203,27 +205,12 @@ class _FormattedTextFieldsState extends State<FormattedTextFields> {
                         prefixIconConstraints:
                             const BoxConstraints(minWidth: 0, minHeight: 0),
                         disabledBorder: OutlineInputBorder(
-                            borderSide: widget.noBorder == true
-                                ? BorderSide.none
-                                : BorderSide(
-                                    color: widget.outLineBorderColor ??
-                                        AppColors.gray,
-                                    width: 1.0,
-                                    style: widget.noBorder == true
-                                        ? BorderStyle.none
-                                        : BorderStyle.solid),
+                            borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(
                                 screenSize(context).calculatedWidth(
                                     width: widget.borderRadius ?? 8))),
                         border: OutlineInputBorder(
-                            borderSide: widget.noBorder == true
-                                ? BorderSide.none
-                                : BorderSide(
-                                    color: widget.outLineBorderColor ??
-                                        AppColors.gray,
-                                    style: widget.noBorder == true
-                                        ? BorderStyle.none
-                                        : BorderStyle.solid),
+                            borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(
                                 screenSize(context).calculatedWidth(
                                     width: widget.borderRadius ?? 8))),

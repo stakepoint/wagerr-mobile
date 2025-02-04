@@ -18,8 +18,8 @@ class NavigationNotifier extends StateNotifier<int> {
       case Routes.home_tablet:
         state = 0;
         break;
-      case Routes.wagger:
-      case Routes.wagger_tablet:
+      case Routes.wager:
+      case Routes.wager_tablet:
         state = 1;
         break;
       case Routes.wallet:

@@ -170,7 +170,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                               Text(
                                 'wager.strk/',
                                 style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                                  color: AppColors.gray,
+                                  color: context.textHintColor,
                                 ),
                               ),
                               Expanded(
@@ -182,10 +182,6 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                                     border: InputBorder.none,
                                     prefixText: '@',
                                     prefixStyle: AppTheme.of(context).bodyExtraLarge18,
-                                    hintText: 'username',
-                                    hintStyle: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                                      color: AppColors.grayCool100,
-                                    ),
                                     contentPadding: EdgeInsets.zero,
                                   ),
                                 ),

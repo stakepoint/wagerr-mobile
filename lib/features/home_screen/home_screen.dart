@@ -27,7 +27,7 @@ class HomeScreen extends ConsumerWidget {
         MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
       appBar: isMobile ? HomeScreenAppBar() : null,
-      backgroundColor: context.secondaryTextColor,
+      backgroundColor: context.primaryBackgroundColor,
       floatingActionButton:
           isMobile || isPortrait ? _floatingActionButton(context) : SizedBox(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -65,7 +65,7 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- FLOATINGACTIONBUTTON ----------------------------------------------- //
+//----------------------------------------------- FLOATING_ACTION_BUTTON ----------------------------------------------- //
 
   Widget _floatingActionButton(BuildContext context) {
     return GestureDetector(
@@ -76,7 +76,7 @@ class HomeScreen extends ConsumerWidget {
         height: 56,
         width: 160,
         decoration: BoxDecoration(
-          color: AppColors.green100,
+          color: context.primaryButtonColor,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(

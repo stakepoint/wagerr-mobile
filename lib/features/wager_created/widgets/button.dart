@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/utils/ui_widgets.dart';
 
@@ -30,7 +31,7 @@ Widget button(BuildContext context,
           elevation: noElevation ?? 4.0,
           alignment: align,
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: borderColor ?? AppColors.buttonColor),
+            side: BorderSide(color: borderColor ?? context.primaryButtonColor),
             borderRadius: BorderRadius.circular(
                 screenSize(context).calculatedHeight(height: radius)),
           ),

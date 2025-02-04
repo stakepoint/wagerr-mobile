@@ -102,10 +102,10 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          path: Routes.wagger_tablet,
+          path: Routes.wager_tablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: WagersScreen(),
-            routeName: Routes.wagger_tablet,
+            routeName: Routes.wager_tablet,
           ),
         ),
         GoRoute(
@@ -140,10 +140,10 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          path: Routes.wagger,
+          path: Routes.wager,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: WagersScreen(),
-            routeName: Routes.wagger,
+            routeName: Routes.wager,
           ),
         ),
         GoRoute(

@@ -1,17 +1,19 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/theme/app_colors.dart';
 
 class TextInputState {
+  final BuildContext context;
   final String text;
   final Color color;
 
-  TextInputState({required this.text, required this.color});
+  TextInputState({required this.context, required this.text, required this.color});
 }
 
 class TextInputNotifier extends StateNotifier<TextInputState> {
   TextInputNotifier()
-      : super(TextInputState(text: '', color: AppColors.buttonInActiveColor));
+      : super(TextInputState(context: state.context, text: '', color: AppColors.buttonInActiveColor));
 
   void updateText(String newText) {
     if (newText.length > 14) {
@@ -27,3 +29,4 @@ final textInputProvider =
     StateNotifierProvider<TextInputNotifier, TextInputState>((ref) {
   return TextInputNotifier();
 });
+*/

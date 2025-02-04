@@ -8,7 +8,7 @@ extension ThemeModeExtension on BuildContext {
   bool get isMobile => ScreenLayout.isMobile(this);
 
   Color get primaryBackgroundColor =>
-      isDarkMode ? AppColors.mono100 : AppColors.mono0;
+      isDarkMode ? AppColors.grayCool900 : AppColors.mono0;
 
   Color get secondaryBackgroundColor =>
       isDarkMode ? AppColors.mono100 : AppColors.mono20;
@@ -22,14 +22,29 @@ extension ThemeModeExtension on BuildContext {
   Color get secondaryTextColor =>
       isDarkMode ? AppColors.mono40 : AppColors.grayCool100;
 
+  Color get subTitleTextColor =>
+      isDarkMode ? AppColors.grayCool600 : AppColors.grayCool600;
+
+  Color get textBoxTextColor =>
+      isDarkMode ? AppColors.grayCool300 : AppColors.grayCool300;
+
   Color get dividerColor =>
       isDarkMode ? AppColors.mono80 : AppColors.dividerColour;
+
+  Color get containerColor =>
+      isDarkMode ? AppColors.gradient40 : AppColors.white;
+
+  Color get primaryButtonColor =>
+      isDarkMode ? AppColors.buttonColor : AppColors.buttonColor;
+
+  Color get textHintColor =>
+      isDarkMode ? AppColors.grayCool25 : AppColors.grayCool400;
 
   ThemeData get lightTheme => ThemeData.light().copyWith(
         scaffoldBackgroundColor: AppColors.mono0,
         colorScheme: Theme.of(this).colorScheme.copyWith(
               brightness: Brightness.light,
-              primary: AppColors.blueberry100,
+              primary: AppColors.primaryColor,
               error: AppColors.rambutan100,
             ),
         textTheme: Theme.of(this).textTheme.apply(
@@ -41,7 +56,7 @@ extension ThemeModeExtension on BuildContext {
         scaffoldBackgroundColor: AppColors.mono100,
         colorScheme: Theme.of(this).colorScheme.copyWith(
               brightness: Brightness.dark,
-              primary: AppColors.blueberry100,
+              primary: AppColors.primaryColor,
               error: AppColors.rambutan100,
             ),
         textTheme: Theme.of(this).textTheme.apply(
