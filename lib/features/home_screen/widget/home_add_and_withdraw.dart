@@ -1,9 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/features/home_screen/widget/home_action_button.dart';
-import 'package:starkwager/features/fund_wallet/widgets/fund_wallet_dialog.dart';
+part of '../../feature.dart';
 
 class HomeAddAndWithdraw extends ConsumerWidget {
   const HomeAddAndWithdraw({

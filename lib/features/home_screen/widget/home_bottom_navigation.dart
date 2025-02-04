@@ -1,7 +1,4 @@
-// ignore_for_file: deprecated_member_use
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:starkwager/theme/app_colors.dart';
+part of '../../feature.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
   final int currentIndex;

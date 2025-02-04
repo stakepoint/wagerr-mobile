@@ -1,14 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:starkwager/core/constants/app_values.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/wager_created/widgets/wager_profile_menu.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../../feature.dart';
 
-class WargerCreatedAppBar extends StatelessWidget
+class WagerCreatedAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  const WargerCreatedAppBar({super.key});
+  const WagerCreatedAppBar({super.key});
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -19,7 +13,7 @@ class WargerCreatedAppBar extends StatelessWidget
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            WargerProfileMenu(),
+            WagerProfileMenu(),
             horizontalSpace(AppValues.padding16),
             SvgPicture.asset(width: 25, height: 25, AppIcons.notificationIcon),
           ],

@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/features/connect_wallet/connect_wallet_screen.dart';
-import 'package:starkwager/features/profile/profile_setup_screen.dart';
-import 'package:starkwager/features/home_screen/home_screen.dart';
-import 'package:starkwager/features/home_screen/naviagtion.dart';
-import 'package:starkwager/features/home_screen/widget/home_screen_tablet_menu_bar.dart';
-import 'package:starkwager/features/profile_screen.dart/profile_screen.dart';
-import 'package:starkwager/features/wager_created/wager_created_screen.dart';
-import 'package:starkwager/features/wager_screen.dart/create_wager_screen.dart';
-import 'package:starkwager/features/wager_screen.dart/wager_summary.dart';
-import 'package:starkwager/features/wager_screen.dart/wagers_screen.dart';
-import 'package:starkwager/features/wallet_screen.dart/wallet_screen.dart';
 
+
+import '../features/feature.dart';
 import '../routing/routes.dart';
 
 class SlideRouteTransition extends CustomTransitionPage<void> {
