@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/assets.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/features/wager_screen.dart/provider/navigation_provider.dart';
 import 'package:starkwager/routing/routes.dart';
 import 'package:starkwager/theme/app_colors.dart';
@@ -44,7 +45,7 @@ class _HomeScreenTabletMenuBarState
         route = Routes.home_tablet;
         break;
       case 1:
-        route = Routes.wagger_tablet;
+        route = Routes.wager_tablet;
         break;
       case 2:
         route = Routes.wallet_tablet;
@@ -101,7 +102,7 @@ class _HomeScreenTabletMenuBarState
         height: 56,
         width: 160,
         decoration: BoxDecoration(
-          color: AppColors.green100,
+          color: context.primaryButtonColor,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
@@ -118,9 +119,7 @@ class _HomeScreenTabletMenuBarState
             const SizedBox(width: 12),
             Text(
               'newWager'.tr(),
-              style: AppTheme.textMediumMedium.copyWith(
-                color: AppColors.blue950,
-              ),
+              style: AppTheme.of(context).textMediumMedium
             ),
           ],
         ),
@@ -188,7 +187,7 @@ class _HomeScreenTabletMenuBarState
             width: 64,
             decoration: BoxDecoration(
               color: isSelected
-                  ? AppColors.grayCool400.withOpacity(0.1)
+                  ? context.textHintColor.withOpacity(0.1)
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(4),
             ),
@@ -203,7 +202,7 @@ class _HomeScreenTabletMenuBarState
                 child: SvgPicture.asset(
                   icon,
                   color: isSelected
-                      ? AppColors.green100
+                      ? context.primaryButtonColor
                       : AppColors.grayneutral500,
                 ),
               ),
@@ -213,7 +212,7 @@ class _HomeScreenTabletMenuBarState
           Text(
             label,
             style: TextStyle(
-              color: isSelected ? AppColors.green100 : AppColors.grayneutral500,
+              color: isSelected ? context.primaryButtonColor : AppColors.grayneutral500,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),

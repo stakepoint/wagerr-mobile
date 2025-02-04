@@ -58,9 +58,7 @@ class _MobileBodyState extends ConsumerState<MobileBody>
                       children: [
                         Text(
                           'WAGERS'.tr(),
-                          style: AppTheme.headLineLarge32.copyWith(
-                            color: AppColors.blue950,
-                          ),
+                          style: AppTheme.of(context).headLineLarge32
                         ),
                         Row(
                           children: [
@@ -78,15 +76,11 @@ class _MobileBodyState extends ConsumerState<MobileBody>
                   )
                 : Text(
                     'WAGERS'.tr(),
-                    style: AppTheme.headLineLarge32.copyWith(
-                      color: AppColors.blue950,
-                    ),
+                    style: AppTheme.of(context).headLineLarge32
                   )
             : Text(
                 'WAGERS'.tr(),
-                style: AppTheme.headLineLarge32.copyWith(
-                  color: AppColors.blue950,
-                ),
+                style: AppTheme.of(context).headLineLarge32
               ),
 
 //----------------------------------------------- TAB BAR ----------------------------------------------- //

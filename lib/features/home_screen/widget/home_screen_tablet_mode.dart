@@ -31,9 +31,7 @@ class HomeScreenTabletMode extends ConsumerWidget {
           children: [
             Text(
               'Home',
-              style: AppTheme.headLineLarge32.copyWith(
-                color: AppColors.blue950,
-              ),
+              style: AppTheme.of(context).headLineLarge32
             ),
             Row(
               children: [

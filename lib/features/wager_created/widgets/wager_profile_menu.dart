@@ -31,8 +31,7 @@ Widget _copyUsername(BuildContext context) => Container(
         children: [
           Text(
             '@noyi24_7',
-            style: AppTheme.textSmallMedium
-                .copyWith(color: context.primaryTextColor),
+            style: AppTheme.of(context).textSmallMedium
           ),
           SvgPicture.asset(
             AppIcons.copyIcon,

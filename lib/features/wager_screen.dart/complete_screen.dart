@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starkwager/theme/app_colors.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/theme/app_theme.dart';
 
 class CompleteScreen extends ConsumerWidget {
@@ -15,8 +15,8 @@ class CompleteScreen extends ConsumerWidget {
       children: [
         Text(
           'nowagerscreatedyet'.tr(),
-          style: AppTheme.titleSmall16.copyWith(
-            color: AppColors.grayCool400,
+          style: AppTheme.of(context).bodyLarge16.copyWith(
+            color: context.textHintColor,
           ),
         ),
       ],

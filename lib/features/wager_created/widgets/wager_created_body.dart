@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/assets.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/features/wager_created/provider/text_input_state.dart';
 import 'package:starkwager/features/wager_created/widgets/general_text_form_field.dart';
 import 'package:starkwager/routing/routes.dart';
@@ -44,7 +45,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
     final _isMobile = ScreenLayout.isMobile(context);
 
     return Consumer(builder: (context, ref, child) {
-      final textInputState = ref.watch(textInputProvider);
+      //final textInputState = ref.watch(textInputProvider);
       return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
         child: SingleChildScrollView(
@@ -53,18 +54,16 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
             children: [
               Text(
                 'wagerCreated'.tr(),
-                style: AppTheme.headLineLarge32.copyWith(
-                    color: AppColors.blue950,
+                style: AppTheme.of(context).headLineLarge32.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: 32),
               ),
               verticalSpace(8),
               Text(
                 'sendWagerInvite'.tr(),
-                style: AppTheme.textMediumNormal.copyWith(
-                    color: AppColors.grayCool800,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16),
+                style: AppTheme.of(context).textMediumNormal.copyWith(
+                  color: context.subTitleTextColor
+                )
               ),
               verticalSpace(22),
               Container(
@@ -79,7 +78,6 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                 textFieldHint: 'wager.strk/@username',
                 keyInputType: TextInputType.text,
                 containerColor: AppColors.grayCool200,
-                noBorder: true,
                 focusNode: _usernameTextControllerFocusNode,
                 inputFormatters: [],
                 onChangedFunction: (value) {
@@ -100,8 +98,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
               verticalSpace(20),
               Text(
                 'publicInvite'.tr(),
-                style: AppTheme.textMediumNormal.copyWith(
-                    color: AppColors.blue950,
+                style: AppTheme.of(context).textMediumNormal.copyWith(
                     fontWeight: FontWeight.w500,
                     fontSize: 14),
               ),
@@ -110,7 +107,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                 height: 72,
                 padding: EdgeInsets.only(left: 18),
                 decoration: BoxDecoration(
-                  color: AppColors.grayCool100,
+                  color: context.secondaryBackgroundColor,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
@@ -120,8 +117,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'https://link.wager.strk/WEpl',
-                        style: AppTheme.textRegularMedium.copyWith(
-                            color: AppColors.blue950,
+                        style: AppTheme.of(context).textRegularMedium.copyWith(
                             fontWeight: FontWeight.w500,
                             fontSize: 16),
                       ),
@@ -142,7 +138,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                         width: 72,
                         padding: EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                          color: AppColors.buttonColor,
+                          color: context.primaryButtonColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: SvgPicture.asset(
@@ -156,17 +152,19 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
               _isMobile ? verticalSpace(80) : verticalSpace(24),
               _button(
                   title: 'sendWager'.tr(),
-                  buttonColor: textInputState.color,
-                  textColor: textInputState.text,
+                  buttonColor: context.primaryButtonColor,
+                  textColor: context.primaryTextColor,
                   onPressed: () {},
-                  textInputState: textInputState),
+
+              ),
               verticalSpace(12),
               _button(
                   title: 'backHome'.tr(),
-                  buttonColor: AppColors.white,
-                  textColor: AppColors.blue950,
-                  onPressed: () => context.go(Routes.create_wager_summary),
-                  textInputState: textInputState),
+                  buttonColor: context.containerColor,
+                  textColor: context.primaryTextColor,
+                  onPressed: () => context.go(Routes.profileSetup),
+
+              ),
             ],
           ),
         ),
@@ -177,7 +175,6 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
   _button(
       {String? title,
       required Function onPressed,
-      required textInputState,
       buttonColor,
       textColor}) {
     return GestureDetector(
@@ -187,13 +184,12 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
         alignment: Alignment.center,
         width: screenSize(context).width,
         decoration: BoxDecoration(
-          color: buttonColor ?? AppColors.blue950,
+          color: buttonColor ?? context.primaryTextColor,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Text(
           title ?? 'No Title',
-          style: AppTheme.textRegularMedium.copyWith(
-              color: AppColors.blue950,
+          style: AppTheme.of(context).textRegularMedium.copyWith(
               fontWeight: FontWeight.w500,
               fontSize: 16),
         ),

@@ -25,7 +25,7 @@ class ProfileMenu extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- COPYUSERNAME ----------------------------------------------- //
+//----------------------------------------------- COPY_USERNAME ----------------------------------------------- //
 
   Widget _copyUserName(bool _isMobile, BuildContext context) {
     return Container(
@@ -33,7 +33,7 @@ class ProfileMenu extends ConsumerWidget {
       width: _isMobile ? 104 : 117,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: AppColors.baseWhite,
+        color: context.containerColor,
       ),
       child: _isMobile
           ? Row(
@@ -42,8 +42,7 @@ class ProfileMenu extends ConsumerWidget {
               children: [
                 Text(
                   '@noyi24_7',
-                  style: AppTheme.textSmallMedium
-                      .copyWith(color: context.primaryTextColor),
+                  style: AppTheme.of(context).textSmallMedium
                 ),
                 SvgPicture.asset(AppIcons.copyIcon)
               ],
@@ -54,8 +53,7 @@ class ProfileMenu extends ConsumerWidget {
               children: [
                 Text(
                   '@noyi24_7',
-                  style: AppTheme.textRegularMedium
-                      .copyWith(color: context.primaryTextColor),
+                  style: AppTheme.of(context).textRegularMedium
                 ),
                 SvgPicture.asset(
                   AppIcons.copyIcon,
@@ -67,7 +65,7 @@ class ProfileMenu extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- USERPROFILEIMAGE ----------------------------------------------- //
+//----------------------------------------------- USER_PROFILE_IMAGE ----------------------------------------------- //
 
   Widget _userProfileImage(bool _isMobile) {
     return Container(

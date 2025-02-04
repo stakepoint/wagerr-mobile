@@ -67,16 +67,14 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                                 text: isMobile 
                                   ? 'setupYourProfile'.tr() + '\n'  
                                   : 'setupYourProfile'.tr() + ' ',  
-                                style: AppTheme.headLineLarge32.copyWith(
-                                  color: context.primaryTextColor,
+                                style: AppTheme.of(context).headLineLarge32.copyWith(
                                   height: 1.0,
                                 ),
                               ),
                               TextSpan(
                                 text: 'PROFILE'.tr(),
-                                style: AppTheme.headLineLarge32.copyWith(
-                                  color: context.primaryTextColor,
-                                  height: isMobile ? 1.2 : 1.0,  
+                                style: AppTheme.of(context).headLineLarge32.copyWith(
+                                  height: isMobile ? 1.2 : 1.0,
                                 ),
                               ),
                             ],
@@ -89,9 +87,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                             : 'Choose your picture and a unique username other users can use to invite you to wagers'
                                 .split('\n')
                                 .join(' '),
-                          style: AppTheme.titleMedium18.copyWith(
-                            color: context.primaryTextColor,
-                          ),
+                          style: AppTheme.of(context).bodyExtraLarge18
                         ),
                         Container(
                           height: 1,
@@ -173,27 +169,19 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                             children: [
                               Text(
                                 'wager.strk/',
-                                style: AppTheme.titleMedium18.copyWith(
-                                  color: AppColors.gray,
+                                style: AppTheme.of(context).bodyExtraLarge18.copyWith(
+                                  color: context.textHintColor,
                                 ),
                               ),
                               Expanded(
                                 child: TextField(
                                   controller: _usernameController,
                                   onChanged: _checkUsername,
-                                  style: AppTheme.titleMedium18.copyWith(
-                                    color: AppColors.blue950,
-                                  ),
+                                  style: AppTheme.of(context).bodyExtraLarge18,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     prefixText: '@',
-                                    prefixStyle: AppTheme.titleMedium18.copyWith(
-                                      color: AppColors.blue950,
-                                    ),
-                                    hintText: 'username',
-                                    hintStyle: AppTheme.titleMedium18.copyWith(
-                                      color: AppColors.grayCool100,
-                                    ),
+                                    prefixStyle: AppTheme.of(context).bodyExtraLarge18,
                                     contentPadding: EdgeInsets.zero,
                                   ),
                                 ),
@@ -208,7 +196,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                               padding: const EdgeInsets.only(top: 8, right: 8),
                               child: Text(
                                 _isUsernameAvailable ? 'usernameAvailable'.tr() : 'usernameUnavailable'.tr(),
-                                style: AppTheme.titleSmall16.copyWith(
+                                style: AppTheme.of(context).bodyLarge16.copyWith(
                                   color: _isUsernameAvailable ? Colors.green : Colors.red,
                                 ),
                               ),
@@ -237,7 +225,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                               ),
                               child: Text(
                                 'continue'.tr(),
-                                style: AppTheme.titleMedium18.copyWith(
+                                style: AppTheme.of(context).bodyExtraLarge18.copyWith(
                                   color: Colors.black,
                                 ),
                               ),

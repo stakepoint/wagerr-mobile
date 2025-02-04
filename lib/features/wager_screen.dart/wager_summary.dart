@@ -43,7 +43,7 @@ class WagerSummaryScreen extends ConsumerWidget {
                     ),
                     Text(
                       !context.isMobile ? 'wagerSummary'.tr() : '',
-                      style: AppTheme.headLineLarge32,
+                      style: AppTheme.of(context).headLineLarge32,
                     ),
                   ],
                 ),
@@ -101,8 +101,7 @@ class WagerSummaryScreen extends ConsumerWidget {
                         if (context.isMobile)
                           Text(
                             'wagerSummary'.tr(),
-                            style: AppTheme.headLineLarge32
-                                .copyWith(color: context.primaryTextColor),
+                            style: AppTheme.of(context).headLineLarge32,
                           ),
                         verticalSpace(AppValues.height20),
                         if (context.isMobile)
@@ -167,7 +166,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           width: double.infinity,
                           padding: EdgeInsets.all(AppValues.padding10),
                           decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.grayCool200),
+                            border: Border.all(color: context.secondaryBackgroundColor),
                             borderRadius:
                                 BorderRadius.circular(AppValues.radius16),
                             color: context.primaryBackgroundColor,
@@ -188,9 +187,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                                 child: Text(
                                   'Always keep verifiable evidence of your wagers for dispute resolution purposes.'
                                       .tr(),
-                                  style: AppTheme.textSmallMedium.copyWith(
-                                    color: AppColors.blue950,
-                                  ),
+                                  style: AppTheme.of(context).textSmallMedium,
                                   softWrap: true,
                                   maxLines: null,
                                   overflow: TextOverflow.visible,
@@ -209,7 +206,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.black,
-                              backgroundColor: AppColors.buttonColor,
+                              backgroundColor: context.primaryButtonColor,
                               padding: EdgeInsets.symmetric(
                                   vertical: AppValues.padding16),
                               shape: RoundedRectangleBorder(
@@ -218,7 +215,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                             ),
                             child: Text(
                               "Create Wager".tr(),
-                              style: AppTheme.titleMedium18.copyWith(
+                              style: AppTheme.of(context).bodyExtraLarge18.copyWith(
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -253,8 +250,8 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
           children: [
             Text(
               title.tr(),
-              style: AppTheme.textSmallMedium.copyWith(
-                color: AppColors.grayCool400,
+              style: AppTheme.of(context).textSmallMedium.copyWith(
+                color: context.textHintColor,
               ),
             ),
             SizedBox(
@@ -283,9 +280,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                               child: SingleChildScrollView(
                                 child: Text(
                                   item.tr(),
-                                  style: AppTheme.textSmallMedium.copyWith(
-                                    color: AppColors.blue950,
-                                  ),
+                                  style: AppTheme.of(context).textSmallMedium,
                                   softWrap: true,
                                   maxLines: null,
                                   overflow: TextOverflow.visible,
@@ -316,8 +311,8 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
       children: [
         Text(
           title.tr(),
-          style: AppTheme.textSmallMedium.copyWith(
-            color: AppColors.grayCool400,
+          style: AppTheme.of(context).textSmallMedium.copyWith(
+            color: context.textHintColor,
           ),
         ),
         SizedBox(
@@ -345,9 +340,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           child: SingleChildScrollView(
                             child: Text(
                               wagerDescription.tr(),
-                              style: AppTheme.textSmallMedium.copyWith(
-                                color: AppColors.blue950,
-                              ),
+                              style: AppTheme.of(context).textSmallMedium,
                               softWrap: true,
                               maxLines: null,
                               overflow: TextOverflow.visible,
@@ -363,9 +356,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                     child: SingleChildScrollView(
                       child: Text(
                         wagerDescription.tr(),
-                        style: AppTheme.textSmallMedium.copyWith(
-                          color: AppColors.blue950,
-                        ),
+                        style: AppTheme.of(context).textSmallMedium,
                         softWrap: true,
                         maxLines: null,
                         overflow: TextOverflow.visible,
@@ -420,9 +411,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                 ),
                 Text(
                   '$strkNumber Strk each'.tr(),
-                  style: AppTheme.textSmallMedium.copyWith(
-                    color: AppColors.blue950,
-                  ),
+                  style: AppTheme.of(context).textSmallMedium
                 ),
               ],
             ),
@@ -440,9 +429,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                   Text(
                     user,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTheme.titleTiny12.copyWith(
-                      color: AppColors.blue950,
-                    ),
+                    style: AppTheme.of(context).bodySmall12,
                   ),
                 ],
               ),
@@ -451,14 +438,11 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                   children: [
                     Text(
                       'one-on-one'.tr(),
-                      style: AppTheme.titleTiny12.copyWith(
-                        color: AppColors.blue950,
-                      ),
+                      style: AppTheme.of(context).bodySmall12
                     ),
                     Text(
                       'VS',
-                      style: AppTheme.headLineLarge32.copyWith(
-                        color: AppColors.blue950,
+                      style: AppTheme.of(context).headLineLarge32.copyWith(
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.w700,
                       ),
@@ -473,9 +457,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                   Text(
                     opponent,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTheme.titleTiny12.copyWith(
-                      color: AppColors.blue950,
-                    ),
+                    style: AppTheme.of(context).bodySmall12
                   ),
                 ],
               ),

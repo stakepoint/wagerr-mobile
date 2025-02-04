@@ -26,7 +26,7 @@ class InstalledWalletWidget extends ConsumerWidget {
     return Container(
       height: AppValues.height56,
       decoration: BoxDecoration(
-        color: AppColors.baseWhite,
+        color: context.containerColor,
         borderRadius: BorderRadius.circular(AppValues.radius16),
       ),
       child: Padding(
@@ -38,18 +38,18 @@ class InstalledWalletWidget extends ConsumerWidget {
             horizontalSpace(AppValues.padding10),
             Text(
               isInstalled ? title : '${'install'.tr()} $title',
-              style: AppTheme.titleMedium18.copyWith(
-                  color: context.primaryTextColor, fontWeight: FontWeight.w500),
+              style: AppTheme.of(context).bodyExtraLarge18.copyWith(
+                  fontWeight: FontWeight.w500),
             ),
             Spacer(),
             Visibility(
               visible: isInstalled,
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.baseWhite,
+                  color: context.containerColor,
                   border: Border.all(
                       width: AppValues.width1,
-                      color: AppColors.grayCool200
+                      color: context.secondaryBackgroundColor
                   ),
                   borderRadius: BorderRadius.circular(AppValues.radius4),
                 ),
@@ -57,8 +57,7 @@ class InstalledWalletWidget extends ConsumerWidget {
                   padding: const EdgeInsets.all(AppValues.padding8),
                   child: Text(
                     'installed'.tr(),
-                    style: AppTheme.bodySmall12.copyWith(
-                        color: context.primaryTextColor,
+                    style: AppTheme.of(context).bodySmall12.copyWith(
                         fontWeight: FontWeight.w600),
                   ),
                 ),

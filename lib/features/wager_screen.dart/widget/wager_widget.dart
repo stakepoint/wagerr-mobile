@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,7 +22,7 @@ class WagerWidget extends ConsumerWidget {
       width: _isMobile ? 343 : 696,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: AppColors.baseWhite,
+        color: context.containerColor,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,14 +36,14 @@ class WagerWidget extends ConsumerWidget {
               _isMobile
                   ? Text(
                       'inProgress'.tr(),
-                      style: AppTheme.bodyMedium14.copyWith(
-                        color: AppColors.grayCool400,
+                      style: AppTheme.of(context).bodyMedium14.copyWith(
+                        color: context.textHintColor,
                       ),
                     )
                   : Text(
                       'inProgress'.tr(),
-                      style: AppTheme.bodyLarge16.copyWith(
-                        color: AppColors.grayCool400,
+                      style: AppTheme.of(context).bodyLarge16.copyWith(
+                        color: context.textHintColor,
                       ),
                     ),
             ],
@@ -57,17 +55,13 @@ class WagerWidget extends ConsumerWidget {
                   child: Text(
                     "Will Bitcoin Hit \$100k Before January 31, 2025?",
                     textAlign: TextAlign.center,
-                    style: AppTheme.textRegularMedium.copyWith(
-                      color: AppColors.blue950,
-                    ),
+                    style: AppTheme.of(context).textRegularMedium
                   ),
                 )
               : Text(
                   "Will Bitcoin Hit \$100k Before January 31, 2025?",
                   textAlign: TextAlign.center,
-                  style: AppTheme.textMediumMedium.copyWith(
-                    color: AppColors.blue950,
-                  ),
+                  style: AppTheme.of(context).textMediumMedium
                 ),
           verticalSpace(12),
           Container(
@@ -75,7 +69,7 @@ class WagerWidget extends ConsumerWidget {
             width: 116,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(1000),
-              color: AppColors.grayCool100,
+              color: context.secondaryBackgroundColor,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -89,9 +83,7 @@ class WagerWidget extends ConsumerWidget {
                   horizontalSpace(2.5),
                   Text(
                     "5 Strk each",
-                    style: AppTheme.textSmallMedium.copyWith(
-                      color: AppColors.blue950,
-                    ),
+                    style: AppTheme.of(context).textSmallMedium
                   ),
                 ],
               ),
@@ -123,15 +115,11 @@ class WagerWidget extends ConsumerWidget {
         _isMobile
             ? Text(
                 "oneOnOne".tr(),
-                style: AppTheme.textTinyNormal.copyWith(
-                  color: AppColors.blue950,
-                ),
+                style: AppTheme.textTinyNormal
               )
             : Text(
                 "oneOnOne".tr(),
-                style: AppTheme.bodyMedium14.copyWith(
-                  color: AppColors.blue950,
-                ),
+                style: AppTheme.of(context).bodyMedium14
               ),
         verticalSpace(10),
         SvgPicture.asset(AppIcons.vsIcon)
@@ -162,9 +150,8 @@ class WagerWidget extends ConsumerWidget {
               )
             : Text(
                 '@noyi24_7',
-                style: AppTheme.bodyMedium14
-                    .copyWith(color: context.primaryTextColor),
-              ),
+                style: AppTheme.of(context).bodyMedium14
+        ),
       ],
     );
   }

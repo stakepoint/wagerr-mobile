@@ -15,7 +15,7 @@ class CustomBottomNavigation extends StatelessWidget {
     Key? key,
     required this.currentIndex,
     this.isVertical = false,
-    this.selectedColor = AppColors.green100,
+    required this.selectedColor,
     this.unselectedColor = AppColors.grayneutral500,
     required this.items,
     required this.onIndexChanged,

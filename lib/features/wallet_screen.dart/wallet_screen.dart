@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/core/constants/app_values.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/theme/app_colors.dart';
 import 'package:starkwager/theme/app_theme.dart';
 
 class WalletScreen extends ConsumerWidget {
@@ -28,9 +27,7 @@ class WalletScreen extends ConsumerWidget {
                         children: [
                           Text(
                             "Wallet Screen",
-                            style: AppTheme.titleSmall16.copyWith(
-                              color: AppColors.blue950,
-                            ),
+                            style: AppTheme.of(context).bodyLarge16
                           ),
                         ],
                       ),
@@ -43,9 +40,7 @@ class WalletScreen extends ConsumerWidget {
                       children: [
                         Text(
                           "Wallet Screen",
-                          style: AppTheme.titleSmall16.copyWith(
-                            color: AppColors.blue950,
-                          ),
+                          style: AppTheme.of(context).bodyLarge16
                         ),
                       ],
                     ),
