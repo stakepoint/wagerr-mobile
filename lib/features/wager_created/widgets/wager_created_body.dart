@@ -1,7 +1,7 @@
 part of '../../feature.dart';
 
 class WagerCreatedBody extends ConsumerStatefulWidget {
-  WagerCreatedBody({super.key});
+  const WagerCreatedBody({super.key});
 
   @override
   ConsumerState<WagerCreatedBody> createState() => _AccountCreatedBodyState();
@@ -28,10 +28,9 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
 
   @override
   Widget build(BuildContext context) {
-    final _isMobile = ScreenLayout.isMobile(context);
+    final isMobile = ScreenLayout.isMobile(context);
 
     return Consumer(builder: (context, ref, child) {
-      //final textInputState = ref.watch(textInputProvider);
       return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
         child: SingleChildScrollView(
@@ -132,7 +131,7 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
                   ],
                 ),
               ),
-              _isMobile ? verticalSpace(80) : verticalSpace(24),
+              isMobile ? verticalSpace(80) : verticalSpace(24),
               _button(
                 title: 'sendWager'.tr(),
                 buttonColor: context.primaryButtonColor,

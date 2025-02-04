@@ -29,19 +29,19 @@ class _HomeScreenTabletMenuBarState
     String route;
     switch (index) {
       case 0:
-        route = Routes.home_tablet;
+        route = Routes.homeTablet;
         break;
       case 1:
-        route = Routes.wager_tablet;
+        route = Routes.wagerTablet;
         break;
       case 2:
-        route = Routes.wallet_tablet;
+        route = Routes.walletTablet;
         break;
       case 3:
-        route = Routes.profile_tablet;
+        route = Routes.profileTablet;
         break;
       default:
-        route = Routes.home_tablet;
+        route = Routes.homeTablet;
     }
 
     ref.read(navigationStateProvider.notifier).updateIndex(index);
@@ -83,7 +83,7 @@ class _HomeScreenTabletMenuBarState
   Widget _buildNewWagerButton() {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Routes.create_wager);
+        GoRouter.of(context).push(Routes.createWager);
       },
       child: Container(
         height: 56,
@@ -93,7 +93,7 @@ class _HomeScreenTabletMenuBarState
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -171,7 +171,7 @@ class _HomeScreenTabletMenuBarState
             width: 64,
             decoration: BoxDecoration(
               color: isSelected
-                  ? context.textHintColor.withOpacity(0.1)
+                  ? context.textHintColor.withValues(alpha: 0.1)
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(4),
             ),
@@ -185,9 +185,11 @@ class _HomeScreenTabletMenuBarState
               child: Center(
                 child: SvgPicture.asset(
                   icon,
-                  color: isSelected
-                      ? context.primaryButtonColor
-                      : AppColors.grayneutral500,
+                  colorFilter: ColorFilter.mode(
+                      isSelected ? context.primaryButtonColor
+                          : AppColors.grayneutral500,
+                      BlendMode.srcIn
+                  ),
                 ),
               ),
             ),

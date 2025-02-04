@@ -47,26 +47,26 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
-      path: Routes.create_wager,
+      path: Routes.createWager,
       pageBuilder: (context, state) => SlideRouteTransition(
         child: CreateWagerScreen(),
-        routeName: Routes.create_wager,
+        routeName: Routes.createWager,
       ),
     ),
 
     GoRoute(
-      path: Routes.create_wager_summary,
+      path: Routes.createWagerSummary,
       pageBuilder: (context, state) => SlideRouteTransition(
         child: WagerSummaryScreen(),
-        routeName: Routes.create_wager_summary,
+        routeName: Routes.createWagerSummary,
       ),
     ),
 
     GoRoute(
-      path: Routes.wager_created,
+      path: Routes.wagerCreated,
       pageBuilder: (context, state) => SlideRouteTransition(
         child: WagerCreatedScreen(),
-        routeName: Routes.wager_created,
+        routeName: Routes.wagerCreated,
       ),
     ),
 
@@ -85,31 +85,31 @@ final GoRouter router = GoRouter(
       },
       routes: [
         GoRoute(
-          path: Routes.home_tablet,
+          path: Routes.homeTablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: HomeScreen(),
-            routeName: Routes.home_tablet,
+            routeName: Routes.homeTablet,
           ),
         ),
         GoRoute(
-          path: Routes.wager_tablet,
+          path: Routes.wagerTablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: WagersScreen(),
-            routeName: Routes.wager_tablet,
+            routeName: Routes.wagerTablet,
           ),
         ),
         GoRoute(
-          path: Routes.wallet_tablet,
+          path: Routes.walletTablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: WalletScreen(),
-            routeName: Routes.wallet_tablet,
+            routeName: Routes.walletTablet,
           ),
         ),
         GoRoute(
-          path: Routes.profile_tablet,
+          path: Routes.profileTablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: ProfileScreen(),
-            routeName: Routes.profile_tablet,
+            routeName: Routes.profileTablet,
           ),
         ),
       ],

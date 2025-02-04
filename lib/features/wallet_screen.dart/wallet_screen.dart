@@ -1,7 +1,7 @@
 part of '../feature.dart';
 
 class WalletScreen extends ConsumerWidget {
-  WalletScreen({super.key});
+  const WalletScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

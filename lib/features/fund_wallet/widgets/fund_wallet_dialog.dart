@@ -13,7 +13,7 @@ class CurrencyTextInputFormatter extends TextInputFormatter {
       );
     }
 
-    text = "\$" + text;
+    text = "\$$text";
 
     return TextEditingValue(
       text: text,
@@ -28,7 +28,7 @@ TextEditingValue formatEditUpdate(
   String text = newValue.text;
 
   if (!text.startsWith("\$")) {
-    text = "\$" + text.replaceAll("\$", "");
+    text = "\$${text.replaceAll("\$", "")}";
   }
 
   return TextEditingValue(
@@ -42,10 +42,10 @@ class FundWalletDialog extends StatefulWidget {
   final VoidCallback? onClose;
 
   const FundWalletDialog({
-    Key? key,
+    super.key,
     this.onFund,
     this.onClose,
-  }) : super(key: key);
+  });
 
   @override
   State<FundWalletDialog> createState() => _FundWalletDialogState();

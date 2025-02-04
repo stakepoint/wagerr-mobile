@@ -1,7 +1,7 @@
 part of '../feature.dart';
 
 class ProfileScreen extends ConsumerWidget {
-  ProfileScreen({super.key});
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

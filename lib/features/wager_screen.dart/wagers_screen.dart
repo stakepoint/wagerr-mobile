@@ -70,7 +70,7 @@ class WagersScreen extends ConsumerWidget {
   Widget _floatingActionButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Routes.create_wager);
+        GoRouter.of(context).push(Routes.createWager);
       },
       child: Container(
         height: 56,
@@ -80,7 +80,7 @@ class WagersScreen extends ConsumerWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 8,
               offset: Offset(0, 4),
             ),

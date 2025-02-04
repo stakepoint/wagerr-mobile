@@ -7,27 +7,27 @@ class ProfileMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _isMobile = ScreenLayout.isMobile(context);
+    final isMobile = ScreenLayout.isMobile(context);
     return Row(
       children: [
-        _userProfileImage(_isMobile),
+        _userProfileImage(isMobile),
         horizontalSpace(12),
-        _copyUserName(_isMobile, context)
+        _copyUserName(isMobile, context)
       ],
     );
   }
 
 //----------------------------------------------- COPY_USERNAME ----------------------------------------------- //
 
-  Widget _copyUserName(bool _isMobile, BuildContext context) {
+  Widget _copyUserName(bool isMobile, BuildContext context) {
     return Container(
-      height: _isMobile ? 26 : 29,
-      width: _isMobile ? 104 : 117,
+      height: isMobile ? 26 : 29,
+      width: isMobile ? 104 : 117,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: context.containerColor,
       ),
-      child: _isMobile
+      child: isMobile
           ? Row(
               spacing: 6,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -54,10 +54,10 @@ class ProfileMenu extends ConsumerWidget {
 
 //----------------------------------------------- USER_PROFILE_IMAGE ----------------------------------------------- //
 
-  Widget _userProfileImage(bool _isMobile) {
+  Widget _userProfileImage(bool isMobile) {
     return Container(
-      height: _isMobile ? 48 : 64,
-      width: _isMobile ? 48 : 64,
+      height: isMobile ? 48 : 64,
+      width: isMobile ? 48 : 64,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
       ),

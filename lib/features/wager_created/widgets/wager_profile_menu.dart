@@ -16,7 +16,7 @@ class WagerProfileMenu extends ConsumerWidget {
 }
 
 // COPY USERNAME
-Widget _copyUsername(BuildContext context) => Container(
+Widget _copyUsername(BuildContext context) => SizedBox(
       height: 29,
       width: 116,
       child: Row(

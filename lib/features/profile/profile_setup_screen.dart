@@ -51,8 +51,8 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                             children: [
                               TextSpan(
                                 text: isMobile
-                                    ? 'setupYourProfile'.tr() + '\n'
-                                    : 'setupYourProfile'.tr() + ' ',
+                                    ? '${'setupYourProfile'.tr()}\n'
+                                    : '${'setupYourProfile'.tr()} ',
                                 style: AppTheme.of(context)
                                     .headLineLarge32
                                     .copyWith(
@@ -134,7 +134,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                                       borderRadius: BorderRadius.circular(16),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Colors.black.withOpacity(0.1),
+                                          color: Colors.black.withValues(alpha: 0.1),
                                           blurRadius: 4,
                                           offset: const Offset(0, 2),
                                         ),
@@ -214,7 +214,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                                       GoRouter.of(context).go(Routes.home);
                                     } else {
                                       GoRouter.of(context)
-                                          .go(Routes.home_tablet);
+                                          .go(Routes.homeTablet);
                                     }
                                   },
                             style: ElevatedButton.styleFrom(

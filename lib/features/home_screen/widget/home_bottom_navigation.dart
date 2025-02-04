@@ -9,14 +9,14 @@ class CustomBottomNavigation extends StatelessWidget {
   final Function(int) onIndexChanged;
 
   const CustomBottomNavigation({
-    Key? key,
+    super.key,
     required this.currentIndex,
     this.isVertical = false,
     required this.selectedColor,
     this.unselectedColor = AppColors.grayneutral500,
     required this.items,
     required this.onIndexChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CustomBottomNavigation extends StatelessWidget {
         color: Colors.black,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: Offset(0, -2),
           ),
@@ -93,8 +93,13 @@ class CustomBottomNavigation extends StatelessWidget {
                           : Colors.transparent,
                     ),
                     child: Center(
-                      child: SvgPicture.asset(item.icon,
-                          color: isSelected ? selectedColor : unselectedColor),
+                      child: SvgPicture.asset(
+                          item.icon,
+                          colorFilter: ColorFilter.mode(
+                              isSelected ? selectedColor : unselectedColor,
+                              BlendMode.srcIn
+                          ),
+                      ),
                     ),
                   ),
                   SizedBox(width: 12),
@@ -121,8 +126,13 @@ class CustomBottomNavigation extends StatelessWidget {
                           : Colors.transparent,
                     ),
                     child: Center(
-                      child: SvgPicture.asset(item.icon,
-                          color: isSelected ? selectedColor : unselectedColor),
+                      child: SvgPicture.asset(
+                          item.icon,
+                          colorFilter: ColorFilter.mode(
+                              isSelected ? selectedColor : unselectedColor,
+                              BlendMode.srcIn
+                          ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 4),

@@ -16,19 +16,19 @@ class NavigationNotifier extends StateNotifier<int> {
   void updateIndexFromRoute(String route) {
     switch (route) {
       case Routes.home:
-      case Routes.home_tablet:
+      case Routes.homeTablet:
         state = 0;
         break;
       case Routes.wager:
-      case Routes.wager_tablet:
+      case Routes.wagerTablet:
         state = 1;
         break;
       case Routes.wallet:
-      case Routes.wallet_tablet:
+      case Routes.walletTablet:
         state = 2;
         break;
       case Routes.profile:
-      case Routes.profile_tablet:
+      case Routes.profileTablet:
         state = 3;
         break;
       default:

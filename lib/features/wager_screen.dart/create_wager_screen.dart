@@ -1,6 +1,8 @@
 part of '../feature.dart';
 
 class CreateWagerScreen extends StatelessWidget {
+  const CreateWagerScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -153,7 +155,7 @@ class CreateWagerScreen extends StatelessWidget {
                   width: AppValues.width400,
                   child: TextButton(
                     onPressed: () {
-                      GoRouter.of(context).push(Routes.create_wager_summary);
+                      GoRouter.of(context).push(Routes.createWagerSummary);
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.black,

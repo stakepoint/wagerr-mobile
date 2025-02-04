@@ -1,7 +1,8 @@
 part of '../feature.dart';
 
 class WagerCreatedScreen extends ConsumerWidget {
-  WagerCreatedScreen({super.key});
+  const WagerCreatedScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = ScreenLayout.isMobile(context);

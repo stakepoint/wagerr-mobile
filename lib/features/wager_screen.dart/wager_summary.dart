@@ -71,10 +71,9 @@ class WagerSummaryScreen extends ConsumerWidget {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final double maxWidth = AppValues.width600;
             return SingleChildScrollView(
               child: Center(
-                child: Container(
+                child: SizedBox(
                   width: AppValues.width500,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -185,12 +184,12 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           ),
                         ),
                         verticalSpace(AppValues.height50),
-                        Container(
+                        SizedBox(
                           height: AppValues.height56,
                           width: AppValues.width400,
                           child: TextButton(
                             onPressed: () {
-                              context.go(Routes.wager_created);
+                              context.go(Routes.wagerCreated);
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.black,
