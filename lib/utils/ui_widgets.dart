@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:starkwager/core/constants/screen_size.dart';
 
 Widget verticalSpace(double spaceLength) {
   return SizedBox(
@@ -31,8 +30,3 @@ Widget horizontalDivider(double width, {Color? color = Colors.grey}) {
     color: color,
   );
 }
-
-ScreenSize screenSize(
-  BuildContext context,
-) =>
-    ScreenSize(context: context);

@@ -10,7 +10,7 @@ class CompleteScreen extends ConsumerWidget {
     return Column(
       children: [
         Text(
-          'nowagerscreatedyet'.tr(),
+          'noWagersCreatedYet'.tr(),
           style: AppTheme.of(context).bodyLarge16.copyWith(
                 color: context.textHintColor,
               ),
