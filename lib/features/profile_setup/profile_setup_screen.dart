@@ -150,39 +150,9 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                           ),
                         ),
                         verticalSpace(AppValues.height20),
-                        Container(
-                          padding: const EdgeInsets.all(AppValues.padding16),
-                          decoration: BoxDecoration(
-                            color: context.secondaryBackgroundColor,
-                            borderRadius:
-                                BorderRadius.circular(AppValues.radius16),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                'wager.strk/',
-                                style: AppTheme.of(context)
-                                    .bodyExtraLarge18
-                                    .copyWith(
-                                      color: context.textHintColor,
-                                    ),
-                              ),
-                              Expanded(
-                                child: TextField(
-                                  controller: _usernameController,
-                                  onChanged: _checkUsername,
-                                  style: AppTheme.of(context).bodyExtraLarge18,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    prefixText: '@',
-                                    prefixStyle:
-                                        AppTheme.of(context).bodyExtraLarge18,
-                                    contentPadding: EdgeInsets.zero,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        UsernameEditText(
+                          controller: _usernameController,
+                          onValueChanged: _checkUsername,
                         ),
                         if (_usernameController.text.isNotEmpty)
                           Align(
@@ -203,39 +173,17 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                             ),
                           ),
                         SizedBox(height: 40),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(bottom: AppValues.height40),
-                          child: ElevatedButton(
-                            onPressed: _usernameController.text.isEmpty ||
-                                    !_isUsernameAvailable
-                                ? null
-                                : () {
-                                    if (isMobile) {
-                                      GoRouter.of(context).go(Routes.home);
-                                    } else {
-                                      GoRouter.of(context)
-                                          .go(Routes.homeTablet);
-                                    }
-                                  },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFE7FF54),
-                              minimumSize: const Size(
-                                  double.infinity, AppValues.height56),
-                              shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(AppValues.radius16),
-                              ),
-                            ),
-                            child: Text(
-                              'continue'.tr(),
-                              style: AppTheme.of(context)
-                                  .bodyExtraLarge18
-                                  .copyWith(
-                                    color: Colors.black,
-                                  ),
-                            ),
-                          ),
+                        PrimaryButton(
+                          buttonText: 'continue'.tr(),
+                          isActive: _usernameController.text.isNotEmpty && _isUsernameAvailable,
+                          onPressed: (){
+                            if (isMobile) {
+                              GoRouter.of(context).go(Routes.home);
+                            } else {
+                              GoRouter.of(context)
+                                  .go(Routes.homeTablet);
+                            }
+                          },
                         ),
                       ],
                     ),

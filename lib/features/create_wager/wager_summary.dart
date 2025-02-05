@@ -9,7 +9,7 @@ class WagerSummaryScreen extends ConsumerWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         scrolledUnderElevation: 0.0,
-        backgroundColor: context.secondaryBackgroundColor,
+        backgroundColor: context.primaryBackgroundColor,
         toolbarHeight: context.isMobile ? null : AppValues.height100,
         elevation: 0,
         title: context.isMobile
@@ -67,7 +67,7 @@ class WagerSummaryScreen extends ConsumerWidget {
         ],
         centerTitle: context.isMobile ? false : true,
       ),
-      backgroundColor: context.secondaryBackgroundColor,
+      backgroundColor: context.primaryBackgroundColor,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -184,31 +184,12 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           ),
                         ),
                         verticalSpace(AppValues.height50),
-                        SizedBox(
-                          height: AppValues.height56,
-                          width: AppValues.width400,
-                          child: TextButton(
-                            onPressed: () {
-                              context.go(Routes.wagerCreated);
-                            },
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: context.primaryButtonColor,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: AppValues.padding16),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                            child: Text(
-                              "Create Wager".tr(),
-                              style: AppTheme.of(context)
-                                  .bodyExtraLarge18
-                                  .copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ),
+                        PrimaryButton(
+                          buttonText: 'Create Wager'.tr(),
+                          isActive: true,
+                          onPressed: (){
+                            GoRouter.of(context).push(Routes.wagerCreated);
+                          },
                         ),
                         verticalSpace(AppValues.height20),
                       ],

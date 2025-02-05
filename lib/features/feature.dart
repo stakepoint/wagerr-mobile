@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:starkwager/core/constants/screen_size.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/features/wager_screen.dart/provider/navigation_provider.dart';
 import '../core/constants/app_values.dart';
@@ -33,11 +34,12 @@ part 'home_screen/widget/profile_menu.dart';
 part 'home_screen/home_screen.dart';
 part 'home_screen/naviagtion.dart';
 
-part 'profile/profile_setup_screen.dart';
+
+part 'component/editText/username_editText.dart';
+part 'component/button/primary_button.dart';
+part 'profile_setup/profile_setup_screen.dart';
 part 'profile_screen.dart/profile_screen.dart';
 
-part 'wager_created/widgets/button.dart';
-part 'wager_created/widgets/general_text_form_field.dart';
 part 'wager_created/widgets/wager_created_app_bar.dart';
 part 'wager_created/widgets/wager_created_body.dart';
 part 'wager_created/widgets/wager_profile_menu.dart';
@@ -48,9 +50,9 @@ part 'wager_screen.dart/widget/tab_widget.dart';
 part 'wager_screen.dart/widget/wager_widget.dart';
 part 'wager_screen.dart/active_screen.dart';
 part 'wager_screen.dart/complete_screen.dart';
-part 'wager_screen.dart/create_wager_screen.dart';
+part 'create_wager/create_wager_screen.dart';
 part 'wager_screen.dart/pending_screen.dart';
-part 'wager_screen.dart/wager_summary.dart';
+part 'create_wager/wager_summary.dart';
 part 'wager_screen.dart/wagers_screen.dart';
 
 part 'wallet_screen.dart/wallet_screen.dart';

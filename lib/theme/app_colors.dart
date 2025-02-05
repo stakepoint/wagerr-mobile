@@ -18,7 +18,6 @@ class AppColors {
   static const grayCool900 = Color(0xFF111322);
   static const grayneutral500 = Color(0xFF6C737F);
 
-  static const grayCool300 = Color(0xffEFF1F5);
 
   static const buttonColor = Color(0xFFE0FE10);
 

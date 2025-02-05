@@ -147,32 +147,12 @@ class CreateWagerScreen extends StatelessWidget {
                 verticalSpace(AppValues.height30),
                 buildStakeTextField(context, 'stake'.tr()),
                 verticalSpace(size.height * 0.06),
-                Container(
-                  margin: EdgeInsets.only(
-                    bottom: Platform.isIOS ? 30 : 0,
-                  ),
-                  height: AppValues.height56,
-                  width: AppValues.width400,
-                  child: TextButton(
-                    onPressed: () {
-                      GoRouter.of(context).push(Routes.createWagerSummary);
-                    },
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      backgroundColor: context.primaryButtonColor,
-                      padding:
-                          EdgeInsets.symmetric(vertical: AppValues.padding16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    child: Text(
-                      "Continue".tr(),
-                      style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
+                PrimaryButton(
+                  buttonText: 'continue'.tr(),
+                  isActive: true,
+                  onPressed: (){
+                    GoRouter.of(context).push(Routes.createWagerSummary);
+                  },
                 ),
               ],
             ),

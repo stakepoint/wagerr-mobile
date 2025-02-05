@@ -31,8 +31,3 @@ Widget horizontalDivider(double width, {Color? color = Colors.grey}) {
     color: color,
   );
 }
-
-ScreenSize screenSize(
-  BuildContext context,
-) =>
-    ScreenSize(context: context);

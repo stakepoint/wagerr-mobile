@@ -26,7 +26,7 @@ extension ThemeModeExtension on BuildContext {
       isDarkMode ? AppColors.grayCool600 : AppColors.grayCool600;
 
   Color get textBoxTextColor =>
-      isDarkMode ? AppColors.grayCool300 : AppColors.grayCool300;
+      isDarkMode ? AppColors.grayCool100 : AppColors.grayCool100;
 
   Color get dividerColor =>
       isDarkMode ? AppColors.mono80 : AppColors.dividerColour;

@@ -20,3 +20,5 @@ class ScreenSize {
   double calculatedWidth({double? width}) =>
       MediaQuery.of(context!).size.width * (width! / 375);
 }
+
+ScreenSize screenSize(BuildContext context) => ScreenSize(context: context);

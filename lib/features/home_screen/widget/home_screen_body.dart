@@ -69,7 +69,7 @@ class HomeScreenBody extends ConsumerWidget {
           horizontalSpace(16),
           SvgPicture.asset(AppIcons.noWaggerIcon),
           Text(
-            'nowagerscreatedyet'.tr(),
+            'noWagersCreatedYet'.tr(),
             style: AppTheme.of(context).bodyLarge16.copyWith(
                   color: context.textHintColor,
                 ),
@@ -95,7 +95,7 @@ class HomeScreenBody extends ConsumerWidget {
         children: [
           SvgPicture.asset(AppIcons.noWaggerIcon, width: 88, height: 88),
           Text(
-            'nowagerscreatedyet'.tr(),
+            'noWagersCreatedYet'.tr(),
             style: AppTheme.of(context).textMediumNormal.copyWith(
                   color: context.textHintColor,
                 ),
