@@ -187,7 +187,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                         PrimaryButton(
                           buttonText: 'Create Wager'.tr(),
                           isActive: true,
-                          onPressed: (){
+                          onPressed: () {
                             GoRouter.of(context).push(Routes.wagerCreated);
                           },
                         ),

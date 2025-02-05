@@ -18,12 +18,12 @@ class PrimaryButton extends StatelessWidget {
       height: AppValues.height56,
       width: screenSize(context).width,
       child: TextButton(
-        onPressed: ()=> isActive ? onPressed() : (){},
+        onPressed: () => isActive ? onPressed() : () {},
         style: TextButton.styleFrom(
-          backgroundColor: isActive ? context.primaryButtonColor :
-            context.primaryButtonColor.withValues(alpha: 0.32),
-          padding: EdgeInsets.symmetric(
-              vertical: AppValues.padding16),
+          backgroundColor: isActive
+              ? context.primaryButtonColor
+              : context.primaryButtonColor.withValues(alpha: 0.32),
+          padding: EdgeInsets.symmetric(vertical: AppValues.padding16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -31,8 +31,8 @@ class PrimaryButton extends StatelessWidget {
         child: Text(
           buttonText,
           style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-            fontWeight: FontWeight.w500,
-          ),
+                fontWeight: FontWeight.w500,
+              ),
         ),
       ),
     );

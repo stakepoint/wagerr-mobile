@@ -54,15 +54,14 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
                 color: AppColors.mono60,
               ),
               verticalSpace(30),
-              Text(
-                'inviteUsername'.tr(),
-                style: AppTheme.of(context).bodyMedium14.copyWith(
-                    fontWeight: FontWeight.w500)
-              ),
+              Text('inviteUsername'.tr(),
+                  style: AppTheme.of(context)
+                      .bodyMedium14
+                      .copyWith(fontWeight: FontWeight.w500)),
               verticalSpace(AppValues.height8),
               UsernameEditText(
                 controller: _usernameTextController,
-                onValueChanged: (value){},
+                onValueChanged: (value) {},
               ),
               verticalSpace(20),
               Text(
@@ -121,7 +120,7 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
               PrimaryButton(
                 buttonText: 'sendWager'.tr(),
                 isActive: true,
-                onPressed: (){},
+                onPressed: () {},
               ),
               verticalSpace(12),
               _button(

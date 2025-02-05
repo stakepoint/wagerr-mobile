@@ -175,13 +175,13 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                         SizedBox(height: 40),
                         PrimaryButton(
                           buttonText: 'continue'.tr(),
-                          isActive: _usernameController.text.isNotEmpty && _isUsernameAvailable,
-                          onPressed: (){
+                          isActive: _usernameController.text.isNotEmpty &&
+                              _isUsernameAvailable,
+                          onPressed: () {
                             if (isMobile) {
                               GoRouter.of(context).go(Routes.home);
                             } else {
-                              GoRouter.of(context)
-                                  .go(Routes.homeTablet);
+                              GoRouter.of(context).go(Routes.homeTablet);
                             }
                           },
                         ),

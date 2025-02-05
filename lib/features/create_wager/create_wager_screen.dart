@@ -150,7 +150,7 @@ class CreateWagerScreen extends StatelessWidget {
                 PrimaryButton(
                   buttonText: 'continue'.tr(),
                   isActive: true,
-                  onPressed: (){
+                  onPressed: () {
                     GoRouter.of(context).push(Routes.createWagerSummary);
                   },
                 ),

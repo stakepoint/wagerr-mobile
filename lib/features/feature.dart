@@ -34,7 +34,6 @@ part 'home_screen/widget/profile_menu.dart';
 part 'home_screen/home_screen.dart';
 part 'home_screen/naviagtion.dart';
 
-
 part 'component/editText/username_editText.dart';
 part 'component/button/primary_button.dart';
 part 'profile_setup/profile_setup_screen.dart';

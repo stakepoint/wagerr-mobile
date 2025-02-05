@@ -19,8 +19,9 @@ class UsernameEditText extends StatelessWidget {
         children: [
           Text(
             'wager.strk/',
-            style: AppTheme.of(context).bodyExtraLarge18.copyWith(
-                color: context.textHintColor),
+            style: AppTheme.of(context)
+                .bodyExtraLarge18
+                .copyWith(color: context.textHintColor),
           ),
           Expanded(
             child: TextField(
