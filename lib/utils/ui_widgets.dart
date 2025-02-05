@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:starkwager/core/constants/screen_size.dart';
 
 Widget verticalSpace(double spaceLength) {
   return SizedBox(
