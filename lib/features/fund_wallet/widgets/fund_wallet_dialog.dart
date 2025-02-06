@@ -1,24 +1,94 @@
 part of '../../feature.dart';
 
+import 'package:flutter/services.dart';
+
 class CurrencyTextInputFormatter extends TextInputFormatter {
+  CurrencyTextInputFormatter({
+    this.maxDigits = 10,
+  });
+
+  final int maxDigits;
+
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    String text = newValue.text.replaceAll("\$", "");
-
-    if (text.isEmpty) {
+    if (newValue.text.isEmpty) {
       return const TextEditingValue(
         text: '',
         selection: TextSelection.collapsed(offset: 0),
       );
     }
 
-    text = "\$$text";
+    if (oldValue.text == '\$' && newValue.text.isEmpty) {
+      return const TextEditingValue(
+        text: '',
+        selection: TextSelection.collapsed(offset: 0),
+      );
+    }
+
+    String filtered = newValue.text.replaceAll(RegExp(r'[^\d.]'), '');
+
+    if (filtered.contains('.')) {
+      List<String> parts = filtered.split('.');
+      if (parts[0].length > maxDigits) {
+        parts[0] = parts[0].substring(0, maxDigits);
+      }
+      filtered = parts.join('.');
+    } else if (filtered.length > maxDigits) {
+      filtered = filtered.substring(0, maxDigits);
+    }
+
+    int decimalCount = '.'.allMatches(filtered).length;
+    if (decimalCount > 1) {
+      List<String> parts = filtered.split('.');
+      filtered = parts[0] + '.' + parts.sublist(1).join('');
+    }
+
+    if (filtered.contains('.')) {
+      List<String> parts = filtered.split('.');
+
+      if (parts[1].length > 2) {
+        parts[1] = parts[1].substring(0, 2);
+      }
+      filtered = parts[0] + '.' + parts[1];
+    }
+
+    if (filtered.startsWith('.')) {
+      filtered = '0' + filtered;
+    }
+
+    String withCommas = '';
+    if (filtered.contains('.')) {
+      List<String> parts = filtered.split('.');
+      withCommas = _addThousandSeparator(parts[0]) + '.' + parts[1].padRight(2, '0');
+    } else {
+      withCommas = _addThousandSeparator(filtered) + '.00';
+    }
+
+    String formatted = '\$' + withCommas;
+
+    int cursorPosition;
+    int difference = formatted.length - oldValue.text.length;
+    cursorPosition = newValue.selection.start + difference;
+    
+    if (cursorPosition < 0) {
+      cursorPosition = 0;
+    } else if (cursorPosition > formatted.length) {
+      cursorPosition = formatted.length;
+    }
 
     return TextEditingValue(
-      text: text,
-      selection: TextSelection.collapsed(offset: text.length),
+      text: formatted,
+      selection: TextSelection.collapsed(offset: cursorPosition),
     );
+  }
+
+  String _addThousandSeparator(String value) {
+    value = value.replaceAll(',', '');
+    
+    final RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+    String Function(Match) mathFunc = (Match match) => '${match[1]},';
+    return value.replaceAllMapped(reg, mathFunc);
   }
 }
 
@@ -100,20 +170,19 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
         Material(
           color: Colors.transparent,
           child: TextField(
-              controller: amountController,
-              focusNode: _focusNode,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              textAlign: TextAlign.center,
-              inputFormatters: [CurrencyTextInputFormatter()],
-              decoration: InputDecoration(
+            controller: amountController,
+            focusNode: _focusNode,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            textAlign: TextAlign.center,
+            inputFormatters: [CurrencyTextInputFormatter(maxDigits: 10)], 
+            decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: '\$0.00',
                 hintStyle: AppTheme.of(context).headingMobileH1.copyWith(
-                      color: context.textHintColor,
-                    ),
-              ),
-              style: AppTheme.of(context).headingMobileH1),
+                    color: context.textHintColor,
+                ),
+            ),
+            style: AppTheme.of(context).headingMobileH1),
         ),
         const SizedBox(height: 8),
         Row(
