@@ -136,6 +136,7 @@ class CreateWagerScreen extends ConsumerWidget {
                       ),
                     ),
                     horizontalSpace(AppValues.width16),
+                    // Hashtags dropdown inside Expanded
                     Expanded(
                       child: InkWell(
                         onTap: () =>
