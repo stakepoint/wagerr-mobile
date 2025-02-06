@@ -35,4 +35,6 @@ class AppIcons {
   static const String notificationPath = '$baseIconPath/notification.svg';
   static const String snSymbol = '$baseIconPath/sn_symbol.png';
   static const String arrowBack = '$baseIconPath/arrow_back.svg';
+  static const String checked = '$baseIconPath/checked.svg';
+  static const String close = '$baseIconPath/close.svg';
 }
