@@ -1,7 +1,5 @@
 part of '../../feature.dart';
 
-import 'package:flutter/services.dart';
-
 class CurrencyTextInputFormatter extends TextInputFormatter {
   CurrencyTextInputFormatter({
     this.maxDigits = 10,
