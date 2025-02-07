@@ -24,7 +24,16 @@ class CurrencyTextInputFormatter extends TextInputFormatter {
       );
     }
 
+    final int cursorOffset = newValue.selection.start;
+    
     String filtered = newValue.text.replaceAll(RegExp(r'[^\d.]'), '');
+
+    if (filtered.isEmpty) {
+      return const TextEditingValue(
+        text: '',
+        selection: TextSelection.collapsed(offset: 0),
+      );
+    }
 
     if (filtered.contains('.')) {
       List<String> parts = filtered.split('.');
@@ -44,11 +53,14 @@ class CurrencyTextInputFormatter extends TextInputFormatter {
 
     if (filtered.contains('.')) {
       List<String> parts = filtered.split('.');
-
       if (parts[1].length > 2) {
         parts[1] = parts[1].substring(0, 2);
       }
-      filtered = parts[0] + '.' + parts[1];
+      if (parts[1].length == 2 || cursorOffset < oldValue.text.length) {
+        filtered = parts[0] + '.' + parts[1].padRight(2, '0');
+      } else {
+        filtered = parts[0] + '.' + parts[1];
+      }
     }
 
     if (filtered.startsWith('.')) {
@@ -58,26 +70,27 @@ class CurrencyTextInputFormatter extends TextInputFormatter {
     String withCommas = '';
     if (filtered.contains('.')) {
       List<String> parts = filtered.split('.');
-      withCommas = _addThousandSeparator(parts[0]) + '.' + parts[1].padRight(2, '0');
+      withCommas = _addThousandSeparator(parts[0]) + '.' + parts[1];
     } else {
-      withCommas = _addThousandSeparator(filtered) + '.00';
+      withCommas = _addThousandSeparator(filtered);
+      if (cursorOffset < oldValue.text.length || newValue.text.endsWith('0')) {
+        withCommas += '.00';
+      }
     }
 
     String formatted = '\$' + withCommas;
 
-    int cursorPosition;
-    int difference = formatted.length - oldValue.text.length;
-    cursorPosition = newValue.selection.start + difference;
-    
-    if (cursorPosition < 0) {
-      cursorPosition = 0;
-    } else if (cursorPosition > formatted.length) {
-      cursorPosition = formatted.length;
+    int newCursorPosition = formatted.length;
+    if (cursorOffset < oldValue.text.length) {
+      newCursorPosition = math.min(
+        cursorOffset + (formatted.length - oldValue.text.length),
+        formatted.length
+      );
     }
 
     return TextEditingValue(
       text: formatted,
-      selection: TextSelection.collapsed(offset: cursorPosition),
+      selection: TextSelection.collapsed(offset: newCursorPosition),
     );
   }
 
