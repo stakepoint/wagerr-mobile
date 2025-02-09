@@ -9,6 +9,17 @@ class CreateWagerScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
     final isMobile = ScreenLayout.isMobile(context);
+    final selectedHashtags = ref.watch(selectedHashtagsProvider);
+    String getDisplayText() {
+      if (selectedHashtags.isEmpty) {
+        return 'addHashtags'.tr();
+      }
+      if (selectedHashtags.length == 1) {
+        return '#${selectedHashtags.first}';
+      }
+      return '#${selectedHashtags.first}...';
+    }
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -131,11 +142,12 @@ class CreateWagerScreen extends ConsumerWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'addHashtags'.tr(),
-                                style: AppTheme.of(context)
-                                    .textMediumMedium
-                                    .copyWith(),
+                              Expanded(
+                                child: Text(
+                                  getDisplayText(),
+                                  style: AppTheme.of(context).textMediumMedium,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                               Icon(Icons.arrow_drop_down,
                                   color: context.primaryTextColor),
@@ -171,7 +183,9 @@ class CreateWagerScreen extends ConsumerWidget {
     );
   }
 
-  Column buildStakeTextField(BuildContext context, String title) {
+  //----------------------------------------------- STAKE FIELD ----------------------------------------------- //
+
+  Widget buildStakeTextField(BuildContext context, String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -213,7 +227,9 @@ class CreateWagerScreen extends ConsumerWidget {
     );
   }
 
-  Column buildCreateWagerTextField(
+//----------------------------------------------- CATEGORYWAGER TEXTFIELD ----------------------------------------------- //
+
+  Widget buildCreateWagerTextField(
       BuildContext context, String title, String hintText, int maxLength,
       {int maxLine = 1}) {
     return Column(
@@ -233,7 +249,7 @@ class CreateWagerScreen extends ConsumerWidget {
             return Text(
               '$currentLength/$maxLength',
               style: TextStyle(
-                color: context.textHintColor, // Customize text color
+                color: context.textHintColor,
               ),
             );
           },
@@ -253,6 +269,8 @@ class CreateWagerScreen extends ConsumerWidget {
       ],
     );
   }
+
+//----------------------------------------------- HASHTAG SELECTORS ----------------------------------------------- //
 
   void _showHashtagSelector(
       BuildContext context, WidgetRef ref, bool isMobile) {
@@ -277,6 +295,7 @@ class CreateWagerScreen extends ConsumerWidget {
   }
 }
 
+//----------------------------------------------- HASHTAG DIALOG ----------------------------------------------- //
 class HashtagDialog extends ConsumerWidget {
   const HashtagDialog({super.key});
 
@@ -314,7 +333,7 @@ class HashtagDialog extends ConsumerWidget {
               children: [
                 Text(
                   textAlign: TextAlign.center,
-                  'Add Hashtag(s)',
+                  'addHastag(s)'.tr(),
                   style: AppTheme.of(context).titleExtraLarge24,
                 ),
               ],
@@ -325,7 +344,7 @@ class HashtagDialog extends ConsumerWidget {
               children: [
                 Text(
                   textAlign: TextAlign.center,
-                  'Hashtags help other users find your\nwager easily and quickly.',
+                  'Hashtagshelpotherusersfindyourwagereasilyandquickly'.tr(),
                   style: AppTheme.of(context).textMediumNormal,
                 ),
               ],
@@ -344,6 +363,7 @@ class HashtagDialog extends ConsumerWidget {
   }
 }
 
+//----------------------------------------------- HASHTAG BOTTOMSHEET ----------------------------------------------- //
 class HashtagBottomSheet extends ConsumerWidget {
   const HashtagBottomSheet({super.key});
 
@@ -376,7 +396,7 @@ class HashtagBottomSheet extends ConsumerWidget {
             children: [
               Text(
                 textAlign: TextAlign.center,
-                'Add Hashtag(s)',
+                'addHastag(s)'.tr(),
                 style: AppTheme.of(context).titleExtraLarge24,
               ),
             ],
@@ -387,7 +407,7 @@ class HashtagBottomSheet extends ConsumerWidget {
             children: [
               Text(
                 textAlign: TextAlign.center,
-                'Hashtags help other users find your\nwager easily and quickly.',
+                'Hashtagshelpotherusersfindyourwagereasilyandquickly'.tr(),
                 style: AppTheme.of(context).textMediumNormal,
               ),
             ],
@@ -405,6 +425,8 @@ class HashtagBottomSheet extends ConsumerWidget {
     );
   }
 }
+
+//----------------------------------------------- HASHTAG CHIPS ----------------------------------------------- //
 
 List<Widget> _buildHashtagChips(BuildContext context, List<String> hashtags,
     Set<String> selectedHashtags, WidgetRef ref) {

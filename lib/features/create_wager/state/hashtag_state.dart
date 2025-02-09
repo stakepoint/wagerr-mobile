@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+//----------------------------------------------- HASHTAG NOTIFIER ----------------------------------------------- //
 class HashtagsNotifier extends StateNotifier<Set<String>> {
   HashtagsNotifier() : super({});
 
@@ -16,6 +17,7 @@ class HashtagsNotifier extends StateNotifier<Set<String>> {
   }
 }
 
+//----------------------------------------------- WAGER TITLE NOTIFIER ----------------------------------------------- //
 class WagerTitleNotifier extends StateNotifier<String> {
   WagerTitleNotifier() : super('');
 
