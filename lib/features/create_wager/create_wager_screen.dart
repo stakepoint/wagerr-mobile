@@ -1,11 +1,14 @@
+// ignore_for_file: deprecated_member_use
+
 part of '../feature.dart';
 
-class CreateWagerScreen extends StatelessWidget {
+class CreateWagerScreen extends ConsumerWidget {
   const CreateWagerScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
+    final isMobile = ScreenLayout.isMobile(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -115,24 +118,30 @@ class CreateWagerScreen extends StatelessWidget {
                     ),
                     horizontalSpace(AppValues.width16),
                     Expanded(
-                      child: DropdownButtonFormField<String>(
-                        isExpanded: true,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: context.textBoxTextColor,
-                          border: OutlineInputBorder(
+                      child: InkWell(
+                        onTap: () =>
+                            _showHashtagSelector(context, ref, isMobile),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 17),
+                          decoration: BoxDecoration(
+                            color: context.textBoxTextColor,
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide.none,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'addHashtags'.tr(),
+                                style: AppTheme.of(context)
+                                    .textMediumMedium
+                                    .copyWith(),
+                              ),
+                              Icon(Icons.arrow_drop_down,
+                                  color: context.primaryTextColor),
+                            ],
                           ),
                         ),
-                        hint: Text('addHashtags'.tr()),
-                        items: ["#Hashtag1", "#Hashtag2"]
-                            .map((hashtag) => DropdownMenuItem(
-                                  value: hashtag,
-                                  child: Text(hashtag),
-                                ))
-                            .toList(),
-                        onChanged: (value) {},
                       ),
                     ),
                   ],
@@ -244,4 +253,199 @@ class CreateWagerScreen extends StatelessWidget {
       ],
     );
   }
+
+  void _showHashtagSelector(
+      BuildContext context, WidgetRef ref, bool isMobile) {
+    if (isMobile) {
+      showModalBottomSheet(
+        backgroundColor: context.primaryBackgroundColor,
+        context: context,
+        isScrollControlled: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20),
+          ),
+        ),
+        builder: (context) => const HashtagBottomSheet(),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => const HashtagDialog(),
+      );
+    }
+  }
+}
+
+class HashtagDialog extends ConsumerWidget {
+  const HashtagDialog({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hashtags = ref.watch(hashtagsListProvider);
+    final selectedHashtags = ref.watch(selectedHashtagsProvider);
+
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: context.primaryBackgroundColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.close, size: 24),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ],
+            ),
+            verticalSpace(24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  textAlign: TextAlign.center,
+                  'Add Hashtag(s)',
+                  style: AppTheme.of(context).titleExtraLarge24,
+                ),
+              ],
+            ),
+            verticalSpace(8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  textAlign: TextAlign.center,
+                  'Hashtags help other users find your\nwager easily and quickly.',
+                  style: AppTheme.of(context).textMediumNormal,
+                ),
+              ],
+            ),
+            verticalSpace(24),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children:
+                  _buildHashtagChips(context, hashtags, selectedHashtags, ref),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HashtagBottomSheet extends ConsumerWidget {
+  const HashtagBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final hashtags = ref.watch(hashtagsListProvider);
+    final selectedHashtags = ref.watch(selectedHashtagsProvider);
+
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.close, size: 24),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+          verticalSpace(24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                textAlign: TextAlign.center,
+                'Add Hashtag(s)',
+                style: AppTheme.of(context).titleExtraLarge24,
+              ),
+            ],
+          ),
+          verticalSpace(8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                textAlign: TextAlign.center,
+                'Hashtags help other users find your\nwager easily and quickly.',
+                style: AppTheme.of(context).textMediumNormal,
+              ),
+            ],
+          ),
+          verticalSpace(24),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children:
+                _buildHashtagChips(context, hashtags, selectedHashtags, ref),
+          ),
+          verticalSpace(24),
+        ],
+      ),
+    );
+  }
+}
+
+List<Widget> _buildHashtagChips(BuildContext context, List<String> hashtags,
+    Set<String> selectedHashtags, WidgetRef ref) {
+  return hashtags.map((hashtag) {
+    final isSelected = selectedHashtags.contains(hashtag);
+    return GestureDetector(
+      onTap: () {
+        ref.read(selectedHashtagsProvider.notifier).toggleHashtag(hashtag);
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 10,
+        ),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? context.primaryTextColor
+              : context.secondaryTextColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset(
+              AppIcons.hashTagIcon,
+              color: isSelected
+                  ? context.primaryBackgroundColor
+                  : context.primaryTextColor,
+            ),
+            horizontalSpace(4),
+            Text(
+              hashtag,
+              style: AppTheme.of(context).textRegularMedium.copyWith(
+                    color: isSelected
+                        ? context.primaryBackgroundColor
+                        : context.primaryTextColor,
+                  ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }).toList();
 }
