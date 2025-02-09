@@ -209,42 +209,37 @@ class CreateWagerScreen extends ConsumerWidget {
       'Others'
     ];
 
-    Future<String?> showCategorySelection(
-        BuildContext context, Widget child) async {
-      if (context.isMobile) {
-        return await showModalBottomSheet<String>(
-          context: context,
-          backgroundColor: Colors.transparent,
-          isScrollControlled: true,
-          builder: (context) => Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white, // Background color
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                child: FractionallySizedBox(
-                  heightFactor: 0.6,
-                  child: child,
-                ),
-              ),
+    Future<String?> showBottomSheet(BuildContext context, Widget child) async {
+      return await showModalBottomSheet<String>(
+        context: context,
+        backgroundColor: Colors.transparent,
+        isScrollControlled: true,
+        builder: (context) => Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
             ),
           ),
-        );
-      } else {
-        return await showDialog<String>(
-          context: context,
-          builder: (context) => child,
-        );
-      }
+          child: FractionallySizedBox(
+            heightFactor: 0.6,
+            child: child,
+          ),
+        ),
+      );
     }
 
-    final selected = await showCategorySelection(
-      context,
-      AlertDialog(
+    Future<String?> showCategoryDialog(
+        BuildContext context, Widget child) async {
+      return await showDialog<String>(
+        context: context,
+        builder: (context) => child,
+      );
+    }
+
+    Widget buildCategorySelectionDialog(BuildContext context) {
+      return AlertDialog(
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
         titlePadding: EdgeInsets.zero,
@@ -297,8 +292,85 @@ class CreateWagerScreen extends ConsumerWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
+    }
+
+    Widget buildBottomSheet() {
+      return SizedBox(
+        width: 500,
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20, top: 10),
+                  child: IconButton(
+                    icon: SvgPicture.asset(AppIcons.close),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+              ],
+            ),
+            verticalSpace(30),
+            Text(
+              'selectCategory'.tr(),
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ...categories.map(
+                      (category) {
+                        return Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () => Navigator.of(context).pop(category),
+                              child: Container(
+                                alignment: Alignment.center,
+                                margin: EdgeInsets.all(20),
+                                // padding: EdgeInsets.all(20),
+                                child: Column(
+                                  children: [
+                                    Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            category,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14),
+                                          ),
+                                          SizedBox(width: 5),
+                                          if (selectedCategory == category)
+                                            SvgPicture.asset(AppIcons.checked),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            buildDotedBorder(),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    final selected = await (context.isMobile
+        ? showBottomSheet(context, buildBottomSheet())
+        : showCategoryDialog(context, buildCategorySelectionDialog(context)));
 
     if (selected != null) {
       setState(() {
@@ -310,7 +382,7 @@ class CreateWagerScreen extends ConsumerWidget {
   Widget buildDotedBorder() {
     return Row(
       children: List.generate(
-          300 ~/ 10,
+          500 ~/ 10,
           (index) => Expanded(
                 child: Container(
                   color: index % 2 == 0
