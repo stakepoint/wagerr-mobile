@@ -17,7 +17,7 @@ class CreateWagerScreen extends ConsumerWidget {
       if (selectedHashtags.length == 1) {
         return '#${selectedHashtags.first}';
       }
-      return '#${selectedHashtags.first}...';
+      return '${selectedHashtags.length} selected';
     }
 
     return Scaffold(
