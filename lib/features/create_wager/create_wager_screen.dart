@@ -209,88 +209,95 @@ class CreateWagerScreen extends ConsumerWidget {
       'Others'
     ];
 
-    final selected = await showDialog<String>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                icon: SvgPicture.asset(
-                  AppIcons.close,
+    Future<String?> showCategorySelection(
+        BuildContext context, Widget child) async {
+      if (context.isMobile) {
+        return await showModalBottomSheet<String>(
+          context: context,
+          backgroundColor: Colors.transparent,
+          isScrollControlled: true,
+          builder: (context) => Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white, // Background color
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-          content: SingleChildScrollView(
-            child: SizedBox(
-              width: 500,
-              child: Column(
-                children: [
-                  Text(
-                    'selectCategory'.tr(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 24,
-                    ),
-                  ),
-                  Column(
-                    children: categories
-                        .map(
-                          (category) => GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pop(category);
-                            },
-                            child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 20),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          category,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        selectedCategory != null &&
-                                                selectedCategory == category
-                                            ? SvgPicture.asset(AppIcons.checked)
-                                            : SizedBox.shrink()
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  buildDotedBorder()
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ],
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: FractionallySizedBox(
+                  heightFactor: 0.6,
+                  child: child,
+                ),
               ),
             ),
           ),
         );
-      },
+      } else {
+        return await showDialog<String>(
+          context: context,
+          builder: (context) => child,
+        );
+      }
+    }
+
+    final selected = await showCategorySelection(
+      context,
+      AlertDialog(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
+        titlePadding: EdgeInsets.zero,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+              icon: SvgPicture.asset(AppIcons.close),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        ),
+        content: SingleChildScrollView(
+          child: SizedBox(
+            width: 500,
+            child: Column(
+              children: [
+                Text(
+                  'selectCategory'.tr(),
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
+                ),
+                ...categories.map(
+                  (category) => GestureDetector(
+                    onTap: () => Navigator.of(context).pop(category),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                category,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 14),
+                              ),
+                              SizedBox(width: 5),
+                              if (selectedCategory == category)
+                                SvgPicture.asset(AppIcons.checked),
+                            ],
+                          ),
+                          SizedBox(height: 5),
+                          buildDotedBorder(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
 
     if (selected != null) {
