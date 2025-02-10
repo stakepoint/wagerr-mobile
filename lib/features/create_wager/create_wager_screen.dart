@@ -347,7 +347,8 @@ class CreateWagerScreen extends ConsumerWidget {
                             ),
                           ),
                         ),
-                        buildDotedBorder(context),
+                        if (category != categories[categories.length - 1])
+                          buildDotedBorder(context),
                       ],
                     );
                   }).toList(),
