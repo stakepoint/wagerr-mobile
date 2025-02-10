@@ -586,9 +586,11 @@ List<Widget> _buildHashtagChips(BuildContext context, List<String> hashtags,
           children: [
             SvgPicture.asset(
               AppIcons.hashTagIcon,
-              color: isSelected
-                  ? context.primaryBackgroundColor
-                  : context.primaryTextColor,
+              colorFilter: ColorFilter.mode(
+                  isSelected
+                      ? context.primaryBackgroundColor
+                      : context.primaryTextColor,
+                  BlendMode.srcIn),
             ),
             horizontalSpace(4),
             Text(
