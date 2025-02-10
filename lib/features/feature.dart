@@ -8,13 +8,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:starkwager/core/constants/screen_size.dart';
-import 'package:starkwager/core/providers/hashtag_provider.dart';
 import 'package:starkwager/core/providers/navigation_provider.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
+import 'package:starkwager/features/create_wager/provider/hashtag_provider.dart';
 
 import '../core/constants/app_values.dart';
 import '../core/constants/assets.dart';
 import '../core/constants/screen_layout.dart';
+import '../core/providers/category_selection_provider.dart';
 import '../routing/routes.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
