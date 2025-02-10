@@ -233,27 +233,29 @@ class CreateWagerScreen extends ConsumerWidget {
         backgroundColor: context.whiteColor,
         surfaceTintColor: context.whiteColor,
         titlePadding: EdgeInsets.zero,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20, top: 20),
-              child: IconButton(
+        title: Container(
+          padding: const EdgeInsets.only(right: 20, top: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(),
+              Container(),
+              Text(
+                'selectCategory'.tr(),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
+              ),
+              IconButton(
                 icon: SvgPicture.asset(AppIcons.close),
                 onPressed: () => Navigator.pop(context),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         content: SingleChildScrollView(
           child: SizedBox(
             width: 500,
             child: Column(
               children: [
-                Text(
-                  'selectCategory'.tr(),
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
-                ),
                 ...categories.map(
                   (category) => InkWell(
                     onTap: () => Navigator.of(context).pop(category),
@@ -301,23 +303,25 @@ class CreateWagerScreen extends ConsumerWidget {
         width: 500,
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 20, top: 10),
-                  child: IconButton(
+            Container(
+              padding: const EdgeInsets.only(right: 20, top: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(),
+                  Container(),
+                  Text(
+                    'selectCategory'.tr(),
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
+                  ),
+                  IconButton(
                     icon: SvgPicture.asset(AppIcons.close),
                     onPressed: () => Navigator.pop(context),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             verticalSpace(30),
-            Text(
-              'selectCategory'.tr(),
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
-            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
