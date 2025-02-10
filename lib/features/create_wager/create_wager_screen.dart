@@ -319,22 +319,18 @@ class HashtagDialog extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                IconButton(
-                  icon: const Icon(Icons.close, size: 24),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ],
-            ),
-            verticalSpace(24),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+                horizontalSpace(140),
                 Text(
                   textAlign: TextAlign.center,
                   'addHastag(s)'.tr(),
                   style: AppTheme.of(context).titleExtraLarge24,
+                ),
+                Spacer(),
+                IconButton(
+                  icon: const Icon(Icons.close, size: 24),
+                  onPressed: () => Navigator.pop(context),
                 ),
               ],
             ),
@@ -382,22 +378,18 @@ class HashtagBottomSheet extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              IconButton(
-                icon: const Icon(Icons.close, size: 24),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ],
-          ),
-          verticalSpace(24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+              horizontalSpace(95),
               Text(
                 textAlign: TextAlign.center,
                 'addHastag(s)'.tr(),
                 style: AppTheme.of(context).titleExtraLarge24,
+              ),
+              Spacer(),
+              IconButton(
+                icon: const Icon(Icons.close, size: 24),
+                onPressed: () => Navigator.pop(context),
               ),
             ],
           ),
