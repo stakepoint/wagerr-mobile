@@ -40,8 +40,6 @@ part 'home_screen/widget/home_screen_tablet_menu_bar.dart';
 part 'home_screen/widget/home_screen_tablet_mode.dart';
 part 'home_screen/widget/profile_menu.dart';
 
-
-
 part 'component/appbar/base_appbar.dart';
 part 'profile_setup/profile_setup_screen.dart';
 part 'profile_screen.dart/profile_screen.dart';

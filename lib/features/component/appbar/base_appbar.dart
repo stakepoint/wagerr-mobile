@@ -1,13 +1,12 @@
 part of '../../feature.dart';
 
 class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const BaseAppbar({
-    super.key,
-    required this.context,
-    required this.title,
-    required this.userName,
-    this.showBackButton
-  });
+  const BaseAppbar(
+      {super.key,
+      required this.context,
+      required this.title,
+      required this.userName,
+      this.showBackButton});
 
   final BuildContext context;
   final String title, userName;

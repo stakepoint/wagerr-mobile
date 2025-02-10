@@ -7,10 +7,7 @@ class WagerSummaryScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: BaseAppbar(
-        context: context,
-          title: 'wagerSummary'.tr(),
-          userName: '@noyi24_7'
-      ),
+          context: context, title: 'wagerSummary'.tr(), userName: '@noyi24_7'),
       backgroundColor: context.primaryBackgroundColor,
       body: SafeArea(
         child: LayoutBuilder(

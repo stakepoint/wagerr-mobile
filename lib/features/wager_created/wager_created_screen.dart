@@ -6,12 +6,14 @@ class WagerCreatedScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: !context.isMobile ? BaseAppbar(
-          context: context,
-          title: '',
-          userName: '@noyi_24',
-          showBackButton: false,
-      ) : null,
+      appBar: !context.isMobile
+          ? BaseAppbar(
+              context: context,
+              title: '',
+              userName: '@noyi_24',
+              showBackButton: false,
+            )
+          : null,
       backgroundColor: context.primaryBackgroundColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(

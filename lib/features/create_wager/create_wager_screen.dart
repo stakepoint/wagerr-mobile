@@ -20,10 +20,7 @@ class CreateWagerScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: BaseAppbar(
-        context: context,
-          title: 'createWager'.tr(),
-          userName: '@noyi24_7'
-      ),
+          context: context, title: 'createWager'.tr(), userName: '@noyi24_7'),
       body: SingleChildScrollView(
         child: Center(
           child: Container(
