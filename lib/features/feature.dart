@@ -20,7 +20,7 @@ import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../utils/ui_widgets.dart';
 import 'connect_wallet/provider/connect_wallet_provider.dart';
-import 'create_wager/provider/category_selection_provider.dart';
+import 'create_wager/provider/category_provider.dart';
 
 part 'component/button/primary_button.dart';
 part 'component/editText/username_editText.dart';

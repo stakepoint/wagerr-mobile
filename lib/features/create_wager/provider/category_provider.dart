@@ -4,7 +4,7 @@ final selectedCategoryProvider = StateProvider<String?>((ref) => null);
 
 final categoriesProvider = Provider<List<String>>((ref) => [
       'Sports',
-      'Esports',
+      'ESports',
       'Politics',
       'Crypto',
       'Stocks',
