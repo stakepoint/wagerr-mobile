@@ -198,17 +198,6 @@ class CreateWagerScreen extends ConsumerWidget {
 
   Widget buildStakeTextField(BuildContext context, String title) {
   Future<void> _showCategoryDialog(BuildContext context) async {
-    final List<String> categories = [
-      'Sports',
-      'Esports',
-      'Politics',
-      'Crypto',
-      'Stocks',
-      'Entertainment',
-      'Games',
-      'Others'
-    ];
-
     Future<String?> showBottomSheet(BuildContext context, Widget child) async {
       return await showModalBottomSheet<String>(
         context: context,
@@ -238,7 +227,8 @@ class CreateWagerScreen extends ConsumerWidget {
       );
     }
 
-    Widget buildCategorySelectionDialog(BuildContext context) {
+    Widget buildCategorySelectionDialog(
+        BuildContext context, List<String> categories) {
       return AlertDialog(
         backgroundColor: context.whiteColor,
         surfaceTintColor: context.whiteColor,
@@ -265,29 +255,37 @@ class CreateWagerScreen extends ConsumerWidget {
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
                 ),
                 ...categories.map(
-                  (category) => GestureDetector(
+                  (category) => InkWell(
                     onTap: () => Navigator.of(context).pop(category),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                    child: Column(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          child: Column(
                             children: [
-                              Text(
-                                category,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 14),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    category,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14),
+                                  ),
+                                  SizedBox(width: 5),
+                                  if (ref.watch(selectedCategoryProvider) ==
+                                      category)
+                                    SvgPicture.asset(AppIcons.checked),
+                                ],
                               ),
-                              SizedBox(width: 5),
-                              if (selectedCategory == category)
-                                SvgPicture.asset(AppIcons.checked),
+                              SizedBox(height: 5),
                             ],
                           ),
-                          SizedBox(height: 5),
+                        ),
+                        if (category != categories[categories.length - 1])
                           buildDotedBorder(),
-                        ],
-                      ),
+                      ],
                     ),
                   ),
                 ),
@@ -298,7 +296,7 @@ class CreateWagerScreen extends ConsumerWidget {
       );
     }
 
-    Widget buildBottomSheet() {
+    Widget buildBottomSheet(List<String> categories) {
       return SizedBox(
         width: 500,
         child: Column(
@@ -323,45 +321,42 @@ class CreateWagerScreen extends ConsumerWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                    ...categories.map(
-                      (category) {
-                        return Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () => Navigator.of(context).pop(category),
-                              child: Container(
-                                alignment: Alignment.center,
-                                margin: EdgeInsets.all(20),
-                                child: Column(
-                                  children: [
-                                    Center(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            category,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14),
-                                          ),
-                                          SizedBox(width: 5),
-                                          if (selectedCategory == category)
-                                            SvgPicture.asset(AppIcons.checked),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                  children: categories.map((category) {
+                    return Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop(category);
+                            ref.read(selectedCategoryProvider.notifier).state =
+                                category;
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 20),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  category,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
+                                SizedBox(width: 5),
+                                if (ref.watch(selectedCategoryProvider) ==
+                                    category)
+                                  SvgPicture.asset(AppIcons.checked),
+                              ],
                             ),
-                            buildDotedBorder(),
-                          ],
-                        );
-                      },
-                    ),
-                  ],
+                          ),
+                        ),
+                        buildDotedBorder(),
+                      ],
+                    );
+                  }).toList(),
                 ),
               ),
             ),
@@ -370,14 +365,14 @@ class CreateWagerScreen extends ConsumerWidget {
       );
     }
 
-    final selected = await (context.isMobile
-        ? showBottomSheet(context, buildBottomSheet())
-        : showCategoryDialog(context, buildCategorySelectionDialog(context)));
+    final categoryNotifier = ref.watch(categoriesProvider);
 
+    final selected = await (context.isMobile
+        ? showBottomSheet(context, buildBottomSheet(categoryNotifier))
+        : showCategoryDialog(
+            context, buildCategorySelectionDialog(context, categoryNotifier)));
     if (selected != null) {
-      setState(() {
-        selectedCategory = selected;
-      });
+      ref.read(selectedCategoryProvider.notifier).state = selected;
     }
   }
 
