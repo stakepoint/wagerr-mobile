@@ -41,9 +41,7 @@ part 'component/appbar/base_appbar.dart';
 part 'profile_setup/profile_setup_screen.dart';
 part 'profile_screen.dart/profile_screen.dart';
 
-part 'wager_created/widgets/wager_created_app_bar.dart';
 part 'wager_created/widgets/wager_created_body.dart';
-part 'wager_created/widgets/wager_profile_menu.dart';
 part 'wager_created/wager_created_screen.dart';
 
 part 'wager_screen/widget/mobile_body.dart';
