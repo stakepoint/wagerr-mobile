@@ -15,12 +15,12 @@ import 'package:starkwager/features/create_wager/provider/hashtag_provider.dart'
 import '../core/constants/app_values.dart';
 import '../core/constants/assets.dart';
 import '../core/constants/screen_layout.dart';
-import '../core/providers/category_selection_provider.dart';
 import '../routing/routes.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../utils/ui_widgets.dart';
 import 'connect_wallet/provider/connect_wallet_provider.dart';
+import 'create_wager/provider/category_selection_provider.dart';
 
 part 'component/button/primary_button.dart';
 part 'component/editText/username_editText.dart';

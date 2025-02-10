@@ -119,9 +119,12 @@ class CreateWagerScreen extends ConsumerWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                selectedCategory ?? 'selectCategory'.tr(),
-                                style: AppTheme.of(context).textMediumMedium,
+                              Expanded(
+                                child: Text(
+                                  selectedCategory ?? 'selectCategory'.tr(),
+                                  style: AppTheme.of(context).textMediumMedium,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                               Icon(Icons.arrow_drop_down,
                                   color: context
@@ -334,7 +337,7 @@ class CreateWagerScreen extends ConsumerWidget {
                               children: [
                                 Text(
                                   category,
-                                  style: AppTheme.of(context).titleExtraLarge24,
+                                  style: AppTheme.of(context).textSmallMedium,
                                 ),
                                 SizedBox(width: 5),
                                 if (ref.watch(selectedCategoryProvider) ==
