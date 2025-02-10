@@ -6,7 +6,14 @@ class WalletScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = ScreenLayout.isMobile(context);
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
+      appBar: isMobile ? HomeScreenAppBar() : null,
+      backgroundColor: context.primaryBackgroundColor,
+      floatingActionButton:
+          isMobile || isPortrait ? _floatingActionButton(context) : SizedBox(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -19,25 +26,56 @@ class WalletScreen extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: AppValues.padding16),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Wallet Screen",
-                              style: AppTheme.of(context).bodyLarge16),
+                          verticalSpace(48),
+                          HomeScreenBody(),
+                          Spacer(),
                         ],
                       ),
                     ),
                   )
                 : ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxWidthTablet),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Wallet Screen",
-                            style: AppTheme.of(context).bodyLarge16),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 32, right: 80),
+                      child: HomeScreenTabletMode(),
                     ),
                   );
           },
+        ),
+      ),
+    );
+  }
+
+//----------------------------------------------- FLOATING_ACTION_BUTTON ----------------------------------------------- //
+
+  Widget _floatingActionButton(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        GoRouter.of(context).push(Routes.createWager);
+      },
+      child: Container(
+        height: 56,
+        width: 160,
+        decoration: BoxDecoration(
+          color: context.primaryButtonColor,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.2),
+              blurRadius: 8,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          spacing: 12,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(AppIcons.handshakeIcon),
+            Text('newWager'.tr(), style: AppTheme.of(context).textMediumMedium),
+          ],
         ),
       ),
     );
