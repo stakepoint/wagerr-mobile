@@ -45,5 +45,7 @@
   "fundYourWallet": "Fund Your Wallet",
   "fundWalletDescription": "To be able to create wagers you need to fund your wallet with Strk.",
   "enterAmountDescription": "Enter the amount you want to fund your wallet and create wagers.",
-  "fundButton": "Fund"
+  "fundButton": "Fund",
+  "addHastag(s)": "Add Hashtag(s)",
+  "Hashtagshelpotherusersfindyourwagereasilyandquickly": "Hashtags help other users find your\nwager easily and quickly"
 }
