@@ -16,7 +16,6 @@ class HashtagsNotifier extends StateNotifier<Set<String>> {
   }
 }
 
-
 class WagerTitleNotifier extends StateNotifier<String> {
   WagerTitleNotifier() : super('');
 

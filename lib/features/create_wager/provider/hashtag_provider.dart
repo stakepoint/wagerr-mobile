@@ -6,13 +6,10 @@ final selectedHashtagsProvider =
   return HashtagsNotifier();
 });
 
-
 final wagerTitleProvider =
     StateNotifierProvider<WagerTitleNotifier, String>((ref) {
   return WagerTitleNotifier();
 });
-
-
 
 final hashtagsListProvider = Provider<List<String>>((ref) {
   return [
