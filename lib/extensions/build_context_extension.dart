@@ -39,8 +39,6 @@ extension ThemeModeExtension on BuildContext {
 
   Color get textHintColor =>
       isDarkMode ? AppColors.grayCool25 : AppColors.grayCool400;
-  Color get whiteColor => isDarkMode ? AppColors.white : AppColors.white;
-  Color get blackColor => isDarkMode ? AppColors.black : AppColors.black;
   Color get transparentColor =>
       isDarkMode ? Colors.transparent : Colors.transparent;
 
