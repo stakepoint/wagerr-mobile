@@ -24,6 +24,8 @@ class AppIcons {
   static const ellipseIcon = '$baseIconPath/ellipse.svg';
   static const vsIcon = '$baseIconPath/VS.svg';
   static const arrowBack = '$baseIconPath/arrow_back.svg';
+  static const String checked = '$baseIconPath/checked.svg';
+  static const String close = '$baseIconPath/close_icon.svg';
 
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const baseImagePath = 'assets/images';
