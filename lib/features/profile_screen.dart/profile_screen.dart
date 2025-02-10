@@ -5,14 +5,13 @@ class ProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMobile = ScreenLayout.isMobile(context);
     return Scaffold(
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             final double maxWidth = AppValues.width600;
             final double maxWidthTablet = AppValues.width1440;
-            return isMobile
+            return context.isMobile
                 ? ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxWidth),
                     child: Padding(

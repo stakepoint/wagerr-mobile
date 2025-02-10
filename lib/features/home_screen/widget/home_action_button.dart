@@ -16,12 +16,10 @@ class HomeActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ScreenLayout.isMobile(context);
-
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: isMobile ? 56.0 : 60.0,
+        height: context.isMobile ? 56.0 : 60.0,
         width: 164,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),

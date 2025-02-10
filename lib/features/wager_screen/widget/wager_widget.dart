@@ -7,10 +7,9 @@ class WagerWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMobile = ScreenLayout.isMobile(context);
     return Container(
-      height: isMobile ? 250 : 239,
-      width: isMobile ? 343 : 696,
+      height: context.isMobile ? 250 : 239,
+      width: context.isMobile ? 343 : 696,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: context.containerColor,
@@ -24,7 +23,7 @@ class WagerWidget extends ConsumerWidget {
             children: [
               SvgPicture.asset(AppIcons.ellipseIcon),
               horizontalSpace(5),
-              isMobile
+              context.isMobile
                   ? Text(
                       'inProgress'.tr(),
                       style: AppTheme.of(context).bodyMedium14.copyWith(
@@ -40,7 +39,7 @@ class WagerWidget extends ConsumerWidget {
             ],
           ),
           verticalSpace(12),
-          isMobile
+          context.isMobile
               ? Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Text(
@@ -95,10 +94,9 @@ class WagerWidget extends ConsumerWidget {
 //----------------------------------------------- VS ----------------------------------------------- //
 
   Widget _vs(BuildContext context) {
-    final isMobile = ScreenLayout.isMobile(context);
     return Column(
       children: [
-        isMobile
+        context.isMobile
             ? Text("oneOnOne".tr(), style: AppTheme.textTinyNormal)
             : Text("oneOnOne".tr(), style: AppTheme.of(context).bodyMedium14),
         verticalSpace(10),
@@ -110,19 +108,18 @@ class WagerWidget extends ConsumerWidget {
 //----------------------------------------------- USERDETAILS ----------------------------------------------- //
 
   Widget _userDetails(BuildContext context) {
-    final isMobile = ScreenLayout.isMobile(context);
     return Column(
       children: [
         Container(
-          height: isMobile ? 56 : 64,
-          width: isMobile ? 56 : 64,
+          height: context.isMobile ? 56 : 64,
+          width: context.isMobile ? 56 : 64,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
           ),
           child: Image.asset(AppIcons.userImage),
         ),
         verticalSpace(4),
-        isMobile
+        context.isMobile
             ? Text(
                 '@noyi24_7',
                 style: AppTheme.textTinyMedium

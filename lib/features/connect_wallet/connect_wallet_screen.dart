@@ -8,7 +8,7 @@ class ConnectWalletScreen extends ConsumerWidget {
     final argent = ref.watch(argentCheckProvider);
     final braavos = ref.watch(braavosCheckProvider);
     final metamask = ref.watch(metamaskCheckProvider);
-    final isMobile = ScreenLayout.isMobile(context);
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -17,7 +17,7 @@ class ConnectWalletScreen extends ConsumerWidget {
                 const EdgeInsets.symmetric(horizontal: AppValues.padding16),
             child: GestureDetector(
                 onTap: () {
-                  isMobile
+                  context.isMobile
                       ? GoRouter.of(context).go(Routes.profileSetup)
                       : GoRouter.of(context).go(Routes.profileSetup);
                 },

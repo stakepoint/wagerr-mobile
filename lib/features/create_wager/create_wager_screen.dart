@@ -8,8 +8,8 @@ class CreateWagerScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
-    final isMobile = ScreenLayout.isMobile(context);
     final selectedHashtags = ref.watch(selectedHashtagsProvider);
+
     String getDisplayText() {
       if (selectedHashtags.isEmpty) {
         return 'addHashtags'.tr();
@@ -131,7 +131,7 @@ class CreateWagerScreen extends ConsumerWidget {
                     Expanded(
                       child: InkWell(
                         onTap: () =>
-                            _showHashtagSelector(context, ref, isMobile),
+                            _showHashtagSelector(context, ref, context.isMobile),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 17),

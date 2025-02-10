@@ -7,12 +7,11 @@ class ProfileMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMobile = ScreenLayout.isMobile(context);
     return Row(
       children: [
-        _userProfileImage(isMobile),
+        _userProfileImage(context.isMobile),
         horizontalSpace(12),
-        _copyUserName(isMobile, context)
+        _copyUserName(context.isMobile, context)
       ],
     );
   }
