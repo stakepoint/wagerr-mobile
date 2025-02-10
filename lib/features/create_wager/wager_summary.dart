@@ -6,67 +6,8 @@ class WagerSummaryScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        scrolledUnderElevation: 0.0,
-        backgroundColor: context.primaryBackgroundColor,
-        toolbarHeight: context.isMobile ? null : AppValues.height100,
-        elevation: 0,
-        title: context.isMobile
-            ? InkWell(
-                onTap: () => GoRouter.of(context).pop(),
-                child: SvgPicture.asset(AppIcons.arrowBack),
-              )
-            : Padding(
-                padding: const EdgeInsets.only(left: 120),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      icon: SvgPicture.asset(
-                        AppIcons.arrowBack,
-                      ),
-                      onPressed: () => GoRouter.of(context).pop(),
-                    ),
-                    Text(
-                      !context.isMobile ? 'wagerSummary'.tr() : '',
-                      style: AppTheme.of(context).headLineLarge32,
-                    ),
-                  ],
-                ),
-              ),
-        actions: [
-          if (!context.isMobile)
-            Container(
-              padding: EdgeInsets.only(right: 80),
-              child: Row(
-                children: [
-                  Image.asset(AppIcons.userPath),
-                  horizontalSpace(8),
-                  Container(
-                    padding: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Row(
-                      children: [
-                        Text(
-                          '@noyi24_7',
-                        ),
-                        SvgPicture.asset(AppIcons.copyPath),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: AppValues.height20,
-                  ),
-                  SvgPicture.asset(AppIcons.notificationPath),
-                ],
-              ),
-            )
-        ],
-        centerTitle: context.isMobile ? false : true,
-      ),
+      appBar: BaseAppbar(
+          context: context, title: 'wagerSummary'.tr(), userName: '@noyi24_7'),
       backgroundColor: context.primaryBackgroundColor,
       body: SafeArea(
         child: LayoutBuilder(
@@ -77,7 +18,7 @@ class WagerSummaryScreen extends ConsumerWidget {
                   width: AppValues.width500,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: AppValues.padding16,
+                      horizontal: AppValues.padding20,
                     ),
                     child: Column(
                       crossAxisAlignment: context.isMobile

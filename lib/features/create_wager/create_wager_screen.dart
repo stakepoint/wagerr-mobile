@@ -19,67 +19,8 @@ class CreateWagerScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        scrolledUnderElevation: 0.0,
-        backgroundColor: context.primaryBackgroundColor,
-        toolbarHeight: context.isMobile ? null : AppValues.height100,
-        elevation: 0,
-        title: context.isMobile
-            ? IconButton(
-                onPressed: () => GoRouter.of(context).pop(),
-                icon: SvgPicture.asset(AppIcons.arrowBack),
-              )
-            : Padding(
-                padding: const EdgeInsets.only(left: 120),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      icon: SvgPicture.asset(
-                        AppIcons.arrowBack,
-                      ),
-                      onPressed: () => GoRouter.of(context).pop(),
-                    ),
-                    Text(
-                      !context.isMobile ? 'createWager'.tr() : '',
-                      style: AppTheme.of(context).headLineLarge32,
-                    ),
-                  ],
-                ),
-              ),
-        actions: [
-          if (!context.isMobile)
-            Container(
-              padding: EdgeInsets.only(right: 80),
-              child: Row(
-                children: [
-                  Image.asset(AppIcons.userPath),
-                  horizontalSpace(8),
-                  Container(
-                    padding: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                        color: context.primaryBackgroundColor,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Row(
-                      children: [
-                        Text(
-                          '@noyi24_7',
-                        ),
-                        SvgPicture.asset(AppIcons.copyPath),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: AppValues.height20,
-                  ),
-                  SvgPicture.asset(AppIcons.notificationPath),
-                ],
-              ),
-            )
-        ],
-        centerTitle: context.isMobile ? false : true,
-      ),
+      appBar: BaseAppbar(
+          context: context, title: 'createWager'.tr(), userName: '@noyi24_7'),
       body: SingleChildScrollView(
         child: Center(
           child: Container(

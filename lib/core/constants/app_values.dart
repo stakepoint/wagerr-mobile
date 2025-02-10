@@ -41,6 +41,7 @@ class AppValues {
   static const padding10 = 10.0;
   static const padding12 = 12.0;
   static const padding16 = 16.0;
+  static const padding20 = 20.0;
   static const padding24 = 24.0;
   static const padding32 = 32.0;
   static const padding40 = 40.0;

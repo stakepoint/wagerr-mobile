@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-
-import '../../core/constants/app_values.dart';
-import '../../theme/app_theme.dart';
+part of '../feature.dart';
 
 class WalletScreen extends ConsumerWidget {
   const WalletScreen({super.key});

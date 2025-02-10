@@ -39,16 +39,19 @@ part 'home_screen/widget/home_screen_body.dart';
 part 'home_screen/widget/home_screen_tablet_menu_bar.dart';
 part 'home_screen/widget/home_screen_tablet_mode.dart';
 part 'home_screen/widget/profile_menu.dart';
-part 'profile_screen.dart/profile_screen.dart';
+
+part 'component/appbar/base_appbar.dart';
 part 'profile_setup/profile_setup_screen.dart';
+part 'profile_screen.dart/profile_screen.dart';
+
 part 'wager_created/wager_created_screen.dart';
-part 'wager_created/widgets/wager_created_app_bar.dart';
 part 'wager_created/widgets/wager_created_body.dart';
-part 'wager_created/widgets/wager_profile_menu.dart';
+
+part 'wager_screen/widget/mobile_body.dart';
+part 'wager_screen/widget/tab_widget.dart';
+part 'wager_screen/widget/wager_widget.dart';
 part 'wager_screen/active_screen.dart';
 part 'wager_screen/complete_screen.dart';
 part 'wager_screen/pending_screen.dart';
 part 'wager_screen/wagers_screen.dart';
-part 'wager_screen/widget/mobile_body.dart';
-part 'wager_screen/widget/tab_widget.dart';
-part 'wager_screen/widget/wager_widget.dart';
+part 'wallet_screen.dart/wallet_screen.dart';
