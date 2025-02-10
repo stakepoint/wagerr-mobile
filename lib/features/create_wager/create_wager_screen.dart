@@ -130,8 +130,8 @@ class CreateWagerScreen extends ConsumerWidget {
                     horizontalSpace(AppValues.width16),
                     Expanded(
                       child: InkWell(
-                        onTap: () =>
-                            _showHashtagSelector(context, ref, context.isMobile),
+                        onTap: () => _showHashtagSelector(
+                            context, ref, context.isMobile),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 17),

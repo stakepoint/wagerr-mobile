@@ -10,8 +10,9 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       appBar: context.isMobile ? HomeScreenAppBar() : null,
       backgroundColor: context.primaryBackgroundColor,
-      floatingActionButton:
-      context.isMobile || isPortrait ? _floatingActionButton(context) : SizedBox(),
+      floatingActionButton: context.isMobile || isPortrait
+          ? _floatingActionButton(context)
+          : SizedBox(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: LayoutBuilder(

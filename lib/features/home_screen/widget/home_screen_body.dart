@@ -41,7 +41,9 @@ class HomeScreenBody extends ConsumerWidget {
             ? _mobileContractAddress(context)
             : _tabletContractAddress(context),
         verticalSpace(8),
-        context.isMobile ? _mobileStarkAmount(context) : _tabletStarkAmount(context),
+        context.isMobile
+            ? _mobileStarkAmount(context)
+            : _tabletStarkAmount(context),
         verticalSpace(16),
         context.isMobile ? HomeAddAndWithdraw() : SizedBox(),
         context.isMobile ? verticalSpace(48) : verticalSpace(40),

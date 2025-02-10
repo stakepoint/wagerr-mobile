@@ -39,8 +39,9 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                               : 120),
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
-                        maxWidth:
-                        context.isMobile ? AppValues.width600 : AppValues.width400),
+                        maxWidth: context.isMobile
+                            ? AppValues.width600
+                            : AppValues.width400),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
