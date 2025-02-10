@@ -28,8 +28,6 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ScreenLayout.isMobile(context);
-
     return Consumer(builder: (context, ref, child) {
       return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
@@ -116,7 +114,7 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
                   ],
                 ),
               ),
-              isMobile ? verticalSpace(80) : verticalSpace(24),
+              context.isMobile ? verticalSpace(80) : verticalSpace(24),
               PrimaryButton(
                 buttonText: 'sendWager'.tr(),
                 isActive: true,

@@ -6,9 +6,7 @@ class HomeScreenBody extends ConsumerWidget {
   });
 
   void _showFundWalletDialog(BuildContext context) {
-    final isMobile = ScreenLayout.isMobile(context);
-
-    if (isMobile) {
+    if (context.isMobile) {
       showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -37,18 +35,19 @@ class HomeScreenBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMobile = ScreenLayout.isMobile(context);
     return Column(
       children: [
-        isMobile
+        context.isMobile
             ? _mobileContractAddress(context)
             : _tabletContractAddress(context),
         verticalSpace(8),
-        isMobile ? _mobileStarkAmount(context) : _tabletStarkAmount(context),
+        context.isMobile
+            ? _mobileStarkAmount(context)
+            : _tabletStarkAmount(context),
         verticalSpace(16),
-        isMobile ? HomeAddAndWithdraw() : SizedBox(),
-        isMobile ? verticalSpace(48) : verticalSpace(40),
-        isMobile ? _mobileNoWager(context) : _tabletNoWager(context),
+        context.isMobile ? HomeAddAndWithdraw() : SizedBox(),
+        context.isMobile ? verticalSpace(48) : verticalSpace(40),
+        context.isMobile ? _mobileNoWager(context) : _tabletNoWager(context),
       ],
     );
   }

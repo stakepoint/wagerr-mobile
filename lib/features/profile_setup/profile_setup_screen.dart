@@ -25,7 +25,6 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final isMobile = ScreenLayout.isMobile(context);
             final isLandscape =
                 MediaQuery.of(context).orientation == Orientation.landscape;
 
@@ -33,15 +32,16 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
               child: Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: isMobile
+                      horizontal: context.isMobile
                           ? AppValues.padding24
                           : isLandscape
                               ? 184
                               : 120),
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
-                        maxWidth:
-                            isMobile ? AppValues.width600 : AppValues.width400),
+                        maxWidth: context.isMobile
+                            ? AppValues.width600
+                            : AppValues.width400),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -50,7 +50,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: isMobile
+                                text: context.isMobile
                                     ? '${'setupYourProfile'.tr()}\n'
                                     : '${'setupYourProfile'.tr()} ',
                                 style: AppTheme.of(context)
@@ -64,7 +64,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                                 style: AppTheme.of(context)
                                     .headLineLarge32
                                     .copyWith(
-                                      height: isMobile ? 1.2 : 1.0,
+                                      height: context.isMobile ? 1.2 : 1.0,
                                     ),
                               ),
                             ],
@@ -72,7 +72,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                         ),
                         verticalSpace(AppValues.height8),
                         Text(
-                            isMobile
+                            context.isMobile
                                 ? 'chooseProfilePicture'.tr()
                                 : 'Choose your picture and a unique username other users can use to invite you to wagers'
                                     .split('\n')
@@ -178,7 +178,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                           isActive: _usernameController.text.isNotEmpty &&
                               _isUsernameAvailable,
                           onPressed: () {
-                            if (isMobile) {
+                            if (context.isMobile) {
                               GoRouter.of(context).go(Routes.home);
                             } else {
                               GoRouter.of(context).go(Routes.homeTablet);

@@ -131,7 +131,6 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ScreenLayout.isMobile(context);
     final mediaQuery = MediaQuery.of(context);
     final keyboardHeight = mediaQuery.viewInsets.bottom;
 
@@ -141,7 +140,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (isMobile)
+          if (context.isMobile)
             Container(
               width: 32,
               height: 4,
@@ -219,7 +218,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
       ),
     );
 
-    if (isMobile) {
+    if (context.isMobile) {
       final sheetHeight = keyboardHeight > 0
           ? MediaQuery.of(context).size.height * 0.6
           : MediaQuery.of(context).size.height * 0.48;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 
 import '../../core/constants/app_values.dart';
-import '../../core/constants/screen_layout.dart';
 import '../../theme/app_theme.dart';
 
 class WalletScreen extends ConsumerWidget {
@@ -10,14 +10,13 @@ class WalletScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMobile = ScreenLayout.isMobile(context);
     return Scaffold(
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             final double maxWidth = AppValues.width600;
             final double maxWidthTablet = AppValues.width1440;
-            return isMobile
+            return context.isMobile
                 ? ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxWidth),
                     child: Padding(

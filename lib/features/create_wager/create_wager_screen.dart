@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 part of '../feature.dart';
 
 class CreateWagerScreen extends ConsumerWidget {
@@ -8,7 +6,6 @@ class CreateWagerScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
-    final isMobile = ScreenLayout.isMobile(context);
     final selectedHashtags = ref.watch(selectedHashtagsProvider);
     final selectedCategory = ref.watch(selectedCategoryProvider);
     String getDisplayText() {
@@ -137,8 +134,8 @@ class CreateWagerScreen extends ConsumerWidget {
                     horizontalSpace(AppValues.width16),
                     Expanded(
                       child: InkWell(
-                        onTap: () =>
-                            _showHashtagSelector(context, ref, isMobile),
+                        onTap: () => _showHashtagSelector(
+                            context, ref, context.isMobile),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 17),
@@ -645,9 +642,11 @@ List<Widget> _buildHashtagChips(BuildContext context, List<String> hashtags,
           children: [
             SvgPicture.asset(
               AppIcons.hashTagIcon,
-              color: isSelected
-                  ? context.primaryBackgroundColor
-                  : context.primaryTextColor,
+              colorFilter: ColorFilter.mode(
+                  isSelected
+                      ? context.primaryBackgroundColor
+                      : context.primaryTextColor,
+                  BlendMode.srcIn),
             ),
             horizontalSpace(4),
             Text(

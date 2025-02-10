@@ -5,7 +5,6 @@ class WagersScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMobile = ScreenLayout.isMobile(context);
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
@@ -18,7 +17,7 @@ class WagersScreen extends ConsumerWidget {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return isMobile
+            return context.isMobile
                 ? _buildMobileLayout()
                 : _buildTabletLayout(context);
           },
