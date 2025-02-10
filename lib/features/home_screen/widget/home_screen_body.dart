@@ -66,7 +66,7 @@ class HomeScreenBody extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           horizontalSpace(16),
-          SvgPicture.asset(AppIcons.noWaggerIcon),
+          SvgPicture.asset(AppIcons.noWagerIcon),
           Text(
             'noWagersCreatedYet'.tr(),
             style: AppTheme.of(context).bodyLarge16.copyWith(
@@ -92,7 +92,7 @@ class HomeScreenBody extends ConsumerWidget {
         spacing: 24,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(AppIcons.noWaggerIcon, width: 88, height: 88),
+          SvgPicture.asset(AppIcons.noWagerIcon, width: 88, height: 88),
           Text(
             'noWagersCreatedYet'.tr(),
             style: AppTheme.of(context).textMediumNormal.copyWith(

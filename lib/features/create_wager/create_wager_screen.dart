@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 part of '../feature.dart';
 
 class CreateWagerScreen extends ConsumerWidget {
@@ -33,7 +31,7 @@ class CreateWagerScreen extends ConsumerWidget {
                 icon: SvgPicture.asset(AppIcons.arrowBack),
               )
             : Padding(
-                padding: const EdgeInsets.only(left: 120),
+                padding: const EdgeInsets.only(left: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -43,6 +41,7 @@ class CreateWagerScreen extends ConsumerWidget {
                       ),
                       onPressed: () => GoRouter.of(context).pop(),
                     ),
+                    horizontalSpace(AppValues.padding8),
                     Text(
                       !context.isMobile ? 'createWager'.tr() : '',
                       style: AppTheme.of(context).headLineLarge32,
