@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
 
 import '../../core/constants/app_values.dart';
-import '../../core/constants/screen_layout.dart';
 import '../../theme/app_theme.dart';
 
 class WalletScreen extends ConsumerWidget {
