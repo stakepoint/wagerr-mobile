@@ -65,7 +65,7 @@ class CreateWagerScreen extends ConsumerWidget {
                   Container(
                     padding: EdgeInsets.all(2),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: context.whiteColor,
                         borderRadius: BorderRadius.circular(5)),
                     child: Row(
                       children: [
@@ -126,10 +126,10 @@ class CreateWagerScreen extends ConsumerWidget {
                             children: [
                               Text(
                                 selectedCategory ?? 'selectCategory'.tr(),
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: context.blackColor),
                               ),
                               Icon(Icons.arrow_drop_down,
-                                  color: Colors.black), // Dropdown icon
+                                  color: context.blackColor), // Dropdown icon
                             ],
                           ),
                         ),
@@ -212,11 +212,11 @@ class CreateWagerScreen extends ConsumerWidget {
     Future<String?> showBottomSheet(BuildContext context, Widget child) async {
       return await showModalBottomSheet<String>(
         context: context,
-        backgroundColor: Colors.transparent,
+        backgroundColor: context.transparentColor,
         isScrollControlled: true,
         builder: (context) => Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: context.whiteColor,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -240,15 +240,18 @@ class CreateWagerScreen extends ConsumerWidget {
 
     Widget buildCategorySelectionDialog(BuildContext context) {
       return AlertDialog(
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
+        backgroundColor: context.whiteColor,
+        surfaceTintColor: context.whiteColor,
         titlePadding: EdgeInsets.zero,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            IconButton(
-              icon: SvgPicture.asset(AppIcons.close),
-              onPressed: () => Navigator.pop(context),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, top: 20),
+              child: IconButton(
+                icon: SvgPicture.asset(AppIcons.close),
+                onPressed: () => Navigator.pop(context),
+              ),
             ),
           ],
         ),
@@ -330,7 +333,6 @@ class CreateWagerScreen extends ConsumerWidget {
                               child: Container(
                                 alignment: Alignment.center,
                                 margin: EdgeInsets.all(20),
-                                // padding: EdgeInsets.all(20),
                                 child: Column(
                                   children: [
                                     Center(
