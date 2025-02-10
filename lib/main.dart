@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/routing/router.dart';
 import 'package:starkwager/utils/provider_observer.dart';
+
 import 'core/providers/app_theme_mode_provider.dart';
 
 void main() async {

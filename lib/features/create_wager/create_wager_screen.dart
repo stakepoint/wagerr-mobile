@@ -10,6 +10,7 @@ class CreateWagerScreen extends ConsumerWidget {
     final size = MediaQuery.of(context).size;
     final isMobile = ScreenLayout.isMobile(context);
     final selectedHashtags = ref.watch(selectedHashtagsProvider);
+    final selectedCategory = ref.watch(selectedCategoryProvider);
     String getDisplayText() {
       if (selectedHashtags.isEmpty) {
         return 'addHashtags'.tr();
@@ -61,7 +62,7 @@ class CreateWagerScreen extends ConsumerWidget {
                   Container(
                     padding: EdgeInsets.all(2),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: context.primaryBackgroundColor,
                         borderRadius: BorderRadius.circular(5)),
                     child: Row(
                       children: [
@@ -106,25 +107,31 @@ class CreateWagerScreen extends ConsumerWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: DropdownButtonFormField<String>(
-                        isExpanded: true,
-                        alignment: Alignment.center,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: context.textBoxTextColor,
-                          border: OutlineInputBorder(
+                      child: GestureDetector(
+                        onTap: () => _showCategoryDialog(context, ref),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 16, horizontal: 12),
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide.none,
+                            color: context.textBoxTextColor,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  selectedCategory ?? 'selectCategory'.tr(),
+                                  style: AppTheme.of(context).textMediumMedium,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              Icon(Icons.arrow_drop_down,
+                                  color: context
+                                      .primaryTextColor), // Dropdown icon
+                            ],
                           ),
                         ),
-                        hint: Text('selectCategory'.tr()),
-                        items: ["Category 1", "Category 2"]
-                            .map((category) => DropdownMenuItem(
-                                  value: category,
-                                  child: Text(category),
-                                ))
-                            .toList(),
-                        onChanged: (value) {},
                       ),
                     ),
                     horizontalSpace(AppValues.width16),
@@ -185,7 +192,201 @@ class CreateWagerScreen extends ConsumerWidget {
 
   //----------------------------------------------- STAKE FIELD ----------------------------------------------- //
 
-  Widget buildStakeTextField(BuildContext context, String title) {
+  Future<void> _showCategoryDialog(BuildContext context, WidgetRef ref) async {
+    Future<String?> showBottomSheet(BuildContext context, Widget child) async {
+      return await showModalBottomSheet<String>(
+        context: context,
+        backgroundColor: context.transparentColor,
+        isScrollControlled: true,
+        builder: (context) => Container(
+          decoration: BoxDecoration(
+            color: context.primaryBackgroundColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: FractionallySizedBox(
+            heightFactor: 0.6,
+            child: child,
+          ),
+        ),
+      );
+    }
+
+    Future<String?> showCategoryDialog(
+        BuildContext context, Widget child) async {
+      return await showDialog<String>(
+        context: context,
+        builder: (context) => child,
+      );
+    }
+
+    Widget buildCategorySelectionDialog(
+        BuildContext context, List<String> categories) {
+      return AlertDialog(
+        backgroundColor: context.primaryBackgroundColor,
+        surfaceTintColor: context.primaryBackgroundColor,
+        titlePadding: EdgeInsets.zero,
+        title: Container(
+          padding: const EdgeInsets.only(right: 20, top: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(),
+              Container(),
+              Text(
+                'selectCategory'.tr(),
+                style: AppTheme.of(context).titleExtraLarge24,
+              ),
+              IconButton(
+                icon: SvgPicture.asset(AppIcons.close),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+        ),
+        content: SingleChildScrollView(
+          child: SizedBox(
+            width: 500,
+            child: Column(
+              children: [
+                ...categories.map(
+                  (category) => InkWell(
+                    onTap: () => Navigator.of(context).pop(category),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    category,
+                                    style: AppTheme.of(context).textSmallMedium,
+                                  ),
+                                  SizedBox(width: 5),
+                                  if (ref.watch(selectedCategoryProvider) ==
+                                      category)
+                                    SvgPicture.asset(AppIcons.checked),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                            ],
+                          ),
+                        ),
+                        if (category != categories[categories.length - 1])
+                          buildDotedBorder(context),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget buildBottomSheet(List<String> categories) {
+      return SizedBox(
+        width: 500,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(right: 20, top: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(),
+                  Container(),
+                  Text(
+                    'selectCategory'.tr(),
+                    style: AppTheme.of(context).titleExtraLarge24,
+                  ),
+                  IconButton(
+                    icon: SvgPicture.asset(AppIcons.close),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
+            ),
+            verticalSpace(30),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: categories.map((category) {
+                    return Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop(category);
+                            ref.read(selectedCategoryProvider.notifier).state =
+                                category;
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 20),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  category,
+                                  style: AppTheme.of(context).textSmallMedium,
+                                ),
+                                SizedBox(width: 5),
+                                if (ref.watch(selectedCategoryProvider) ==
+                                    category)
+                                  SvgPicture.asset(AppIcons.checked),
+                              ],
+                            ),
+                          ),
+                        ),
+                        if (category != categories[categories.length - 1])
+                          buildDotedBorder(context),
+                      ],
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    final categoryNotifier = ref.watch(categoriesProvider);
+
+    final selected = await (context.isMobile
+        ? showBottomSheet(context, buildBottomSheet(categoryNotifier))
+        : showCategoryDialog(
+            context, buildCategorySelectionDialog(context, categoryNotifier)));
+    if (selected != null) {
+      ref.read(selectedCategoryProvider.notifier).state = selected;
+    }
+  }
+
+  Widget buildDotedBorder(BuildContext context) {
+    return Row(
+      children: List.generate(
+          500 ~/ 10,
+          (index) => Expanded(
+                child: Container(
+                  color: index % 2 == 0
+                      ? Colors.transparent
+                      : context.dividerColor,
+                  height: 1,
+                ),
+              )),
+    );
+  }
+
+  Column buildStakeTextField(BuildContext context, String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
