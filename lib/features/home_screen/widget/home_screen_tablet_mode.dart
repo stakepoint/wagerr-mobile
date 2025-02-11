@@ -1,16 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/features/home_screen/widget/home_screen_body.dart';
-import 'package:starkwager/features/home_screen/widget/profile_menu.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
-
-
-import '../../../routing/routes.dart';
+part of '../../feature.dart';
 
 class HomeScreenTabletMode extends ConsumerWidget {
   const HomeScreenTabletMode({
@@ -21,19 +9,15 @@ class HomeScreenTabletMode extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
-    return Column(
+    return SingleChildScrollView(
+        child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        verticalSpace(48),
+        verticalSpace(32),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Home',
-              style: AppTheme.headLineLarge32.copyWith(
-                color: AppColors.blue950,
-              ),
-            ),
+            Text('Home', style: AppTheme.of(context).headLineLarge32),
             Row(
               children: [
                 GestureDetector(
@@ -52,10 +36,10 @@ class HomeScreenTabletMode extends ConsumerWidget {
         ),
         verticalSpace(120),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: isLandscape ? 184 : 90),
+          padding: EdgeInsets.symmetric(horizontal: isLandscape ? 120 : 60),
           child: HomeScreenBody(),
         ),
       ],
-    );
+    ));
   }
 }

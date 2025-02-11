@@ -1,50 +1,30 @@
-// ignore_for_file: deprecated_member_use
+part of '../feature.dart';
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/features/home_screen/widget/home_bottom_navigation.dart';
-import 'package:starkwager/routing/routes.dart';
-import 'package:starkwager/theme/app_colors.dart';
-
-class ScaffoldWithNavBar extends StatefulWidget {
+class ScaffoldWithNavBar extends ConsumerStatefulWidget {
   final Widget child;
 
   const ScaffoldWithNavBar({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
-  State<ScaffoldWithNavBar> createState() => _ScaffoldWithNavBarState();
+  ConsumerState<ScaffoldWithNavBar> createState() => _ScaffoldWithNavBarState();
 }
 
-class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
-  int _currentIndex = 0;
+class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final GoRouter router = GoRouter.of(context);
+      ref.read(navigationStateProvider.notifier).updateIndexFromRoute(
+          router.routerDelegate.currentConfiguration.fullPath);
+    });
+  }
 
   void _onNavigate(String route) {
-    setState(() {
-      switch (route) {
-        case Routes.home:
-        case Routes.home_tablet:
-          _currentIndex = 0;
-          break;
-        case Routes.wagger:
-        case Routes.wagger_tablet:
-          _currentIndex = 1;
-          break;
-        case Routes.wallet:
-        case Routes.wallet_tablet:
-          _currentIndex = 2;
-          break;
-        case Routes.profile:
-        case Routes.profile_tablet:
-          _currentIndex = 3;
-          break;
-      }
-    });
+    ref.read(navigationStateProvider.notifier).updateIndexFromRoute(route);
     GoRouter.of(context).go(route);
   }
 
@@ -54,16 +34,15 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
       icon: AppIcons.homeNoneIcon,
       onTap: () {
         _onNavigate(
-            ScreenLayout.isTablet(context) ? Routes.home_tablet : Routes.home);
+            ScreenLayout.isTablet(context) ? Routes.homeTablet : Routes.home);
       },
     ),
     NavigationItem(
       label: 'wagers'.tr(),
       icon: AppIcons.homeShakeIcon,
       onTap: () {
-        _onNavigate(ScreenLayout.isTablet(context)
-            ? Routes.wagger_tablet
-            : Routes.wagger);
+        _onNavigate(
+            ScreenLayout.isTablet(context) ? Routes.wagerTablet : Routes.wager);
       },
     ),
     NavigationItem(
@@ -71,7 +50,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
       icon: AppIcons.walletIcon,
       onTap: () {
         _onNavigate(ScreenLayout.isTablet(context)
-            ? Routes.wallet_tablet
+            ? Routes.walletTablet
             : Routes.wallet);
       },
     ),
@@ -80,7 +59,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
       icon: AppIcons.profileIcon,
       onTap: () {
         _onNavigate(ScreenLayout.isTablet(context)
-            ? Routes.profile_tablet
+            ? Routes.profileTablet
             : Routes.profile);
       },
     ),
@@ -88,41 +67,38 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        if (_currentIndex != 0) {
+    final currentIndex = ref.watch(navigationStateProvider);
+
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) async {
+        if (currentIndex != 0) {
           _onNavigate(Routes.home);
-          GoRouter.of(context).go(Routes.home);
-          return false;
+          return;
         }
-        return true;
+        return;
       },
       child: Scaffold(
         body: widget.child,
         bottomNavigationBar: CustomBottomNavigation(
-          currentIndex: _currentIndex,
+          currentIndex: currentIndex,
           items: _navigationItems,
-          selectedColor: AppColors.green100,
+          selectedColor: context.primaryButtonColor,
           unselectedColor: AppColors.grayneutral500,
           isVertical: false,
           onIndexChanged: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-
             if (ScreenLayout.isTablet(context)) {
               switch (index) {
                 case 0:
-                  _onNavigate(Routes.home_tablet);
+                  _onNavigate(Routes.homeTablet);
                   break;
                 case 1:
-                  _onNavigate(Routes.wagger_tablet);
+                  _onNavigate(Routes.wagerTablet);
                   break;
                 case 2:
-                  _onNavigate(Routes.wallet_tablet);
+                  _onNavigate(Routes.walletTablet);
                   break;
                 case 3:
-                  _onNavigate(Routes.profile_tablet);
+                  _onNavigate(Routes.profileTablet);
                   break;
               }
             } else {
@@ -131,7 +107,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
                   _onNavigate(Routes.home);
                   break;
                 case 1:
-                  _onNavigate(Routes.wagger);
+                  _onNavigate(Routes.wager);
                   break;
                 case 2:
                   _onNavigate(Routes.wallet);

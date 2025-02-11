@@ -1,33 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:reown_appkit/modal/appkit_modal_impl.dart';
-import 'package:reown_appkit/reown_appkit.dart';
-import 'package:starkwager/core/constants/app_values.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/connect_wallet/provider/connect_wallet_provider.dart';
-import 'package:starkwager/features/connect_wallet/widgets/installed_wallet_widget.dart';
-import 'package:starkwager/routing/routes.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
-
-import '../../core/constants/assets.dart';
-import '../../theme/app_theme.dart';
+part of '../feature.dart';
 
 class ConnectWalletScreen extends ConsumerWidget {
-  ConnectWalletScreen({super.key});
+  const ConnectWalletScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final argent = ref.watch(argentCheckProvider);
     final braavos = ref.watch(braavosCheckProvider);
     final metamask = ref.watch(metamaskCheckProvider);
-    final _isMobile = ScreenLayout.isMobile(context);
     final appKitModal = ref.watch(appKitModalProvider(context));
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -37,7 +18,7 @@ class ConnectWalletScreen extends ConsumerWidget {
                 const EdgeInsets.symmetric(horizontal: AppValues.padding16),
             child: GestureDetector(
                 onTap: () {
-                  _isMobile
+                  context.isMobile
                       ? GoRouter.of(context).go(Routes.profileSetup)
                       : GoRouter.of(context).go(Routes.profileSetup);
                 },
@@ -63,25 +44,19 @@ class ConnectWalletScreen extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       verticalSpace(AppValues.height60),
-                      Text(
-                        'welcomeToStarkWager'.tr(),
-                        style: AppTheme.headLineLarge32
-                            .copyWith(color: context.primaryTextColor),
-                      ),
+                      Text('welcomeToStarkWager'.tr(),
+                          style: AppTheme.of(context).headLineLarge32),
                       verticalSpace(AppValues.height8),
                       Row(
                         children: [
-                          Text(
-                            'connectYourWalletToUse'.tr(),
-                            style: AppTheme.titleMedium18
-                                .copyWith(color: context.primaryTextColor),
-                          ),
+                          Text('connectYourWalletToUse'.tr(),
+                              style: AppTheme.of(context).bodyExtraLarge18),
                           horizontalSpace(AppValues.padding3),
                           Text(
                             'starkWager'.tr(),
-                            style: AppTheme.titleMedium18.copyWith(
-                                color: context.primaryTextColor,
-                                fontWeight: FontWeight.w600),
+                            style: AppTheme.of(context)
+                                .bodyExtraLarge18
+                                .copyWith(fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
@@ -150,6 +125,7 @@ class ConnectWalletScreen extends ConsumerWidget {
                                 onTap: () {},
                               ),
                           loading: () => const CircularProgressIndicator()),
+                      verticalSpace(AppValues.height15),
                     ],
                   ),
                 ),

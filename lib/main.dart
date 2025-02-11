@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
 import 'package:starkwager/routing/router.dart';
 import 'package:starkwager/utils/provider_observer.dart';
+
 import 'core/providers/app_theme_mode_provider.dart';
 
 void main() async {
@@ -12,18 +13,15 @@ void main() async {
   /// Localization
   await EasyLocalization.ensureInitialized();
 
-  runApp(
-    ProviderScope(
+  runApp(ProviderScope(
       observers: [AppObserver()],
-        child: EasyLocalization(
-            supportedLocales: const [Locale('en')],
-            path: 'assets/translations',
-            fallbackLocale: const Locale('en'),
-            useOnlyLangCode: true,
-            child: MainApp(),
-        )
-    )
-  );
+      child: EasyLocalization(
+        supportedLocales: const [Locale('en')],
+        path: 'assets/translations',
+        fallbackLocale: const Locale('en'),
+        useOnlyLangCode: true,
+        child: MainApp(),
+      )));
 }
 
 class MainApp extends ConsumerWidget {
@@ -50,7 +48,6 @@ class MainApp extends ConsumerWidget {
     );
   }
 }
-
 
 class _EagerInitialization extends ConsumerWidget {
   final Widget child;

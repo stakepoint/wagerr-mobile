@@ -1,17 +1,4 @@
-import 'dart:io';
-
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:starkwager/core/constants/app_values.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/routing/routes.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../feature.dart';
 
 class WagerSummaryScreen extends ConsumerWidget {
   const WagerSummaryScreen({super.key});
@@ -19,79 +6,19 @@ class WagerSummaryScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        scrolledUnderElevation: 0.0,
-        backgroundColor: context.secondaryBackgroundColor,
-        toolbarHeight: context.isMobile ? null : AppValues.height100,
-        elevation: 0,
-        title: context.isMobile
-            ? InkWell(
-                onTap: () => GoRouter.of(context).pop(),
-                child: SvgPicture.asset(AppIcons.arrowBack),
-              )
-            : Padding(
-                padding: const EdgeInsets.only(left: 120),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      icon: SvgPicture.asset(
-                        AppIcons.arrowBack,
-                      ),
-                      onPressed: () => GoRouter.of(context).pop(),
-                    ),
-                    Text(
-                      !context.isMobile ? 'WAGER SUMMARY'.tr() : '',
-                      style: AppTheme.headLineLarge32,
-                    ),
-                  ],
-                ),
-              ),
-        actions: [
-          if (!context.isMobile)
-            Container(
-              padding: EdgeInsets.only(right: 80),
-              child: Row(
-                children: [
-                  Image.asset(AppIcons.userPath),
-                  horizontalSpace(8),
-                  Container(
-                    padding: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Row(
-                      children: [
-                        Text(
-                          '@noyi24_7',
-                        ),
-                        SvgPicture.asset(AppIcons.copyPath),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: AppValues.height20,
-                  ),
-                  SvgPicture.asset(AppIcons.notificationPath),
-                ],
-              ),
-            )
-        ],
-        centerTitle: context.isMobile ? false : true,
-      ),
-      backgroundColor: context.secondaryBackgroundColor,
+      appBar: BaseAppbar(
+          context: context, title: 'wagerSummary'.tr(), userName: '@noyi24_7'),
+      backgroundColor: context.primaryBackgroundColor,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final double maxWidth = AppValues.width600;
             return SingleChildScrollView(
               child: Center(
-                child: Container(
+                child: SizedBox(
                   width: AppValues.width500,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: AppValues.padding16,
+                      horizontal: AppValues.padding20,
                     ),
                     child: Column(
                       crossAxisAlignment: context.isMobile
@@ -100,9 +27,8 @@ class WagerSummaryScreen extends ConsumerWidget {
                       children: [
                         if (context.isMobile)
                           Text(
-                            'WAGER SUMMARY'.tr(),
-                            style: AppTheme.headLineLarge32
-                                .copyWith(color: context.primaryTextColor),
+                            'wagerSummary'.tr(),
+                            style: AppTheme.of(context).headLineLarge32,
                           ),
                         verticalSpace(AppValues.height20),
                         if (context.isMobile)
@@ -167,7 +93,8 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           width: double.infinity,
                           padding: EdgeInsets.all(AppValues.padding10),
                           decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.grayCool200),
+                            border: Border.all(
+                                color: context.secondaryBackgroundColor),
                             borderRadius:
                                 BorderRadius.circular(AppValues.radius16),
                             color: context.primaryBackgroundColor,
@@ -188,9 +115,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                                 child: Text(
                                   'Always keep verifiable evidence of your wagers for dispute resolution purposes.'
                                       .tr(),
-                                  style: AppTheme.textSmallMedium.copyWith(
-                                    color: AppColors.blue950,
-                                  ),
+                                  style: AppTheme.of(context).textSmallMedium,
                                   softWrap: true,
                                   maxLines: null,
                                   overflow: TextOverflow.visible,
@@ -200,29 +125,12 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           ),
                         ),
                         verticalSpace(AppValues.height50),
-                        Container(
-                          height: AppValues.height56,
-                          width: AppValues.width400,
-                          child: TextButton(
-                            onPressed: () {
-                              context.go(Routes.wager_created);
-                            },
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: AppColors.buttonColor,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: AppValues.padding16),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                            child: Text(
-                              "Create Wager".tr(),
-                              style: AppTheme.titleMedium18.copyWith(
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
+                        PrimaryButton(
+                          buttonText: 'Create Wager'.tr(),
+                          isActive: true,
+                          onPressed: () {
+                            GoRouter.of(context).push(Routes.wagerCreated);
+                          },
                         ),
                         verticalSpace(AppValues.height20),
                       ],
@@ -253,9 +161,9 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
           children: [
             Text(
               title.tr(),
-              style: AppTheme.textSmallMedium.copyWith(
-                color: AppColors.grayCool400,
-              ),
+              style: AppTheme.of(context).textSmallMedium.copyWith(
+                    color: context.textHintColor,
+                  ),
             ),
             SizedBox(
               height: 5,
@@ -283,9 +191,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                               child: SingleChildScrollView(
                                 child: Text(
                                   item.tr(),
-                                  style: AppTheme.textSmallMedium.copyWith(
-                                    color: AppColors.blue950,
-                                  ),
+                                  style: AppTheme.of(context).textSmallMedium,
                                   softWrap: true,
                                   maxLines: null,
                                   overflow: TextOverflow.visible,
@@ -316,9 +222,9 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
       children: [
         Text(
           title.tr(),
-          style: AppTheme.textSmallMedium.copyWith(
-            color: AppColors.grayCool400,
-          ),
+          style: AppTheme.of(context).textSmallMedium.copyWith(
+                color: context.textHintColor,
+              ),
         ),
         SizedBox(
           height: 5,
@@ -345,9 +251,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                           child: SingleChildScrollView(
                             child: Text(
                               wagerDescription.tr(),
-                              style: AppTheme.textSmallMedium.copyWith(
-                                color: AppColors.blue950,
-                              ),
+                              style: AppTheme.of(context).textSmallMedium,
                               softWrap: true,
                               maxLines: null,
                               overflow: TextOverflow.visible,
@@ -363,9 +267,7 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                     child: SingleChildScrollView(
                       child: Text(
                         wagerDescription.tr(),
-                        style: AppTheme.textSmallMedium.copyWith(
-                          color: AppColors.blue950,
-                        ),
+                        style: AppTheme.of(context).textSmallMedium,
                         softWrap: true,
                         maxLines: null,
                         overflow: TextOverflow.visible,
@@ -418,12 +320,8 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                 SizedBox(
                   width: 5,
                 ),
-                Text(
-                  '$strkNumber Strk each'.tr(),
-                  style: AppTheme.textSmallMedium.copyWith(
-                    color: AppColors.blue950,
-                  ),
-                ),
+                Text('$strkNumber Strk each'.tr(),
+                    style: AppTheme.of(context).textSmallMedium),
               ],
             ),
           ),
@@ -440,28 +338,21 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                   Text(
                     user,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTheme.titleTiny12.copyWith(
-                      color: AppColors.blue950,
-                    ),
+                    style: AppTheme.of(context).bodySmall12,
                   ),
                 ],
               ),
               Expanded(
                 child: Column(
                   children: [
-                    Text(
-                      'one-on-one'.tr(),
-                      style: AppTheme.titleTiny12.copyWith(
-                        color: AppColors.blue950,
-                      ),
-                    ),
+                    Text('one-on-one'.tr(),
+                        style: AppTheme.of(context).bodySmall12),
                     Text(
                       'VS',
-                      style: AppTheme.headLineLarge32.copyWith(
-                        color: AppColors.blue950,
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: AppTheme.of(context).headLineLarge32.copyWith(
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                   ],
                 ),
@@ -470,13 +361,9 @@ No extensions, no exceptions—this is your chance to back your crypto knowledge
                 children: [
                   Image.asset(AppIcons.awaitingUserPath),
                   verticalSpace(8),
-                  Text(
-                    opponent,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTheme.titleTiny12.copyWith(
-                      color: AppColors.blue950,
-                    ),
-                  ),
+                  Text(opponent,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTheme.of(context).bodySmall12),
                 ],
               ),
             ],

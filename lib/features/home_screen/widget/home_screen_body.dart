@@ -1,122 +1,130 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/home_screen/widget/home_action_button.dart';
-import 'package:starkwager/features/home_screen/widget/home_add_and_withdraw.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../../feature.dart';
 
 class HomeScreenBody extends ConsumerWidget {
   const HomeScreenBody({
     super.key,
   });
 
+  void _showFundWalletDialog(BuildContext context) {
+    if (context.isMobile) {
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext context) => FundWalletDialog(
+          onClose: () => Navigator.of(context).pop(),
+          onFund: () {
+            // Add your funding logic here
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => FundWalletDialog(
+          onClose: () => Navigator.of(context).pop(),
+          onFund: () {
+            // Add your funding logic here
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _isMobile = ScreenLayout.isMobile(context);
     return Column(
       children: [
-        _isMobile
+        context.isMobile
             ? _mobileContractAddress(context)
             : _tabletContractAddress(context),
         verticalSpace(8),
-        _isMobile ? _mobileStarkAmount() : _tabletStarkAmount(),
+        context.isMobile
+            ? _mobileStarkAmount(context)
+            : _tabletStarkAmount(context),
         verticalSpace(16),
-        _isMobile ? HomeAddAndWithdraw() : SizedBox(),
-        _isMobile ? verticalSpace(48) : verticalSpace(40),
-        _isMobile ? _mobileNoWagger() : _tabletNoWagger(),
+        context.isMobile ? HomeAddAndWithdraw() : SizedBox(),
+        context.isMobile ? verticalSpace(48) : verticalSpace(40),
+        context.isMobile ? _mobileNoWager(context) : _tabletNoWager(context),
       ],
     );
   }
 
-//----------------------------------------------- MOBILENOWAGGER ----------------------------------------------- //
+//----------------------------------------------- MOBILE_NO_WAGER ----------------------------------------------- //
 
-  Widget _mobileNoWagger() {
+  Widget _mobileNoWager(BuildContext context) {
     return Container(
       height: 81,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        color: AppColors.baseWhite,
+        color: context.containerColor,
       ),
       child: Row(
         spacing: 16,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           horizontalSpace(16),
-          SvgPicture.asset(AppIcons.noWaggerIcon),
+          SvgPicture.asset(AppIcons.noWagerIcon),
           Text(
-            'nowagerscreatedyet'.tr(),
-            style: AppTheme.titleSmall16.copyWith(
-              color: AppColors.grayCool400,
-            ),
+            'noWagersCreatedYet'.tr(),
+            style: AppTheme.of(context).bodyLarge16.copyWith(
+                  color: context.textHintColor,
+                ),
           ),
         ],
       ),
     );
   }
 
-  //----------------------------------------------- MOBILENOWAGGER ----------------------------------------------- //
+  //----------------------------------------------- MOBILE_NO_WAGER ----------------------------------------------- //
 
-  Widget _tabletNoWagger() {
+  Widget _tabletNoWager(BuildContext context) {
     return Container(
       height: 175,
       width: 696,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        color: AppColors.baseWhite,
+        color: context.containerColor,
       ),
       child: Column(
         spacing: 24,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(AppIcons.noWaggerIcon, width: 88, height: 88),
+          SvgPicture.asset(AppIcons.noWagerIcon, width: 88, height: 88),
           Text(
-            'nowagerscreatedyet'.tr(),
-            style: AppTheme.textMediumNormal.copyWith(
-              color: AppColors.grayCool400,
-            ),
+            'noWagersCreatedYet'.tr(),
+            style: AppTheme.of(context).textMediumNormal.copyWith(
+                  color: context.textHintColor,
+                ),
           ),
         ],
       ),
     );
   }
 
-//----------------------------------------------- MOBILESTARKAMOUNT ----------------------------------------------- //
+//----------------------------------------------- MOBILE_STARK_AMOUNT ----------------------------------------------- //
 
-  Widget _mobileStarkAmount() {
+  Widget _mobileStarkAmount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          '\$0.00',
-          style: AppTheme.headingMobileH1.copyWith(
-            color: AppColors.blue950,
-          ),
-        ),
+        Text('\$0.00', style: AppTheme.of(context).headingMobileH1),
         Row(
           children: [
             Image.asset(AppIcons.starknetImage),
             horizontalSpace(4),
-            Text(
-              '${'0'} Strk',
-              style: AppTheme.textSmallMedium.copyWith(
-                color: AppColors.blue950,
-              ),
-            ),
+            Text('${'0'} Strk', style: AppTheme.of(context).textSmallMedium),
           ],
         ),
       ],
     );
   }
 
-//----------------------------------------------- TABLETSTARKAMOUNT ----------------------------------------------- //
+//----------------------------------------------- TABLET_STARK_AMOUNT ----------------------------------------------- //
 
-  Widget _tabletStarkAmount() {
+  Widget _tabletStarkAmount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -124,22 +132,13 @@ class HomeScreenBody extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 8,
           children: [
-            Text(
-              '\$0.00',
-              style: AppTheme.headingMobileH1.copyWith(
-                color: AppColors.blue950,
-              ),
-            ),
+            Text('\$0.00', style: AppTheme.of(context).headingMobileH1),
             Row(
               children: [
                 Image.asset(AppIcons.starknetImage),
                 horizontalSpace(4),
-                Text(
-                  '${'0'} Strk',
-                  style: AppTheme.textSmallMedium.copyWith(
-                    color: AppColors.blue950,
-                  ),
-                ),
+                Text('${'0'} Strk',
+                    style: AppTheme.of(context).textSmallMedium),
               ],
             ),
           ],
@@ -152,7 +151,7 @@ class HomeScreenBody extends ConsumerWidget {
               HomeActionButton(
                 text: 'addMoney'.tr(),
                 iconPath: AppIcons.addIcon,
-                onTap: () {},
+                onTap: () => _showFundWalletDialog(context),
               ),
               HomeActionButton(
                 text: 'withdraw'.tr(),
@@ -166,7 +165,7 @@ class HomeScreenBody extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- MOBILECONTRACTADDRESS ----------------------------------------------- //
+//----------------------------------------------- MOBILE_CONTRACT_ADDRESS ----------------------------------------------- //
 
   Widget _mobileContractAddress(BuildContext context) {
     return Row(
@@ -174,26 +173,23 @@ class HomeScreenBody extends ConsumerWidget {
       children: [
         Text(
           'walletBalance'.tr(),
-          style: AppTheme.bodyMedium14.copyWith(
-            color: AppColors.grayCool400,
-          ),
+          style: AppTheme.of(context).bodyMedium14.copyWith(
+                color: context.textHintColor,
+              ),
         ),
         Container(
           height: 29,
           width: 151,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: AppColors.baseWhite,
+            color: context.containerColor,
           ),
           child: Row(
             spacing: 7,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                '0x400e44000...',
-                style: AppTheme.textSmallMedium
-                    .copyWith(color: context.primaryTextColor),
-              ),
+              Text('0x400e44000...',
+                  style: AppTheme.of(context).textSmallMedium),
               SvgPicture.asset(AppIcons.copyIcon)
             ],
           ),
@@ -202,7 +198,7 @@ class HomeScreenBody extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- TABLETCONTRACTADDRESS ----------------------------------------------- //
+//----------------------------------------------- TABLET_CONTRACT_ADDRESS ----------------------------------------------- //
 
   Widget _tabletContractAddress(BuildContext context) {
     return Row(
@@ -210,26 +206,23 @@ class HomeScreenBody extends ConsumerWidget {
       children: [
         Text(
           'walletBalance'.tr(),
-          style: AppTheme.titleSmall16.copyWith(
-            color: AppColors.grayCool400,
-          ),
+          style: AppTheme.of(context).bodyLarge16.copyWith(
+                color: context.textHintColor,
+              ),
         ),
         Container(
           height: 29,
           width: 151,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: AppColors.baseWhite,
+            color: context.containerColor,
           ),
           child: Row(
             spacing: 7,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                '0x400e44000...',
-                style: AppTheme.textRegularMedium
-                    .copyWith(color: context.primaryTextColor),
-              ),
+              Text('0x400e44000...',
+                  style: AppTheme.of(context).textRegularMedium),
               SvgPicture.asset(AppIcons.copyIcon)
             ],
           ),

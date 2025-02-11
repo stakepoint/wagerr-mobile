@@ -1,42 +1,25 @@
-// ignore_for_file: deprecated_member_use
-
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:starkwager/core/constants/app_values.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/extensions/build_context_extension.dart';
-import 'package:starkwager/features/home_screen/widget/home_screen_app_bar.dart';
-import 'package:starkwager/features/home_screen/widget/home_screen_body.dart';
-import 'package:starkwager/features/home_screen/widget/home_screen_tablet_mode.dart';
-import 'package:starkwager/routing/routes.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../feature.dart';
 
 class HomeScreen extends ConsumerWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMobile = ScreenLayout.isMobile(context);
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
-      appBar: isMobile ? HomeScreenAppBar() : null,
-      backgroundColor: context.secondaryTextColor,
-      floatingActionButton:
-          isMobile || isPortrait ? _floatingActionButton(context) : SizedBox(),
+      appBar: context.isMobile ? HomeScreenAppBar() : null,
+      backgroundColor: context.primaryBackgroundColor,
+      floatingActionButton: context.isMobile || isPortrait
+          ? _floatingActionButton(context)
+          : SizedBox(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             final double maxWidth = AppValues.width600;
             final double maxWidthTablet = AppValues.width1440;
-            return isMobile
+            return context.isMobile
                 ? ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxWidth),
                     child: Padding(
@@ -65,22 +48,22 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- FLOATINGACTIONBUTTON ----------------------------------------------- //
+//----------------------------------------------- FLOATING_ACTION_BUTTON ----------------------------------------------- //
 
   Widget _floatingActionButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Routes.create_wager);
+        GoRouter.of(context).push(Routes.createWager);
       },
       child: Container(
         height: 56,
         width: 160,
         decoration: BoxDecoration(
-          color: AppColors.green100,
+          color: context.primaryButtonColor,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 8,
               offset: Offset(0, 4),
             ),
@@ -91,12 +74,7 @@ class HomeScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(AppIcons.handshakeIcon),
-            Text(
-              'newWager'.tr(),
-              style: AppTheme.textMediumMedium.copyWith(
-                color: AppColors.blue950,
-              ),
-            ),
+            Text('newWager'.tr(), style: AppTheme.of(context).textMediumMedium),
           ],
         ),
       ),

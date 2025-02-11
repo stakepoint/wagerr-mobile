@@ -1,107 +1,100 @@
 import 'package:flutter/material.dart';
+import 'package:starkwager/extensions/build_context_extension.dart';
 
 class AppTheme {
-  AppTheme._();
+  final BuildContext context;
+
+  const AppTheme._(this.context);
+
+  factory AppTheme.of(BuildContext context) => AppTheme._(context);
 
   static final fontFamily = 'General Sans';
 
-  static final headLineLarge32 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 32,
-    fontWeight: FontWeight.w600,
-  );
+  TextStyle get headingMobileH1 => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 40,
+      fontWeight: FontWeight.w600,
+      color: context.primaryTextColor);
 
-  static final textSmallMedium = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-  );
+  TextStyle get headLineLarge32 => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 32,
+      fontWeight: FontWeight.w600,
+      color: context.primaryTextColor);
 
-  static final textMediumMedium = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 18,
-    fontWeight: FontWeight.w500,
-  );
+  TextStyle get textSmallMedium => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: context.primaryTextColor);
 
-  static final textMediumNormal = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 18,
-    fontWeight: FontWeight.w400,
-  );
+  TextStyle get textMediumMedium => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
+      color: context.primaryTextColor);
 
-  static final headingMobileH1 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 40,
-    fontWeight: FontWeight.w600,
-  );
+  TextStyle get textMediumNormal => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 18,
+      fontWeight: FontWeight.w400,
+      color: context.primaryTextColor);
 
-  static final textRegularMedium = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-  );
+  TextStyle get textRegularMedium => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: context.primaryTextColor);
 
-  static final titleExtraLarge24 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 24,
-    fontWeight: FontWeight.w600,
-  );
+  TextStyle get titleExtraLarge24 => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+      color: context.primaryTextColor);
 
-  static final titleLarge20 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-  );
+  TextStyle get titleLarge20 => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: context.primaryTextColor);
 
-  static final titleMedium18 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 18,
-    fontWeight: FontWeight.w400,
-  );
+  TextStyle get bodyHuge20 => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 20,
+      fontWeight: FontWeight.w400,
+      color: context.primaryTextColor);
 
-  static final titleSmall16 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-  );
+  TextStyle get bodyExtraLarge18 => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 18,
+      fontWeight: FontWeight.w400,
+      color: context.primaryTextColor);
 
-  static final titleExtraSmall14 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 14,
-    fontWeight: FontWeight.w700,
-  );
+  TextStyle get bodyLarge16 => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: context.primaryTextColor);
 
-  static final titleTiny12 = TextStyle(
+  TextStyle get bodyMedium14 => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: context.primaryTextColor);
+
+  TextStyle get bodySmall12 => TextStyle(
+      fontFamily: fontFamily,
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: context.primaryTextColor);
+
+  static final textTinyMedium = TextStyle(
     fontFamily: fontFamily,
     fontSize: 12,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
   );
 
-  static final bodyHuge20 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 20,
-    fontWeight: FontWeight.w400,
-  );
-
-  static final bodyExtraLarge18 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 18,
-    fontWeight: FontWeight.w400,
-  );
-
-  static final bodyLarge16 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-  );
-
-  static final bodyMedium14 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-  );
-
-  static final bodySmall12 = TextStyle(
+  static final textTinyNormal = TextStyle(
     fontFamily: fontFamily,
     fontSize: 12,
     fontWeight: FontWeight.w400,

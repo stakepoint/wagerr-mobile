@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/features/connect_wallet/connect_wallet_screen.dart';
-import 'package:starkwager/features/profile/profile_setup_screen.dart';
-import 'package:starkwager/features/home_screen/home_screen.dart';
-import 'package:starkwager/features/home_screen/naviagtion.dart';
-import 'package:starkwager/features/home_screen/widget/home_screen_tablet_menu_bar.dart';
-import 'package:starkwager/features/profile_screen.dart/profile_screen.dart';
-import 'package:starkwager/features/wager_created/wager_created_screen.dart';
-import 'package:starkwager/features/wager_screen.dart/create_wager_screen.dart';
-import 'package:starkwager/features/wager_screen.dart/wager_summary.dart';
-import 'package:starkwager/features/wager_screen.dart/waggers_screen.dart';
-import 'package:starkwager/features/wallet_screen.dart/wallet_screen.dart';
-
+import '../features/feature.dart';
 import '../routing/routes.dart';
 
 class SlideRouteTransition extends CustomTransitionPage<void> {
@@ -57,26 +46,26 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
-      path: Routes.create_wager,
+      path: Routes.createWager,
       pageBuilder: (context, state) => SlideRouteTransition(
         child: CreateWagerScreen(),
-        routeName: Routes.create_wager,
+        routeName: Routes.createWager,
       ),
     ),
 
     GoRoute(
-      path: Routes.create_wager_summary,
+      path: Routes.createWagerSummary,
       pageBuilder: (context, state) => SlideRouteTransition(
         child: WagerSummaryScreen(),
-        routeName: Routes.create_wager_summary,
+        routeName: Routes.createWagerSummary,
       ),
     ),
 
     GoRoute(
-      path: Routes.wager_created,
+      path: Routes.wagerCreated,
       pageBuilder: (context, state) => SlideRouteTransition(
         child: WagerCreatedScreen(),
-        routeName: Routes.wager_created,
+        routeName: Routes.wagerCreated,
       ),
     ),
 
@@ -95,31 +84,31 @@ final GoRouter router = GoRouter(
       },
       routes: [
         GoRoute(
-          path: Routes.home_tablet,
+          path: Routes.homeTablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: HomeScreen(),
-            routeName: Routes.home_tablet,
+            routeName: Routes.homeTablet,
           ),
         ),
         GoRoute(
-          path: Routes.wagger_tablet,
+          path: Routes.wagerTablet,
           pageBuilder: (context, state) => SlideRouteTransition(
-            child: WaggersScreen(),
-            routeName: Routes.wagger_tablet,
+            child: WagersScreen(),
+            routeName: Routes.wagerTablet,
           ),
         ),
         GoRoute(
-          path: Routes.wallet_tablet,
+          path: Routes.walletTablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: WalletScreen(),
-            routeName: Routes.wallet_tablet,
+            routeName: Routes.walletTablet,
           ),
         ),
         GoRoute(
-          path: Routes.profile_tablet,
+          path: Routes.profileTablet,
           pageBuilder: (context, state) => SlideRouteTransition(
             child: ProfileScreen(),
-            routeName: Routes.profile_tablet,
+            routeName: Routes.profileTablet,
           ),
         ),
       ],
@@ -140,10 +129,10 @@ final GoRouter router = GoRouter(
           ),
         ),
         GoRoute(
-          path: Routes.wagger,
+          path: Routes.wager,
           pageBuilder: (context, state) => SlideRouteTransition(
-            child: WaggersScreen(),
-            routeName: Routes.wagger,
+            child: WagersScreen(),
+            routeName: Routes.wager,
           ),
         ),
         GoRoute(

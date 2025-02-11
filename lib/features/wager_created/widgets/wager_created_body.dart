@@ -1,26 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:starkwager/core/constants/assets.dart';
-import 'package:starkwager/core/constants/screen_layout.dart';
-import 'package:starkwager/features/wager_created/provider/text_input_state.dart';
-import 'package:starkwager/features/wager_created/widgets/general_text_form_field.dart';
-import 'package:starkwager/routing/routes.dart';
-import 'package:starkwager/theme/app_colors.dart';
-import 'package:starkwager/theme/app_theme.dart';
-import 'package:starkwager/utils/ui_widgets.dart';
+part of '../../feature.dart';
 
-class WargerCreatedBody extends ConsumerStatefulWidget {
-  WargerCreatedBody({super.key});
+class WagerCreatedBody extends ConsumerStatefulWidget {
+  const WagerCreatedBody({super.key});
 
   @override
-  ConsumerState<WargerCreatedBody> createState() => _AccountCreatedBodyState();
+  ConsumerState<WagerCreatedBody> createState() => _AccountCreatedBodyState();
 }
 
-class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
+class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
   late TextEditingController _usernameTextController;
   late FocusNode _usernameTextControllerFocusNode;
   late bool hasEnteredUsername = false;
@@ -41,10 +28,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
 
   @override
   Widget build(BuildContext context) {
-    final _isMobile = ScreenLayout.isMobile(context);
-
     return Consumer(builder: (context, ref, child) {
-      final textInputState = ref.watch(textInputProvider);
       return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
         child: SingleChildScrollView(
@@ -53,64 +37,43 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
             children: [
               Text(
                 'wagerCreated'.tr(),
-                style: AppTheme.headLineLarge32.copyWith(
-                    color: AppColors.blue950,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 32),
+                style: AppTheme.of(context)
+                    .headLineLarge32
+                    .copyWith(fontWeight: FontWeight.w600, fontSize: 32),
               ),
               verticalSpace(8),
-              Text(
-                'sendWagerInvite'.tr(),
-                style: AppTheme.textMediumNormal.copyWith(
-                    color: AppColors.grayCool800,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16),
-              ),
+              Text('sendWagerInvite'.tr(),
+                  style: AppTheme.of(context)
+                      .textMediumNormal
+                      .copyWith(color: context.subTitleTextColor)),
               verticalSpace(22),
               Container(
                 height: 0.5,
                 color: AppColors.mono60,
               ),
               verticalSpace(30),
-              FormattedTextFields(
-                height: 72,
-                title: 'inviteUsername'.tr(),
-                textFieldController: _usernameTextController,
-                textFieldHint: 'wager.strk/@username',
-                keyInputType: TextInputType.text,
-                containerColor: AppColors.grayCool200,
-                noBorder: true,
-                focusNode: _usernameTextControllerFocusNode,
-                inputFormatters: [],
-                onChangedFunction: (value) {
-                  if (value.isEmpty ||
-                      !_usernameTextController.text
-                          .startsWith('wager.strk/@')) {
-                    _usernameTextController.text = 'wager.strk/@';
-                    _usernameTextController.selection =
-                        TextSelection.fromPosition(TextPosition(
-                            offset: _usernameTextController.text.length));
-                  } else {
-                    return value;
-                  }
-                },
-                errorText: "",
-                errorTextActive: false,
+              Text('inviteUsername'.tr(),
+                  style: AppTheme.of(context)
+                      .bodyMedium14
+                      .copyWith(fontWeight: FontWeight.w500)),
+              verticalSpace(AppValues.height8),
+              UsernameEditText(
+                controller: _usernameTextController,
+                onValueChanged: (value) {},
               ),
               verticalSpace(20),
               Text(
                 'publicInvite'.tr(),
-                style: AppTheme.textMediumNormal.copyWith(
-                    color: AppColors.blue950,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14),
+                style: AppTheme.of(context)
+                    .textMediumNormal
+                    .copyWith(fontWeight: FontWeight.w500, fontSize: 14),
               ),
               verticalSpace(12),
               Container(
                 height: 72,
                 padding: EdgeInsets.only(left: 18),
                 decoration: BoxDecoration(
-                  color: AppColors.grayCool100,
+                  color: context.secondaryBackgroundColor,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
@@ -120,10 +83,8 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'https://link.wager.strk/WEpl',
-                        style: AppTheme.textRegularMedium.copyWith(
-                            color: AppColors.blue950,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
+                        style: AppTheme.of(context).textRegularMedium.copyWith(
+                            fontWeight: FontWeight.w500, fontSize: 16),
                       ),
                     ),
                     Spacer(),
@@ -142,7 +103,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                         width: 72,
                         padding: EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                          color: AppColors.buttonColor,
+                          color: context.primaryButtonColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: SvgPicture.asset(
@@ -153,20 +114,19 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
                   ],
                 ),
               ),
-              _isMobile ? verticalSpace(80) : verticalSpace(24),
-              _button(
-                  title: 'sendWager'.tr(),
-                  buttonColor: textInputState.color,
-                  textColor: textInputState.text,
-                  onPressed: () {},
-                  textInputState: textInputState),
+              context.isMobile ? verticalSpace(80) : verticalSpace(24),
+              PrimaryButton(
+                buttonText: 'sendWager'.tr(),
+                isActive: true,
+                onPressed: () {},
+              ),
               verticalSpace(12),
               _button(
-                  title: 'backHome'.tr(),
-                  buttonColor: AppColors.white,
-                  textColor: AppColors.blue950,
-                  onPressed: () => context.go(Routes.create_wager_summary),
-                  textInputState: textInputState),
+                title: 'backHome'.tr(),
+                buttonColor: context.containerColor,
+                textColor: context.primaryTextColor,
+                onPressed: () => context.go(Routes.profileSetup),
+              ),
             ],
           ),
         ),
@@ -175,11 +135,7 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
   }
 
   _button(
-      {String? title,
-      required Function onPressed,
-      required textInputState,
-      buttonColor,
-      textColor}) {
+      {String? title, required Function onPressed, buttonColor, textColor}) {
     return GestureDetector(
       onTap: () => onPressed(),
       child: Container(
@@ -187,15 +143,14 @@ class _AccountCreatedBodyState extends ConsumerState<WargerCreatedBody> {
         alignment: Alignment.center,
         width: screenSize(context).width,
         decoration: BoxDecoration(
-          color: buttonColor ?? AppColors.blue950,
+          color: buttonColor ?? context.primaryTextColor,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Text(
           title ?? 'No Title',
-          style: AppTheme.textRegularMedium.copyWith(
-              color: AppColors.blue950,
-              fontWeight: FontWeight.w500,
-              fontSize: 16),
+          style: AppTheme.of(context)
+              .textRegularMedium
+              .copyWith(fontWeight: FontWeight.w500, fontSize: 16),
         ),
       ),
     );
