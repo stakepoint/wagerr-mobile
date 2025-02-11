@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:starkwager/core/constants/screen_size.dart';
 import 'package:starkwager/core/providers/navigation_provider.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
+import 'package:starkwager/extensions/currency_extension.dart';
 import 'package:starkwager/features/create_wager/provider/hashtag_provider.dart';
 
 import '../core/constants/app_values.dart';

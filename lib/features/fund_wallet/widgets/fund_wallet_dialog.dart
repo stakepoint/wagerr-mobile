@@ -1,42 +1,5 @@
 part of '../../feature.dart';
 
-class CurrencyTextInputFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    String text = newValue.text.replaceAll("\$", "");
-
-    if (text.isEmpty) {
-      return const TextEditingValue(
-        text: '',
-        selection: TextSelection.collapsed(offset: 0),
-      );
-    }
-
-    text = "\$$text";
-
-    return TextEditingValue(
-      text: text,
-      selection: TextSelection.collapsed(offset: text.length),
-    );
-  }
-}
-
-@override
-TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue, TextEditingValue newValue) {
-  String text = newValue.text;
-
-  if (!text.startsWith("\$")) {
-    text = "\$${text.replaceAll("\$", "")}";
-  }
-
-  return TextEditingValue(
-    text: text,
-    selection: TextSelection.collapsed(offset: text.length),
-  );
-}
-
 class FundWalletDialog extends StatefulWidget {
   final VoidCallback? onFund;
   final VoidCallback? onClose;
@@ -84,38 +47,38 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
     if (!showInput) {
       return Column(
         children: [
-          const SizedBox(height: 24),
+          verticalSpace(24),
           SizedBox(
             height: 100,
             child:
                 SvgPicture.asset(AppIcons.fundWalletIcon, fit: BoxFit.contain),
           ),
-          const SizedBox(height: 32),
+          verticalSpace(32),
         ],
       );
     }
     return Column(
       children: [
-        const SizedBox(height: 24),
+        verticalSpace(24),
         Material(
           color: Colors.transparent,
           child: TextField(
-              controller: amountController,
-              focusNode: _focusNode,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              textAlign: TextAlign.center,
-              inputFormatters: [CurrencyTextInputFormatter()],
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: '\$0.00',
-                hintStyle: AppTheme.of(context).headingMobileH1.copyWith(
-                      color: context.textHintColor,
-                    ),
-              ),
-              style: AppTheme.of(context).headingMobileH1),
+            controller: amountController,
+            focusNode: _focusNode,
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            inputFormatters: [CurrencyTextInputFormatter()],
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: '\$0.00',
+              hintStyle: AppTheme.of(context).headingMobileH1.copyWith(
+                    color: context.textHintColor,
+                  ),
+            ),
+            style: AppTheme.of(context).headingMobileH1,
+          ),
         ),
-        const SizedBox(height: 8),
+        verticalSpace(8),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -124,7 +87,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             Text('0 Strk', style: AppTheme.of(context).textSmallMedium),
           ],
         ),
-        const SizedBox(height: 32),
+        verticalSpace(32),
       ],
     );
   }
@@ -165,11 +128,13 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Text(_dialogText,
-                textAlign: TextAlign.center,
-                style: AppTheme.of(context)
-                    .bodyLarge16
-                    .copyWith(color: context.subTitleTextColor)),
+            child: Text(
+              _dialogText,
+              textAlign: TextAlign.center,
+              style: AppTheme.of(context)
+                  .bodyLarge16
+                  .copyWith(color: context.subTitleTextColor),
+            ),
           ),
           _buildMainContent(),
           Padding(
@@ -231,7 +196,8 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             height: sheetHeight,
             decoration: BoxDecoration(
               color: context.containerColor,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(16)),
             ),
             child: SingleChildScrollView(
               child: dialogContent,
@@ -244,8 +210,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
     // ========== Tablet Section ==========
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
-    final maxHeightPercentage =
-        isLandscape ? 0.5 : 0.38; // 50% in landscape, 40% in portrait
+    final maxHeightPercentage = isLandscape ? 0.5 : 0.38;
 
     return Dialog(
       backgroundColor: Colors.white,
@@ -262,7 +227,7 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
         child: ClipRect(
           child: SingleChildScrollView(
             physics: const ClampingScrollPhysics(),
-            child: dialogContent, // No extra padding here
+            child: dialogContent,
           ),
         ),
       ),
