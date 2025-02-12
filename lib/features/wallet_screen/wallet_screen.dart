@@ -9,7 +9,7 @@ class WalletScreen extends ConsumerWidget {
     final isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
-      appBar: isMobile ? HomeScreenAppBar() : null,
+      appBar: isMobile ? WalletScreenAppBar() : null,
       backgroundColor: context.primaryBackgroundColor,
       floatingActionButton:
           isMobile || isPortrait ? _floatingActionButton(context) : SizedBox(),
@@ -29,7 +29,7 @@ class WalletScreen extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           verticalSpace(48),
-                          HomeScreenBody(),
+                          WalletScreenBody(),
                           Spacer(),
                         ],
                       ),
@@ -39,7 +39,7 @@ class WalletScreen extends ConsumerWidget {
                     constraints: BoxConstraints(maxWidth: maxWidthTablet),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 32, right: 80),
-                      child: HomeScreenTabletMode(),
+                      child: WalletScreenTabletMode(),
                     ),
                   );
           },
