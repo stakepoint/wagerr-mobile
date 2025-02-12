@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:appcheck/appcheck.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:reown_appkit/modal/appkit_modal_impl.dart';
-import 'package:reown_appkit/modal/models/public/appkit_network_info.dart';
 import 'package:reown_appkit/reown_appkit.dart';
 import 'package:starkwager/features/connect_wallet/provider/wallet_connection_state.dart';
 
@@ -119,9 +117,9 @@ class WalletConnectionNotifier extends StateNotifier<WalletConnectionState> {
         ),
         includedWalletIds: includedWalletIds,
       );
-      print("🔄 Initializing AppKitModal...");
+      debugPrint("🔄 Initializing AppKitModal...");
       await w3mService.init();
-      print("✅ AppKitModal Initialized Successfully!");
+      debugPrint("✅ AppKitModal Initialized Successfully!");
       await w3mService.selectChain(
         ReownAppKitModalNetworkInfo(
           chainId: '11155111',

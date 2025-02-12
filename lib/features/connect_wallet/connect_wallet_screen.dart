@@ -1,6 +1,8 @@
 part of '../feature.dart';
 
 class ConnectWalletScreen extends ConsumerStatefulWidget {
+  const ConnectWalletScreen({super.key});
+
   @override
   ConsumerState<ConnectWalletScreen> createState() => _ConnectWalletScreen();
 }
@@ -127,9 +129,7 @@ class _ConnectWalletScreen extends ConsumerState<ConnectWalletScreen> {
                                     height: AppValues.height24),
                                 isInstalled: false,
                                 onTap: () {
-                                  print('getting here');
                                   w3mService!.openModalView();
-                                  //ref.read(walletConnectionProvider.notifier).initialize(context);
                                 },
                               ),
                           loading: () => const CircularProgressIndicator()),
