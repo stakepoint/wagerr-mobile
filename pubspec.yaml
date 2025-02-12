@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.2.3
   appcheck: ^1.5.2
   image_picker: ^1.1.2
+  reown_appkit: ^1.3.0
 
 dev_dependencies:
   flutter_test:

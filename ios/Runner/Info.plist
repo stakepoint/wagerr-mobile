@@ -47,5 +47,21 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLName</key>
+        <string>com.example.yourBundleId</string> <!-- Bundle ID of your app -->
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <!-- your own custom scheme -->
+          <!-- Should be the same you set on Redirect.native on Flutter side -->
+          <!-- Be mind of removing :// for this step -->
+          <string>starkwagerapp</string>
+        </array>
+      </dict>
+    </array>
 </dict>
 </plist>
