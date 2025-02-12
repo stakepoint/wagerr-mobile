@@ -16,7 +16,7 @@ class InstalledWalletWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: ()=> onTap(),
+      onTap: () => onTap(),
       child: Container(
         height: AppValues.height56,
         decoration: BoxDecoration(
