@@ -8,14 +8,13 @@ import 'package:reown_appkit/modal/models/public/appkit_network_info.dart';
 import 'package:reown_appkit/reown_appkit.dart';
 import 'package:starkwager/features/connect_wallet/provider/wallet_connection_state.dart';
 
-
 final argentCheckProvider = FutureProvider<bool>((ref) async {
   final appCheck = AppCheck();
   late bool isArgentInstalled;
   if (Platform.isAndroid) {
     const package = "im.argent.contractwalletclient";
     await appCheck.checkAvailability(package).then(
-          (app) {
+      (app) {
         if (app?.appName.toString() != null) {
           isArgentInstalled = true;
         }
@@ -24,7 +23,7 @@ final argentCheckProvider = FutureProvider<bool>((ref) async {
     return isArgentInstalled;
   } else if (Platform.isIOS) {
     await appCheck.checkAvailability("argent://").then(
-          (app) {
+      (app) {
         if (app?.appName.toString() != null) {
           isArgentInstalled = true;
         }
@@ -41,7 +40,7 @@ final braavosCheckProvider = FutureProvider<bool>((ref) async {
   if (Platform.isAndroid) {
     const package = "app.braavos.wallet";
     await appCheck.checkAvailability(package).then(
-          (app) {
+      (app) {
         if (app?.appName.toString() != null) {
           isBraavosInstalled = true;
         }
@@ -50,7 +49,7 @@ final braavosCheckProvider = FutureProvider<bool>((ref) async {
     return isBraavosInstalled;
   } else if (Platform.isIOS) {
     await appCheck.checkAvailability("braavos://").then(
-          (app) {
+      (app) {
         if (app?.appName.toString() != null) {
           isBraavosInstalled = true;
         }
@@ -67,7 +66,7 @@ final metamaskCheckProvider = FutureProvider<bool>((ref) async {
   if (Platform.isAndroid) {
     const package = "app.metamask.wallet";
     await appCheck.checkAvailability(package).then(
-          (app) {
+      (app) {
         if (app?.appName.toString() != null) {
           isMetaMaskInstalled = true;
         }
@@ -76,7 +75,7 @@ final metamaskCheckProvider = FutureProvider<bool>((ref) async {
     return isMetaMaskInstalled;
   } else if (Platform.isIOS) {
     await appCheck.checkAvailability("metamask://").then(
-          (app) {
+      (app) {
         if (app?.appName.toString() != null) {
           isMetaMaskInstalled = true;
         }
@@ -87,10 +86,9 @@ final metamaskCheckProvider = FutureProvider<bool>((ref) async {
   return false;
 });
 
-
 final walletConnectionProvider =
-StateNotifierProvider<WalletConnectionNotifier, WalletConnectionState>(
-      (ref) => WalletConnectionNotifier(),
+    StateNotifierProvider<WalletConnectionNotifier, WalletConnectionState>(
+  (ref) => WalletConnectionNotifier(),
 );
 
 class WalletConnectionNotifier extends StateNotifier<WalletConnectionState> {
@@ -148,7 +146,8 @@ class WalletConnectionNotifier extends StateNotifier<WalletConnectionState> {
 
   Future<void> listenToWalletConnection() async {
     try {
-      w3mService.onModalConnect.subscribe((_) => WalletConnectionState.connected(service: w3mService));
+      w3mService.onModalConnect.subscribe(
+          (_) => WalletConnectionState.connected(service: w3mService));
     } catch (e) {
       state = const WalletConnectionFailed(
         errorCode: '',

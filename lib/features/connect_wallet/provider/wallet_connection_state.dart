@@ -6,7 +6,8 @@ part 'wallet_connection_state.freezed.dart';
 @freezed
 class WalletConnectionState with _$WalletConnectionState {
   const factory WalletConnectionState.initial() = InitialWalletConnectionState;
-  const factory WalletConnectionState.initializing() = InitializingWalletConnectionState;
+  const factory WalletConnectionState.initializing() =
+      InitializingWalletConnectionState;
   const factory WalletConnectionState.connected({
     required ReownAppKitModal service,
   }) = WalletConnected;
