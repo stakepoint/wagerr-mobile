@@ -17,6 +17,7 @@ import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../utils/ui_widgets.dart';
 import 'connect_wallet/provider/connect_wallet_provider.dart';
+import 'dart:math' as math;
 
 part 'connect_wallet/widgets/installed_wallet_widget.dart';
 part 'connect_wallet/connect_wallet_screen.dart';
@@ -53,4 +54,9 @@ part 'wager_screen.dart/pending_screen.dart';
 part 'wager_screen.dart/wager_summary.dart';
 part 'wager_screen.dart/wagers_screen.dart';
 
-part 'wallet_screen.dart/wallet_screen.dart';
+part 'wallet_screen/wallet_screen.dart';
+part 'wallet_screen/widget/wallet_screen_app_bar.dart';
+part 'wallet_screen/widget/waltet_action_button.dart';
+part 'wallet_screen/widget/waltet_add_and_withdraw.dart';
+part 'wallet_screen/widget/waltet_screen_body.dart';
+part 'wallet_screen/widget/waltet_screen_tablet_mode.dart';
