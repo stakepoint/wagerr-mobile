@@ -1,21 +1,40 @@
 part of '../feature.dart';
 
-class ConnectWalletScreen extends ConsumerWidget {
-  const ConnectWalletScreen({super.key});
+class ConnectWalletScreen extends ConsumerStatefulWidget {
+  @override
+  ConsumerState<ConnectWalletScreen> createState() => _ConnectWalletScreen();
+}
+
+
+class _ConnectWalletScreen extends ConsumerState<ConnectWalletScreen> {
+
+  ReownAppKitModal? w3mService;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback(
+          (_) => ref.read(walletConnectionProvider.notifier).initialize(context)
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final argent = ref.watch(argentCheckProvider);
     final braavos = ref.watch(braavosCheckProvider);
     final metamask = ref.watch(metamaskCheckProvider);
-    final appKitModal = ref.watch(appKitModalProvider(context));
+    final walletState = ref.watch(walletConnectionProvider);
+
+    if (walletState is WalletConnected){
+      w3mService = walletState.service;
+    }
 
     return Scaffold(
       appBar: AppBar(
         actions: [
           Padding(
             padding:
-                const EdgeInsets.symmetric(horizontal: AppValues.padding16),
+            const EdgeInsets.symmetric(horizontal: AppValues.padding16),
             child: GestureDetector(
                 onTap: () {
                   context.isMobile
@@ -63,67 +82,61 @@ class ConnectWalletScreen extends ConsumerWidget {
                       verticalSpace(AppValues.height30),
                       verticalDivider(color: context.dividerColor),
                       verticalSpace(AppValues.height30),
-                      appKitModal.when(
-                        error: (error, stack) => Container(),
-                        loading: ()=> Container(),
-                        data: (modal){
-                          return argent.when(
-                              data: (isInstalled) => InstalledWalletWidget(
-                                title: 'Argent X',
-                                icon: Image.asset(AppIcons.argentIcon),
-                                isInstalled: isInstalled,
-                                onTap: () {
-                                  modal.openModalView(ReownAppKitModalAllWalletsPage());
 
-                                },
-                              ),
-                              error: (error, stack) => InstalledWalletWidget(
-                                title: 'Argent X',
-                                icon: Image.asset(AppIcons.argentIcon),
-                                isInstalled: false,
-                                onTap: () {
-                                  print('onclickii');
-                                  modal.openModalView(ReownAppKitModalAllWalletsPage());
-                                },
-                              ),
-                              loading: () => const CircularProgressIndicator());
-                        },
-
-                      ),
-
+                      argent.when(
+                          data: (isInstalled) => InstalledWalletWidget(
+                            title: 'Argent X',
+                            icon: Image.asset(AppIcons.argentIcon),
+                            isInstalled: isInstalled,
+                            onTap: () {},
+                          ),
+                          error: (error, stack) => InstalledWalletWidget(
+                            title: 'Argent X',
+                            icon: Image.asset(AppIcons.argentIcon),
+                            isInstalled: false,
+                            onTap: () {},
+                          ),
+                          loading: () => const CircularProgressIndicator()),
                       verticalSpace(AppValues.height15),
                       braavos.when(
                           data: (isInstalled) => InstalledWalletWidget(
-                                title: 'Braavos',
-                                icon: Image.asset(AppIcons.braavosIcon),
-                                isInstalled: isInstalled,
-                                onTap: () {},
-                              ),
+                            title: 'Braavos',
+                            icon: Image.asset(AppIcons.braavosIcon),
+                            isInstalled: isInstalled,
+                            onTap: () {},
+                          ),
                           error: (error, stack) => InstalledWalletWidget(
-                                title: 'Braavos',
-                                icon: Image.asset(AppIcons.braavosIcon),
-                                isInstalled: false,
-                                onTap: () {},
-                              ),
+                            title: 'Braavos',
+                            icon: Image.asset(AppIcons.braavosIcon),
+                            isInstalled: false,
+                            onTap: () {},
+                          ),
                           loading: () => const CircularProgressIndicator()),
                       verticalSpace(AppValues.height15),
                       metamask.when(
                           data: (isInstalled) => InstalledWalletWidget(
-                                title: 'Metamask',
-                                icon: SvgPicture.asset(AppIcons.metaMaskIcon,
-                                    width: AppValues.width24,
-                                    height: AppValues.height24),
-                                isInstalled: isInstalled,
-                                onTap: () {},
-                              ),
+                            title: 'Metamask',
+                            icon: SvgPicture.asset(AppIcons.metaMaskIcon,
+                                width: AppValues.width24,
+                                height: AppValues.height24),
+                            isInstalled: isInstalled,
+                            onTap: () {
+                              w3mService!.openModalView();
+                            },
+                          ),
                           error: (error, stack) => InstalledWalletWidget(
-                                title: 'Metamask',
-                                icon: SvgPicture.asset(AppIcons.metaMaskIcon,
-                                    width: AppValues.width24,
-                                    height: AppValues.height24),
-                                isInstalled: false,
-                                onTap: () {},
-                              ),
+                            title: 'Metamask',
+                            icon: SvgPicture.asset(AppIcons.metaMaskIcon,
+                                width: AppValues.width24,
+                                height: AppValues.height24),
+                            isInstalled: false,
+                            onTap: () {
+                              print('getting here');
+                              w3mService!.openModalView();
+                              //ref.read(walletConnectionProvider.notifier).initialize(context);
+
+                            },
+                          ),
                           loading: () => const CircularProgressIndicator()),
                       verticalSpace(AppValues.height15),
                     ],

@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:reown_appkit/modal/appkit_modal_impl.dart';
 import 'package:starkwager/core/constants/screen_size.dart';
 import 'package:starkwager/core/providers/navigation_provider.dart';
 import 'package:starkwager/extensions/build_context_extension.dart';
@@ -20,7 +22,8 @@ import '../routing/routes.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../utils/ui_widgets.dart';
-import 'connect_wallet/provider/connect_wallet_provider.dart';
+import 'connect_wallet/provider/wallet_connection_provider.dart';
+import 'connect_wallet/provider/wallet_connection_state.dart';
 import 'create_wager/provider/category_provider.dart';
 
 part 'component/button/primary_button.dart';
