@@ -114,9 +114,10 @@ class _FundWalletState extends ConsumerState<FundWallet> {
                     buttonText: 'fund'.tr(),
                     onPressed: () {
                       if (!widget.showInput) {
-                        setState(() {
+
+                        /*setState(() {
                           widget.showInput = true;
-                        });
+                        });*/
                       } else {
                         context.pop();
                       }
@@ -172,14 +173,15 @@ class _FundWalletState extends ConsumerState<FundWallet> {
               buttonText: 'fund'.tr(),
               onPressed: () {
                 if (!widget.showInput) {
-                  setState(() {
+                  /*setState(() {
                     widget.showInput = true;
-                  });
+                  });*/
                 } else {
                   context.pop();
                 }
               },
-              isActive: true)
+              isActive: true
+          )
         ],
       ),
     );
@@ -207,23 +209,9 @@ class _FundWalletState extends ConsumerState<FundWallet> {
     return Column(
       children: [
         verticalSpace(24),
-        Material(
-          color: Colors.transparent,
-          child: TextField(
-            controller: amountController,
-            focusNode: _focusNode,
-            keyboardType: TextInputType.number,
-            textAlign: TextAlign.center,
-            inputFormatters: [CurrencyTextInputFormatter()],
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: '\$0.00',
-              hintStyle: AppTheme.of(context).headingMobileH1.copyWith(
-                    color: context.textHintColor,
-                  ),
-            ),
-            style: AppTheme.of(context).headingMobileH1,
-          ),
+        _AmountInputField(
+          controller: amountController,
+          focusNode: _focusNode,
         ),
         verticalSpace(8),
         Row(
@@ -236,6 +224,44 @@ class _FundWalletState extends ConsumerState<FundWallet> {
         ),
         verticalSpace(32),
       ],
+    );
+  }
+}
+
+class _AmountInputField extends StatefulWidget {
+  final TextEditingController controller;
+  final FocusNode focusNode;
+
+  const _AmountInputField({
+    required this.controller,
+    required this.focusNode,
+  });
+
+  @override
+  _AmountInputFieldState createState() => _AmountInputFieldState();
+}
+
+class _AmountInputFieldState extends State<_AmountInputField> {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: TextField(
+        controller: widget.controller,
+        focusNode: widget.focusNode,
+        keyboardType: TextInputType.number,
+        textAlign: TextAlign.center,
+        //autofocus: true,
+        inputFormatters: [CurrencyTextInputFormatter()],
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: '\$0.00',
+          hintStyle: AppTheme.of(context).headingMobileH1.copyWith(
+            color: context.textHintColor,
+          ),
+        ),
+        style: AppTheme.of(context).headingMobileH1,
+      ),
     );
   }
 }
