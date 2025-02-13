@@ -5,12 +5,10 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isPortrait =
-        MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
       appBar: context.isMobile ? HomeScreenAppBar() : null,
       backgroundColor: context.primaryBackgroundColor,
-      floatingActionButton: context.isMobile || isPortrait
+      floatingActionButton: context.isMobile || context.isPortrait
           ? _floatingActionButton(context)
           : SizedBox(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -38,7 +36,7 @@ class HomeScreen extends ConsumerWidget {
                 : ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxWidthTablet),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 32, right: 80),
+                      padding: const EdgeInsets.symmetric(horizontal:  45),
                       child: HomeScreenTabletMode(),
                     ),
                   );
@@ -56,8 +54,8 @@ class HomeScreen extends ConsumerWidget {
         GoRouter.of(context).push(Routes.createWager);
       },
       child: Container(
-        height: 56,
-        width: 160,
+        height: context.isMobile ? 56 : 76,
+        width: context.isMobile ? 160: 200,
         decoration: BoxDecoration(
           color: context.primaryButtonColor,
           borderRadius: BorderRadius.circular(16),

@@ -11,45 +11,11 @@ class ProfileMenu extends ConsumerWidget {
       children: [
         _userProfileImage(context.isMobile),
         horizontalSpace(12),
-        _copyUserName(context.isMobile, context)
+        CopyItemContainer(value: '@noyi24_7'),
       ],
     );
   }
 
-//----------------------------------------------- COPY_USERNAME ----------------------------------------------- //
-
-  Widget _copyUserName(bool isMobile, BuildContext context) {
-    return Container(
-      height: isMobile ? 26 : 29,
-      width: isMobile ? 104 : 117,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: context.containerColor,
-      ),
-      child: isMobile
-          ? Row(
-              spacing: 6,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('@noyi24_7', style: AppTheme.of(context).textSmallMedium),
-                SvgPicture.asset(AppIcons.copyIcon)
-              ],
-            )
-          : Row(
-              spacing: 4,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('@noyi24_7',
-                    style: AppTheme.of(context).textRegularMedium),
-                SvgPicture.asset(
-                  AppIcons.copyIcon,
-                  width: 15,
-                  height: 15,
-                ),
-              ],
-            ),
-    );
-  }
 
 //----------------------------------------------- USER_PROFILE_IMAGE ----------------------------------------------- //
 

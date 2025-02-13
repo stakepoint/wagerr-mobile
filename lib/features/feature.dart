@@ -32,7 +32,6 @@ part 'connect_wallet/connect_wallet_screen.dart';
 part 'connect_wallet/widgets/installed_wallet_widget.dart';
 part 'create_wager/create_wager_screen.dart';
 part 'create_wager/wager_summary.dart';
-part 'fund_wallet/widgets/fund_wallet_dialog.dart';
 part 'home_screen/home_screen.dart';
 part 'home_screen/naviagtion.dart';
 part 'home_screen/widget/home_action_button.dart';
@@ -43,6 +42,8 @@ part 'home_screen/widget/home_screen_body.dart';
 part 'home_screen/widget/home_screen_tablet_menu_bar.dart';
 part 'home_screen/widget/home_screen_tablet_mode.dart';
 part 'home_screen/widget/profile_menu.dart';
+part 'home_screen/widget/copy_item_container.dart';
+part 'fund_wallet/widgets/fund_wallet_dialog.dart';
 
 part 'component/appbar/base_appbar.dart';
 part 'profile_setup/profile_setup_screen.dart';

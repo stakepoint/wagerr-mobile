@@ -55,23 +55,8 @@ class BaseAppbar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 Image.asset(AppIcons.userPath),
                 horizontalSpace(8),
-                Container(
-                  padding: EdgeInsets.all(2),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Row(
-                    children: [
-                      Text(
-                        userName,
-                      ),
-                      SvgPicture.asset(AppIcons.copyPath),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: AppValues.height20,
-                ),
+                CopyItemContainer(value: userName),
+                horizontalSpace(AppValues.padding20),
                 SvgPicture.asset(AppIcons.notificationPath),
               ],
             ),
