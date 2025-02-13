@@ -1,10 +1,7 @@
 part of '../../feature.dart';
 
 class CopyItemContainer extends StatelessWidget {
-  const CopyItemContainer({
-    super.key,
-    required this.value
-  });
+  const CopyItemContainer({super.key, required this.value});
 
   final String value;
 
@@ -12,8 +9,7 @@ class CopyItemContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Clipboard.setData(ClipboardData(
-            text: value));
+        Clipboard.setData(ClipboardData(text: value));
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('copiedToClipBoard'.tr()),

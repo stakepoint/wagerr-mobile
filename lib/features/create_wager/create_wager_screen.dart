@@ -24,7 +24,9 @@ class CreateWagerScreen extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            margin: context.isMobile ? EdgeInsets.all(20) : EdgeInsets.symmetric(horizontal: 120),
+            margin: context.isMobile
+                ? EdgeInsets.all(20)
+                : EdgeInsets.symmetric(horizontal: 120),
             child: Column(
               crossAxisAlignment: context.isMobile
                   ? CrossAxisAlignment.start

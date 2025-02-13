@@ -31,7 +31,8 @@ class HomeScreenTabletMode extends ConsumerWidget {
         ),
         verticalSpace(80),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: context.isLandscape ? 120 : 60),
+          padding:
+              EdgeInsets.symmetric(horizontal: context.isLandscape ? 120 : 60),
           child: HomeScreenBody(),
         ),
       ],

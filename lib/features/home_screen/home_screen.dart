@@ -36,7 +36,7 @@ class HomeScreen extends ConsumerWidget {
                 : ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxWidthTablet),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal:  45),
+                      padding: const EdgeInsets.symmetric(horizontal: 45),
                       child: HomeScreenTabletMode(),
                     ),
                   );
@@ -55,7 +55,7 @@ class HomeScreen extends ConsumerWidget {
       },
       child: Container(
         height: context.isMobile ? 56 : 76,
-        width: context.isMobile ? 160: 200,
+        width: context.isMobile ? 160 : 200,
         decoration: BoxDecoration(
           color: context.primaryButtonColor,
           borderRadius: BorderRadius.circular(16),

@@ -11,9 +11,7 @@ class HomeScreenBody extends ConsumerWidget {
         context: context,
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
-        builder: (BuildContext context) => FundWallet(
-          showInput: false
-        ),
+        builder: (BuildContext context) => FundWallet(showInput: false),
       );
     } else {
       showDialog(
@@ -164,11 +162,13 @@ class HomeScreenBody extends ConsumerWidget {
       children: [
         Text(
           'walletBalance'.tr(),
-          style: context.isMobile ? AppTheme.of(context).bodyMedium14.copyWith(
-                color: context.textHintColor,
-              ) : AppTheme.of(context).bodyLarge16.copyWith(
-            color: context.textHintColor,
-          ),
+          style: context.isMobile
+              ? AppTheme.of(context).bodyMedium14.copyWith(
+                    color: context.textHintColor,
+                  )
+              : AppTheme.of(context).bodyLarge16.copyWith(
+                    color: context.textHintColor,
+                  ),
         ),
         CopyItemContainer(value: '0x234233424322'),
       ],

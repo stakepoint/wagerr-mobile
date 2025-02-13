@@ -16,7 +16,6 @@ class ProfileMenu extends ConsumerWidget {
     );
   }
 
-
 //----------------------------------------------- USER_PROFILE_IMAGE ----------------------------------------------- //
 
   Widget _userProfileImage(bool isMobile) {

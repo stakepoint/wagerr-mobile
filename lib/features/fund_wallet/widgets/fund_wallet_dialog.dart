@@ -23,8 +23,9 @@ class _FundWalletState extends ConsumerState<FundWallet> {
   final TextEditingController amountController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
-  String get _dialogText =>
-      widget.showInput ? 'enterAmountDescription'.tr() : 'fundWalletDescription'.tr();
+  String get _dialogText => widget.showInput
+      ? 'enterAmountDescription'.tr()
+      : 'fundWalletDescription'.tr();
 
   @override
   void initState() {
@@ -57,23 +58,20 @@ class _FundWalletState extends ConsumerState<FundWallet> {
   }
 
   Widget _buildDialog(BuildContext context) {
-    final isLandscape = MediaQuery
-        .of(context)
-        .orientation == Orientation.landscape;
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     final maxHeightPercentage = isLandscape ? 0.5 : 0.38;
 
-    return Dialog (
+    return Dialog(
       backgroundColor: context.containerColor,
       insetPadding: const EdgeInsets.symmetric(horizontal: 24),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * maxHeightPercentage,
-            minWidth: 420,
-            maxWidth: 420,
-          ),
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * maxHeightPercentage,
+          minWidth: 420,
+          maxWidth: 420,
+        ),
         child: Padding(
           padding: const EdgeInsets.only(bottom: 16),
           child: Column(
@@ -114,7 +112,7 @@ class _FundWalletState extends ConsumerState<FundWallet> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: PrimaryButton(
                     buttonText: 'fund'.tr(),
-                    onPressed: (){
+                    onPressed: () {
                       if (!widget.showInput) {
                         setState(() {
                           widget.showInput = true;
@@ -123,8 +121,7 @@ class _FundWalletState extends ConsumerState<FundWallet> {
                         context.pop();
                       }
                     },
-                    isActive: true
-                ),
+                    isActive: true),
               ),
               const SizedBox(height: 16),
             ],
@@ -182,8 +179,7 @@ class _FundWalletState extends ConsumerState<FundWallet> {
                   context.pop();
                 }
               },
-              isActive: true
-          )
+              isActive: true)
         ],
       ),
     );
@@ -199,8 +195,8 @@ class _FundWalletState extends ConsumerState<FundWallet> {
             children: [
               SizedBox(
                 height: 100,
-                child:
-                SvgPicture.asset(AppIcons.fundWalletIcon, fit: BoxFit.contain),
+                child: SvgPicture.asset(AppIcons.fundWalletIcon,
+                    fit: BoxFit.contain),
               ),
             ],
           ),
@@ -223,8 +219,8 @@ class _FundWalletState extends ConsumerState<FundWallet> {
               border: InputBorder.none,
               hintText: '\$0.00',
               hintStyle: AppTheme.of(context).headingMobileH1.copyWith(
-                color: context.textHintColor,
-              ),
+                    color: context.textHintColor,
+                  ),
             ),
             style: AppTheme.of(context).headingMobileH1,
           ),
