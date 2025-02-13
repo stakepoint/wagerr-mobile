@@ -6,15 +6,17 @@ class HomeAddAndWithdraw extends ConsumerWidget {
   });
 
   void _showFundWalletDialog(BuildContext context) {
-    showDialog(
+    showModalBottomSheet(
+      backgroundColor: context.primaryBackgroundColor,
       context: context,
-      builder: (BuildContext context) => FundWalletDialog(
-        onClose: () => Navigator.of(context).pop(),
-        onFund: () {
-          // Add your funding logic here
-          Navigator.of(context).pop();
-        },
+      isScrollControlled: true,
+      useRootNavigator: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
       ),
+      builder: (context) => FundWalletDialog(),
     );
   }
 

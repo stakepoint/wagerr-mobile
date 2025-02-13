@@ -83,13 +83,13 @@ class _ConnectWalletScreen extends ConsumerState<ConnectWalletScreen> {
                       verticalSpace(AppValues.height30),
                       argent.when(
                           data: (isInstalled) => InstalledWalletWidget(
-                                title: 'Argent X',
+                                title: 'Argent',
                                 icon: Image.asset(AppIcons.argentIcon),
                                 isInstalled: isInstalled,
                                 onTap: () {},
                               ),
                           error: (error, stack) => InstalledWalletWidget(
-                                title: 'Argent X',
+                                title: 'Argent',
                                 icon: Image.asset(AppIcons.argentIcon),
                                 isInstalled: false,
                                 onTap: () {},

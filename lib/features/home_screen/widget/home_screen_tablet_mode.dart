@@ -7,8 +7,6 @@ class HomeScreenTabletMode extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
     return SingleChildScrollView(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -17,13 +15,10 @@ class HomeScreenTabletMode extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Home', style: AppTheme.of(context).headLineLarge32),
+            Text('home'.tr(), style: AppTheme.of(context).headLineLarge32),
             Row(
               children: [
-                GestureDetector(
-                  onTap: () => GoRouter.of(context).go(Routes.profileSetup),
-                  child: ProfileMenu(),
-                ),
+                ProfileMenu(),
                 horizontalSpace(24),
                 SvgPicture.asset(
                   AppIcons.notificationIcon,
@@ -34,9 +29,10 @@ class HomeScreenTabletMode extends ConsumerWidget {
             )
           ],
         ),
-        verticalSpace(120),
+        verticalSpace(80),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: isLandscape ? 120 : 60),
+          padding:
+              EdgeInsets.symmetric(horizontal: context.isLandscape ? 120 : 60),
           child: HomeScreenBody(),
         ),
       ],

@@ -94,7 +94,7 @@ class _AccountCreatedBodyState extends ConsumerState<WagerCreatedBody> {
                             text: 'https://link.wager.strk/WEpl'));
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('linkCopied'.tr()),
+                            content: Text('copiedToClipBoard'.tr()),
                           ),
                         );
                       },

@@ -11,24 +11,12 @@ class HomeScreenBody extends ConsumerWidget {
         context: context,
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
-        builder: (BuildContext context) => FundWalletDialog(
-          onClose: () => Navigator.of(context).pop(),
-          onFund: () {
-            // Add your funding logic here
-            Navigator.of(context).pop();
-          },
-        ),
+        builder: (BuildContext context) => FundWalletDialog(),
       );
     } else {
       showDialog(
         context: context,
-        builder: (BuildContext context) => FundWalletDialog(
-          onClose: () => Navigator.of(context).pop(),
-          onFund: () {
-            // Add your funding logic here
-            Navigator.of(context).pop();
-          },
-        ),
+        builder: (BuildContext context) => FundWalletDialog(),
       );
     }
   }
@@ -37,16 +25,14 @@ class HomeScreenBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
-        context.isMobile
-            ? _mobileContractAddress(context)
-            : _tabletContractAddress(context),
+        _walletAddressWidget(context),
         verticalSpace(8),
         context.isMobile
             ? _mobileStarkAmount(context)
             : _tabletStarkAmount(context),
         verticalSpace(16),
         context.isMobile ? HomeAddAndWithdraw() : SizedBox(),
-        context.isMobile ? verticalSpace(48) : verticalSpace(40),
+        verticalSpace(40),
         context.isMobile ? _mobileNoWager(context) : _tabletNoWager(context),
       ],
     );
@@ -165,68 +151,23 @@ class HomeScreenBody extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- MOBILE_CONTRACT_ADDRESS ----------------------------------------------- //
+//----------------------------------------------- WALLET_ADDRESS ----------------------------------------------- //
 
-  Widget _mobileContractAddress(BuildContext context) {
+  Widget _walletAddressWidget(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'walletBalance'.tr(),
-          style: AppTheme.of(context).bodyMedium14.copyWith(
-                color: context.textHintColor,
-              ),
+          style: context.isMobile
+              ? AppTheme.of(context).bodyMedium14.copyWith(
+                    color: context.textHintColor,
+                  )
+              : AppTheme.of(context).bodyLarge16.copyWith(
+                    color: context.textHintColor,
+                  ),
         ),
-        Container(
-          height: 29,
-          width: 151,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: context.containerColor,
-          ),
-          child: Row(
-            spacing: 7,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('0x400e44000...',
-                  style: AppTheme.of(context).textSmallMedium),
-              SvgPicture.asset(AppIcons.copyIcon)
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-//----------------------------------------------- TABLET_CONTRACT_ADDRESS ----------------------------------------------- //
-
-  Widget _tabletContractAddress(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          'walletBalance'.tr(),
-          style: AppTheme.of(context).bodyLarge16.copyWith(
-                color: context.textHintColor,
-              ),
-        ),
-        Container(
-          height: 29,
-          width: 151,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: context.containerColor,
-          ),
-          child: Row(
-            spacing: 7,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('0x400e44000...',
-                  style: AppTheme.of(context).textRegularMedium),
-              SvgPicture.asset(AppIcons.copyIcon)
-            ],
-          ),
-        ),
+        CopyItemContainer(value: '0x234233424322'),
       ],
     );
   }

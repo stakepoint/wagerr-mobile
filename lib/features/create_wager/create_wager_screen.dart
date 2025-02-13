@@ -24,8 +24,9 @@ class CreateWagerScreen extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            width: AppValues.width500,
-            margin: EdgeInsets.all(20),
+            margin: context.isMobile
+                ? EdgeInsets.all(20)
+                : EdgeInsets.symmetric(horizontal: 120),
             child: Column(
               crossAxisAlignment: context.isMobile
                   ? CrossAxisAlignment.start
@@ -463,7 +464,7 @@ class HashtagDialog extends ConsumerWidget {
                 horizontalSpace(140),
                 Text(
                   textAlign: TextAlign.center,
-                  'addHastag(s)'.tr(),
+                  'addHashtag(s)'.tr(),
                   style: AppTheme.of(context).titleExtraLarge24,
                 ),
                 Spacer(),
@@ -498,7 +499,7 @@ class HashtagDialog extends ConsumerWidget {
   }
 }
 
-//----------------------------------------------- HASHTAG BOTTOMSHEET ----------------------------------------------- //
+//----------------------------------------------- HASHTAG BOTTOM SHEET ----------------------------------------------- //
 class HashtagBottomSheet extends ConsumerWidget {
   const HashtagBottomSheet({super.key});
 

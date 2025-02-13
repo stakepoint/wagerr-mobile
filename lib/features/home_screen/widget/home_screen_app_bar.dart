@@ -13,7 +13,6 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ProfileMenu(),
-            const SizedBox(width: AppValues.padding16),
             SvgPicture.asset(AppIcons.notificationIcon),
           ],
         ),

@@ -14,127 +14,124 @@ class WagerSummaryScreen extends ConsumerWidget {
           builder: (context, constraints) {
             return SingleChildScrollView(
               child: Center(
-                child: SizedBox(
-                  width: AppValues.width500,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppValues.padding20,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: context.isMobile
-                          ? CrossAxisAlignment.start
-                          : CrossAxisAlignment.center,
-                      children: [
-                        if (context.isMobile)
-                          Text(
-                            'wagerSummary'.tr(),
-                            style: AppTheme.of(context).headLineLarge32,
-                          ),
-                        verticalSpace(AppValues.height20),
-                        if (context.isMobile)
-                          verticalDivider(color: context.dividerColor),
-                        verticalSpace(AppValues.height20),
-                        buildStrkVSContainer(
-                          context,
-                          '5',
-                          '@noyi24_7',
-                          'Awaiting Opponent'.tr(),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.isMobile ? AppValues.padding20 : 120,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: context.isMobile
+                        ? CrossAxisAlignment.start
+                        : CrossAxisAlignment.center,
+                    children: [
+                      if (context.isMobile)
+                        Text(
+                          'wagerSummary'.tr(),
+                          style: AppTheme.of(context).headLineLarge32,
                         ),
-                        verticalSpace(AppValues.height20),
-                        buildSummarySections(context, 'Title of your Wager',
-                            'Will Bitcoin Hit 100k Before January 31, 2025?'),
-                        verticalSpace(AppValues.height20),
-                        buildSummarySections(
-                          context,
-                          'Potential Winnings',
-                          '10 Strk',
-                          isPotentialWinning: true,
-                        ),
-                        verticalSpace(AppValues.height20),
-                        buildSummarySections(
-                          context,
-                          'Platform Fee',
-                          '5.0%',
-                          hasInfo: true,
-                          infoOnTap: () {},
-                        ),
-                        verticalSpace(AppValues.height20),
-                        buildSummarySections(
-                          context,
-                          'Terms or Wager Description',
-                          '''Think Bitcoin is on track to skyrocket past \$100k? Here's your chance to put your prediction to the test! This wager challenges participants to predict whether Bitcoin will reach or exceed the \$100,000 mark by January 31, 2025. The official price will be determined using CoinMarketCap's data at 11:59 PM UTC on the deadline date.
-                          
-Participants must stake an equal amount of STRK tokens to join this head-to-head challenge. If Bitcoin hits or surpasses \$100k by the specified date and time, those who wager 'Yes' win the wager. If it falls short, those who wager 'No' take the prize.
-                          
-No extensions, no exceptions—this is your chance to back your crypto knowledge with real stakes! Join now and see if your prediction skills can earn you the ultimate reward in STRK tokens. Let's see who's got what it takes to call the next big crypto move!''',
-                        ),
-                        verticalSpace(AppValues.height20),
-                        buildCategoryHashtagSection(
-                          context,
-                          'Category',
-                          wagerItems: [
-                            'Crypto',
-                          ],
-                        ),
-                        verticalSpace(AppValues.height20),
-                        buildCategoryHashtagSection(
-                          context,
-                          'Hashtags',
-                          hasHashtag: true,
-                          wagerItems: [
-                            'Bitcoin',
-                            'Blockchain',
-                          ],
-                        ),
-                        verticalSpace(AppValues.height20),
+                      verticalSpace(AppValues.height20),
+                      if (context.isMobile)
                         verticalDivider(color: context.dividerColor),
-                        verticalSpace(AppValues.height20),
-                        Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.all(AppValues.padding10),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: context.secondaryBackgroundColor),
-                            borderRadius:
-                                BorderRadius.circular(AppValues.radius16),
-                            color: context.primaryBackgroundColor,
-                          ),
-                          child: Flex(
-                            direction: Axis.horizontal,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0),
-                                child: SvgPicture.asset(
-                                  AppIcons.infoIcon,
-                                  fit: BoxFit.scaleDown,
-                                ),
+                      verticalSpace(AppValues.height20),
+                      buildStrkVSContainer(
+                        context,
+                        '5',
+                        '@noyi24_7',
+                        'Awaiting Opponent'.tr(),
+                      ),
+                      verticalSpace(AppValues.height20),
+                      buildSummarySections(context, 'Title of your Wager',
+                          'Will Bitcoin Hit 100k Before January 31, 2025?'),
+                      verticalSpace(AppValues.height20),
+                      buildSummarySections(
+                        context,
+                        'Potential Winnings',
+                        '10 Strk',
+                        isPotentialWinning: true,
+                      ),
+                      verticalSpace(AppValues.height20),
+                      buildSummarySections(
+                        context,
+                        'Platform Fee',
+                        '5.0%',
+                        hasInfo: true,
+                        infoOnTap: () {},
+                      ),
+                      verticalSpace(AppValues.height20),
+                      buildSummarySections(
+                        context,
+                        'Terms or Wager Description',
+                        '''Think Bitcoin is on track to skyrocket past \$100k? Here's your chance to put your prediction to the test! This wager challenges participants to predict whether Bitcoin will reach or exceed the \$100,000 mark by January 31, 2025. The official price will be determined using CoinMarketCap's data at 11:59 PM UTC on the deadline date.
+                        
+                Participants must stake an equal amount of STRK tokens to join this head-to-head challenge. If Bitcoin hits or surpasses \$100k by the specified date and time, those who wager 'Yes' win the wager. If it falls short, those who wager 'No' take the prize.
+                        
+                No extensions, no exceptions—this is your chance to back your crypto knowledge with real stakes! Join now and see if your prediction skills can earn you the ultimate reward in STRK tokens. Let's see who's got what it takes to call the next big crypto move!''',
+                      ),
+                      verticalSpace(AppValues.height20),
+                      buildCategoryHashtagSection(
+                        context,
+                        'Category',
+                        wagerItems: [
+                          'Crypto',
+                        ],
+                      ),
+                      verticalSpace(AppValues.height20),
+                      buildCategoryHashtagSection(
+                        context,
+                        'Hashtags',
+                        hasHashtag: true,
+                        wagerItems: [
+                          'Bitcoin',
+                          'Blockchain',
+                        ],
+                      ),
+                      verticalSpace(AppValues.height20),
+                      verticalDivider(color: context.dividerColor),
+                      verticalSpace(AppValues.height20),
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(AppValues.padding10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: context.secondaryBackgroundColor),
+                          borderRadius:
+                              BorderRadius.circular(AppValues.radius16),
+                          color: context.primaryBackgroundColor,
+                        ),
+                        child: Flex(
+                          direction: Axis.horizontal,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: SvgPicture.asset(
+                                AppIcons.infoIcon,
+                                fit: BoxFit.scaleDown,
                               ),
-                              Expanded(
-                                child: Text(
-                                  'Always keep verifiable evidence of your wagers for dispute resolution purposes.'
-                                      .tr(),
-                                  style: AppTheme.of(context).textSmallMedium,
-                                  softWrap: true,
-                                  maxLines: null,
-                                  overflow: TextOverflow.visible,
-                                ),
-                              )
-                            ],
-                          ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                'Always keep verifiable evidence of your wagers for dispute resolution purposes.'
+                                    .tr(),
+                                style: AppTheme.of(context).textSmallMedium,
+                                softWrap: true,
+                                maxLines: null,
+                                overflow: TextOverflow.visible,
+                              ),
+                            )
+                          ],
                         ),
-                        verticalSpace(AppValues.height50),
-                        PrimaryButton(
-                          buttonText: 'Create Wager'.tr(),
-                          isActive: true,
-                          onPressed: () {
-                            GoRouter.of(context).push(Routes.wagerCreated);
-                          },
-                        ),
-                        verticalSpace(AppValues.height20),
-                      ],
-                    ),
+                      ),
+                      verticalSpace(AppValues.height50),
+                      PrimaryButton(
+                        buttonText: 'Create Wager'.tr(),
+                        isActive: true,
+                        onPressed: () {
+                          GoRouter.of(context).push(Routes.wagerCreated);
+                        },
+                      ),
+                      verticalSpace(AppValues.height20),
+                    ],
                   ),
                 ),
               ),
