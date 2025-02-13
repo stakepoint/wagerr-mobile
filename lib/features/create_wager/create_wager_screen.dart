@@ -457,8 +457,9 @@ class HashtagDialog extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                horizontalSpace(140),
                 Text(
                   textAlign: TextAlign.center,
                   'addHashtag(s)'.tr(),
