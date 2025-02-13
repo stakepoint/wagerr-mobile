@@ -11,15 +11,12 @@ class HomeScreenBody extends ConsumerWidget {
         context: context,
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
-        builder: (BuildContext context) => FundWallet(showInput: false),
+        builder: (BuildContext context) => FundWalletDialog(),
       );
     } else {
       showDialog(
         context: context,
-        builder: (BuildContext context) => FundWallet(
-          showInput: false,
-          isDialog: true,
-        ),
+        builder: (BuildContext context) => FundWalletDialog(),
       );
     }
   }
