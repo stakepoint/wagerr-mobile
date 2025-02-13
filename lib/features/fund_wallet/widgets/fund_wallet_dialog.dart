@@ -129,7 +129,6 @@ class _FundWalletDialogState extends State<FundWalletDialog> {
             height: 4,
             margin: const EdgeInsets.only(top: 8, bottom: 4),
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.5),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
