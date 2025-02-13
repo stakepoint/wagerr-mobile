@@ -1,37 +1,39 @@
-// ignore_for_file: must_be_immutable
 part of '../../feature.dart';
 
-class FundWallet extends ConsumerStatefulWidget {
-  FundWallet({
+class FundWalletDialog extends StatefulWidget {
+  final VoidCallback? onFund;
+  final VoidCallback? onClose;
+
+  const FundWalletDialog({
     super.key,
-    required this.showInput,
-    this.isDialog = false,
-    this.onClose,
     this.onFund,
+    this.onClose,
   });
 
-  bool showInput = false;
-  final bool isDialog;
-  final VoidCallback? onClose;
-  final VoidCallback? onFund;
-
   @override
-  ConsumerState<FundWallet> createState() => _FundWalletState();
+  State<FundWalletDialog> createState() => _FundWalletDialogState();
 }
 
-class _FundWalletState extends ConsumerState<FundWallet> {
+class _FundWalletDialogState extends State<FundWalletDialog> {
+  bool showInput = false;
   final TextEditingController amountController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
-  String get _dialogText => widget.showInput
-      ? 'enterAmountDescription'.tr()
-      : 'fundWalletDescription'.tr();
+  String get _dialogText =>
+      showInput ? 'enterAmountDescription'.tr() : 'fundWalletDescription'.tr();
 
   @override
   void initState() {
     super.initState();
     _focusNode.addListener(_onFocusChange);
     amountController.text = "";
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (context.isMobile) {
+        _showBottomSheet(context);
+      } else {
+        _showDialog(context);
+      }
+    });
   }
 
   @override
@@ -48,159 +50,171 @@ class _FundWalletState extends ConsumerState<FundWallet> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    if (widget.isDialog) {
-      return _buildDialog(context);
-    } else {
-      return _buildBottomSheet(context);
+  void _showBottomSheet(BuildContext context) async {
+    final response = await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setModalState) {
+            return Container(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              decoration: BoxDecoration(
+                color: context.containerColor,
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(16)),
+              ),
+              child: _buildContent(setModalState),
+            );
+          },
+        );
+      },
+    );
+    if (response == null) {
+      popOverlay();
     }
   }
 
-  Widget _buildDialog(BuildContext context) {
-    final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
-    final maxHeightPercentage = isLandscape ? 0.5 : 0.38;
-
-    return Dialog(
-      backgroundColor: context.containerColor,
-      insetPadding: const EdgeInsets.symmetric(horizontal: 24),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * maxHeightPercentage,
-          minWidth: 420,
-          maxWidth: 420,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              verticalSpace(AppValues.height15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(child: SizedBox()),
-                  Text('fundYourWallet'.tr(),
-                      textAlign: TextAlign.center,
-                      style: AppTheme.of(context).titleExtraLarge24),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        icon: SvgPicture.asset(AppIcons.close),
-                        onPressed: () => Navigator.pop(context),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: Text(
-                  _dialogText,
-                  textAlign: TextAlign.center,
-                  style: AppTheme.of(context)
-                      .bodyLarge16
-                      .copyWith(color: context.subTitleTextColor),
-                ),
-              ),
-              _buildMainContent(context),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: PrimaryButton(
-                    buttonText: 'fund'.tr(),
-                    onPressed: () {
-                      if (!widget.showInput) {
-
-                        /*setState(() {
-                          widget.showInput = true;
-                        });*/
-                      } else {
-                        context.pop();
-                      }
-                    },
-                    isActive: true),
-              ),
-              const SizedBox(height: 16),
-            ],
+  void _showDialog(BuildContext context) async {
+    final response = await showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.white,
+          insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
-        ),
-      ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.6,
+              minWidth: 420,
+              maxWidth: 420,
+            ),
+            child: ClipRect(
+              child: StatefulBuilder(
+                builder: (BuildContext context, StateSetter setModalState) {
+                  return SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
+                    child: _buildContent(setModalState),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
+    if (response == null) {
+      popOverlay();
+    }
   }
 
-  Widget _buildBottomSheet(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Expanded(child: SizedBox()),
-              Text('fundYourWallet'.tr(),
-                  textAlign: TextAlign.center,
-                  style: AppTheme.of(context).titleExtraLarge24),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    icon: SvgPicture.asset(AppIcons.close),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ),
-              ),
-            ],
+  void popOverlay() {
+    if (context.mounted) {
+      Navigator.of(context).pop();
+    }
+  }
+
+  Widget _buildContent(StateSetter setModalState) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (context.isMobile)
+          Container(
+            width: 32,
+            height: 4,
+            margin: const EdgeInsets.only(top: 8, bottom: 4),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(2),
+            ),
           ),
-          verticalSpace(8),
-          Text(
+        Align(
+          alignment: Alignment.topRight,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 24, top: 16),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop(true);
+                widget.onClose?.call();
+              },
+              child: const Icon(Icons.close, size: 24),
+            ),
+          ),
+        ),
+        Text('fundYourWallet'.tr(),
+            style: AppTheme.of(context).titleExtraLarge24),
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Text(
             _dialogText,
             textAlign: TextAlign.center,
             style: AppTheme.of(context)
                 .bodyLarge16
                 .copyWith(color: context.subTitleTextColor),
           ),
-          _buildMainContent(context),
-          PrimaryButton(
-              buttonText: 'fund'.tr(),
+        ),
+        _buildMainContent(setModalState),
+        Padding(
+          padding: const EdgeInsets.only(
+            bottom: 16,
+            left: 24,
+            right: 24,
+          ),
+          child: SizedBox(
+            width: double.infinity,
+            height: 56,
+            child: ElevatedButton(
               onPressed: () {
-                if (!widget.showInput) {
-                  /*setState(() {
-                    widget.showInput = true;
-                  });*/
+                if (!showInput) {
+                  setModalState(() {
+                    showInput = true;
+                  });
+                  Future.delayed(const Duration(milliseconds: 100), () {
+                    _focusNode.requestFocus();
+                  });
                 } else {
-                  context.pop();
+                  Navigator.of(context).pop(true);
+                  widget.onFund?.call();
                 }
               },
-              isActive: true
-          )
-        ],
-      ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: context.primaryButtonColor,
+                foregroundColor: context.primaryTextColor,
+                elevation: 0,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                'fundButton'.tr(),
+                style: AppTheme.of(context).bodyExtraLarge18.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 16),
+      ],
     );
   }
 
-  Widget _buildMainContent(BuildContext context) {
-    if (!widget.showInput) {
+  Widget _buildMainContent(StateSetter setModalState) {
+    if (!showInput) {
       return Column(
         children: [
           verticalSpace(24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 100,
-                child: SvgPicture.asset(AppIcons.fundWalletIcon,
-                    fit: BoxFit.contain),
-              ),
-            ],
+          SizedBox(
+            height: 100,
+            child:
+                SvgPicture.asset(AppIcons.fundWalletIcon, fit: BoxFit.contain),
           ),
           verticalSpace(32),
         ],
@@ -209,9 +223,23 @@ class _FundWalletState extends ConsumerState<FundWallet> {
     return Column(
       children: [
         verticalSpace(24),
-        _AmountInputField(
-          controller: amountController,
-          focusNode: _focusNode,
+        Material(
+          color: Colors.transparent,
+          child: TextField(
+            controller: amountController,
+            focusNode: _focusNode,
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            inputFormatters: [CurrencyTextInputFormatter()],
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: '\$0.00',
+              hintStyle: AppTheme.of(context)
+                  .headingMobileH1
+                  .copyWith(color: context.textHintColor),
+            ),
+            style: AppTheme.of(context).headingMobileH1,
+          ),
         ),
         verticalSpace(8),
         Row(
@@ -226,42 +254,9 @@ class _FundWalletState extends ConsumerState<FundWallet> {
       ],
     );
   }
-}
 
-class _AmountInputField extends StatefulWidget {
-  final TextEditingController controller;
-  final FocusNode focusNode;
-
-  const _AmountInputField({
-    required this.controller,
-    required this.focusNode,
-  });
-
-  @override
-  _AmountInputFieldState createState() => _AmountInputFieldState();
-}
-
-class _AmountInputFieldState extends State<_AmountInputField> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: TextField(
-        controller: widget.controller,
-        focusNode: widget.focusNode,
-        keyboardType: TextInputType.number,
-        textAlign: TextAlign.center,
-        //autofocus: true,
-        inputFormatters: [CurrencyTextInputFormatter()],
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: '\$0.00',
-          hintStyle: AppTheme.of(context).headingMobileH1.copyWith(
-            color: context.textHintColor,
-          ),
-        ),
-        style: AppTheme.of(context).headingMobileH1,
-      ),
-    );
+    return const SizedBox.shrink();
   }
 }
