@@ -23,6 +23,8 @@ class AppIcons {
   static const fundWalletIcon = 'assets/icons/wallet_icon.svg';
   static const ellipseIcon = 'assets/icons/ellipse.svg';
   static const vsIcon = 'assets/icons/VS.svg';
+  static const upwardArrow = 'assets/icons/upward_arrow.png';
+  static const downwardArrow = 'assets/icons/downward_arrow.png';
 
   //-------------------------------------------- IMAGES -------------------------------------------- //
   static const userImage = 'assets/images/user.png';

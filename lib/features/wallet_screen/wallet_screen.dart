@@ -5,11 +5,10 @@ class WalletScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMobile = ScreenLayout.isMobile(context);
-    final isPortrait =
-        MediaQuery.of(context).orientation == Orientation.portrait;
+    final isMobile = context.isMobile; 
+    final isPortrait = context.isPortrait; 
     return Scaffold(
-      appBar: isMobile ? WalletScreenAppBar() : null,
+      appBar: isMobile ? HomeScreenAppBar() : null,
       backgroundColor: context.primaryBackgroundColor,
       floatingActionButton:
           isMobile || isPortrait ? _floatingActionButton(context) : SizedBox(),
@@ -48,8 +47,6 @@ class WalletScreen extends ConsumerWidget {
     );
   }
 
-//----------------------------------------------- FLOATING_ACTION_BUTTON ----------------------------------------------- //
-
   Widget _floatingActionButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -63,17 +60,17 @@ class WalletScreen extends ConsumerWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
+              color: Colors.black.withOpacity(0.2), // using withOpacity
               blurRadius: 8,
               offset: Offset(0, 4),
             ),
           ],
         ),
         child: Row(
-          spacing: 12,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(AppIcons.handshakeIcon),
+            SizedBox(width: 12),
             Text('newWager'.tr(), style: AppTheme.of(context).textMediumMedium),
           ],
         ),
